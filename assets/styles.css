@@ -178,8 +178,6 @@ body > #error-popup {
 .error-icon img {
     width: 18px;
     height: 18px;
-    filter: brightness(0) invert(1);
-    /* Белый цвет, как у иконок в меню */
     object-fit: contain;
 }
 
