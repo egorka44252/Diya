@@ -1,7 +1,7 @@
 {
   "id": "./",
-  "name": "Дія.AI",
-  "short_name": "Дія.AI",
+  "name": "Дія",
+  "short_name": "Дія",
   "description": "Дія — вебзастосунок, встановлений на пристрій як PWA",
   "lang": "uk",
   "dir": "ltr",
