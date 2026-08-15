@@ -18,46 +18,22 @@
     <link rel="manifest" href="./manifest.json" />
     <title>Дія</title>
     <link type="image/png" href="assets/favicon.png" rel="shortcut icon" />
-    <script src="assets/anime.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script>const nocache1 = Math.random();</script>
-    <link rel="stylesheet" href="assets/styles.css" />
+    
+    <style>
+        /* Скрываем все полосы прокрутки, сохраняя возможность скроллить */
+        html, body, * {
+            scrollbar-width: none !important;
+            -ms-overflow-style: none !important;
+        }
 
-
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-          navigator.serviceWorker.register('./sw.js', {scope: './'})
-            .then(function(reg) { console.log('SW registered'); })
-            .catch(function(err) { console.log('SW error:', err); });
-        });
-      }
-    </script>
-
-    <script>
-      // Android/Chrome: позволяет установить сайт на рабочий стол как приложение.
-      let deferredInstallPrompt = null;
-      window.addEventListener('beforeinstallprompt', (event) => {
-        event.preventDefault();
-        deferredInstallPrompt = event;
-        window.dispatchEvent(new CustomEvent('diya-install-available'));
-      });
-
-      window.diYaInstallApp = async function () {
-        if (!deferredInstallPrompt) return false;
-        deferredInstallPrompt.prompt();
-        const result = await deferredInstallPrompt.userChoice;
-        deferredInstallPrompt = null;
-        return result.outcome === 'accepted';
-      };
-
-      window.addEventListener('appinstalled', () => {
-        deferredInstallPrompt = null;
-      });
-    </script>
+        html::-webkit-scrollbar,
+        body::-webkit-scrollbar,
+        *::-webkit-scrollbar {
+            width: 0 !important;
+            height: 0 !important;
+            display: none !important;
+        }
+    </style>
 </head>
 
 <body data-scroll-lock-saved-overflow-y-property="hidden" data-scroll-lock-saved-inline-overflow-property=""
