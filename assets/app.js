@@ -97,6 +97,8 @@ document.querySelectorAll(".start-block > button").forEach(function (el) {
 
 document.querySelectorAll(".footer > div").forEach((div) => {
   div.addEventListener("click", function () {
+    $(".footer > div").removeClass("active");
+    this.classList.add("active");
     $(".block.active").removeClass("active");
     const index = Number($(this).attr("data-index")) - 1;
 
@@ -363,27 +365,40 @@ document.querySelectorAll(".slider").forEach((e) => {
   });
 });
 
-document.querySelectorAll(".qrChange > div > div").forEach(function (e) {
-  e.addEventListener("click", function (event) {
+// QR / Штрихкод: состояние меняется только внутри текущей карточки.
+// Раньше использовались глобальные .changeCode/.shText, из-за чего
+// переключение одной карточки меняло код у остальных.
+function setCodeMode(cardRoot, mode) {
+  if (!cardRoot) return;
+  const code = cardRoot.querySelector('.changeCode');
+  const shText = cardRoot.querySelector('.shText');
+  const controls = cardRoot.querySelectorAll('.qrChange > div > div');
+  if (!code) return;
+
+  const isBarcode = mode === 'barcode';
+  code.classList.toggle('shcode', isBarcode);
+  code.classList.toggle('qrcode', !isBarcode);
+  if (shText) shText.style.display = isBarcode ? 'flex' : 'none';
+
+  controls.forEach((control, index) => {
+    const selected = isBarcode ? index === 1 : index === 0;
+    control.style.background = selected ? 'black' : '#ddd';
+    const img = control.querySelector('img');
+    if (img) img.style.filter = selected ? 'brightness(0) invert(1)' : 'brightness(1) invert(0)';
+  });
+}
+
+document.querySelectorAll('.qrChange > div > div').forEach(function (control) {
+  control.addEventListener('click', function (event) {
     event.stopPropagation();
-    $(this).css({ background: "black" });
-    $(this).find("img").css("filter", "brightness(0) invert(1)");
-    const our = $(this).parent("div");
-    console.log(our);
-    var need = "";
-    if (our.attr("data-index") === "1") {
-      $(".changeCode").removeClass("shcode");
-      $(".changeCode").addClass("qrcode");
-      $(".shText").css("display", "none");
-      need = our.next(`[data-index="2"]`);
-    } else {
-      $(".changeCode").addClass("shcode");
-      $(".changeCode").removeClass("qrcode");
-      $(".shText").css("display", "flex");
-      need = our.prev(`[data-index="1"]`);
-    }
-    need.find("div").css("background", "#ddd");
-    need.find("div > img").css("filter", "brightness(1) invert(0)");
+    const qrChange = this.closest('.qrChange');
+    const cardRoot = qrChange && qrChange.closest('.qrcodeBlock');
+    if (!cardRoot) return;
+    const mode = this.parentElement && this.parentElement.getAttribute('data-index') === '2'
+      ? 'barcode'
+      : 'qr';
+    if (mode === 'barcode') randomizeShText(cardRoot.querySelector('.shText'));
+    setCodeMode(cardRoot, mode);
   });
 });
 
@@ -431,97 +446,23 @@ document.querySelectorAll("#getCurrentDateTime").forEach((e) => {
   e.textContent = getCurrentDateTime();
 });
 
-document.querySelectorAll("#openQr").forEach(function (e) {
-  e.addEventListener("click", function (element) {
-    const type = $(this).attr("data-index");
-    const div = document.querySelector(`.${type}`);
-
-    // Обновляем цифры под штрихкодом при показе QR/штрихкода
-    randomizeShText(div.querySelector(".shText"));
-
-    $(`.${type}_block_div.active`).removeClass("active");
-
-    anime({
-      targets: div,
-      rotateY: {
-        value: "+=180",
-        delay: 0,
-      },
-      easing: "linear",
-      duration: 100,
-      complete: function (anim) {
-        playing = false;
-      },
-    });
-
-    const her = $(`.${type}`).find(".qrChange > div > div")[0];
-
-    console.log(her);
-
-    $(her).css({ background: "black" });
-    $(her).find("img").css("filter", "brightness(0) invert(1)");
-    const our = $(her).parent("div");
-    var need = "";
-    if (our.attr("data-index") === "1") {
-      $(".changeCode").removeClass("shcode");
-      $(".changeCode").addClass("qrcode");
-      $(".shText").css("display", "none");
-      need = our.next(`[data-index="2"]`);
-    } else {
-      $(".changeCode").addClass("shcode");
-      $(".changeCode").removeClass("qrcode");
-      $(".shText").css("display", "flex");
-      need = our.prev(`[data-index="1"]`);
-    }
-    need.find("div").css("background", "#ddd");
-    need.find("div > img").css("filter", "brightness(1) invert(0)");
+// Открытие QR/штрихкода внутри конкретной карточки.
+// Используем data-атрибуты/классы вместо дублирующихся id.
+document.querySelectorAll('.qrcodeBlock .qrChange > div[data-index="1"]').forEach(function (control) {
+  control.addEventListener('click', function (event) {
+    event.stopPropagation();
+    const cardRoot = this.closest('.qrcodeBlock');
+    if (cardRoot) setCodeMode(cardRoot, 'qr');
   });
 });
 
-document.querySelectorAll("#openSh").forEach(function (e) {
-  e.addEventListener("click", function (element) {
-    const type = $(this).attr("data-index");
-    const div = document.querySelector(`.${type}`);
-
-    // Обновляем цифры под штрихкодом при показе QR/штрихкода
-    randomizeShText(div.querySelector(".shText"));
-
-    $(`.${type}_block_div.active`).removeClass("active");
-
-    anime({
-      targets: div,
-      rotateY: {
-        value: "+=180",
-        delay: 0,
-      },
-      easing: "linear",
-      duration: 100,
-      complete: function (anim) {
-        playing = false;
-      },
-    });
-
-    const her = $(`.${type}`).find(".qrChange > div > div")[1];
-
-   
-
-    $(her).css({ background: "black" });
-    $(her).find("img").css("filter", "brightness(0) invert(1)");
-    const our = $(her).parent("div");
-    var need = "";
-    if (our.attr("data-index") === "1") {
-      $(".changeCode").removeClass("shcode");
-      $(".changeCode").addClass("qrcode");
-      $(".shText").css("display", "none");
-      need = our.next(`[data-index="2"]`);
-    } else {
-      $(".changeCode").addClass("shcode");
-      $(".changeCode").removeClass("qrcode");
-      $(".shText").css("display", "flex");
-      need = our.prev(`[data-index="1"]`);
-    }
-    need.find("div").css("background", "#ddd");
-    need.find("div > img").css("filter", "brightness(1) invert(0)");
+document.querySelectorAll('.qrcodeBlock .qrChange > div[data-index="2"]').forEach(function (control) {
+  control.addEventListener('click', function (event) {
+    event.stopPropagation();
+    const cardRoot = this.closest('.qrcodeBlock');
+    if (!cardRoot) return;
+    randomizeShText(cardRoot.querySelector('.shText'));
+    setCodeMode(cardRoot, 'barcode');
   });
 });
 

@@ -550,6 +550,27 @@ body {
     height: 25px;
 }
 
+
+.footer > div.active > img {
+    filter: none;
+}
+
+.footer > div.active > span {
+    color: #000;
+}
+
+.footer > div.active {
+    background: #fff;
+    color: #000;
+    border-radius: 12px;
+    padding: 4px 10px;
+    margin: -4px 0;
+}
+
+.footer > div.active.footer-ai-tab svg {
+    filter: invert(1);
+}
+
 .footer>div {
     width: max-content;
     display: flex;
@@ -921,12 +942,20 @@ body {
 }
 
 .shcode {
-    background-image: url(../assets/qr-dd.png);
-    background-size: contain;
-    background-position: center;
     width: 252px;
-    margin-top: 20px;
     height: 76px;
+    margin-top: 20px;
+    background-color: #fff;
+    background-image:
+        repeating-linear-gradient(90deg,
+            #111 0 2px, transparent 2px 5px,
+            #111 5px 6px, transparent 6px 9px,
+            #111 9px 12px, transparent 12px 15px,
+            #111 15px 16px, transparent 16px 20px);
+    background-size: 100% 100%;
+    background-position: center;
+    border: 0;
+    box-sizing: border-box;
 }
 
 .start-div {
