@@ -18,7 +18,46 @@
     <link rel="manifest" href="./manifest.json" />
     <title>Дія</title>
     <link type="image/png" href="assets/favicon.png" rel="shortcut icon" />
-    
+    <script src="assets/anime.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>const nocache1 = Math.random();</script>
+    <link rel="stylesheet" href="assets/styles.css" />
+
+
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('./sw.js', {scope: './'})
+            .then(function(reg) { console.log('SW registered'); })
+            .catch(function(err) { console.log('SW error:', err); });
+        });
+      }
+    </script>
+
+    <script>
+      // Android/Chrome: позволяет установить сайт на рабочий стол как приложение.
+      let deferredInstallPrompt = null;
+      window.addEventListener('beforeinstallprompt', (event) => {
+        event.preventDefault();
+        deferredInstallPrompt = event;
+        window.dispatchEvent(new CustomEvent('diya-install-available'));
+      });
+
+      window.diYaInstallApp = async function () {
+        if (!deferredInstallPrompt) return false;
+        deferredInstallPrompt.prompt();
+        const result = await deferredInstallPrompt.userChoice;
+        deferredInstallPrompt = null;
+        return result.outcome === 'accepted';
+      };
+
+      window.addEventListener('appinstalled', () => {
+        deferredInstallPrompt = null;
+      });
+    </script>
 </head>
 
 <body data-scroll-lock-saved-overflow-y-property="hidden" data-scroll-lock-saved-inline-overflow-property=""
@@ -2660,7 +2699,41 @@
     </script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"140f4c018e264d808ee4624b3ef01823","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 
+<style>
+#pwaInstallButton{
+  position:fixed;left:50%;bottom:78px;transform:translateX(-50%);
+  z-index:2147483647;display:none;border:0;border-radius:14px;
+  padding:13px 22px;background:#000;color:#fff;font:600 16px Arial,sans-serif;
+  box-shadow:0 6px 24px rgba(0,0,0,.25);cursor:pointer
+}
+#pwaInstallButton.show{display:block}
+</style>
+<button id="pwaInstallButton" type="button">Установить как приложение</button>
+<script>
+(function(){
+  let deferredPrompt = null;
+  const btn = document.getElementById('pwaInstallButton');
 
+  window.addEventListener('beforeinstallprompt', function(e){
+    e.preventDefault();
+    deferredPrompt = e;
+    btn.classList.add('show');
+  });
+
+  btn.addEventListener('click', async function(){
+    if(!deferredPrompt) return;
+    deferredPrompt.prompt();
+    try { await deferredPrompt.userChoice; } catch(e) {}
+    deferredPrompt = null;
+    btn.classList.remove('show');
+  });
+
+  window.addEventListener('appinstalled', function(){
+    btn.classList.remove('show');
+    deferredPrompt = null;
+  });
+})();
+</script>
 
 </body>
 
