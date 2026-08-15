@@ -2698,6 +2698,43 @@
         });
     </script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"140f4c018e264d808ee4624b3ef01823","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+
+<style>
+#pwaInstallButton{
+  position:fixed;left:50%;bottom:78px;transform:translateX(-50%);
+  z-index:2147483647;display:none;border:0;border-radius:14px;
+  padding:13px 22px;background:#000;color:#fff;font:600 16px Arial,sans-serif;
+  box-shadow:0 6px 24px rgba(0,0,0,.25);cursor:pointer
+}
+#pwaInstallButton.show{display:block}
+</style>
+<button id="pwaInstallButton" type="button">Установить как приложение</button>
+<script>
+(function(){
+  let deferredPrompt = null;
+  const btn = document.getElementById('pwaInstallButton');
+
+  window.addEventListener('beforeinstallprompt', function(e){
+    e.preventDefault();
+    deferredPrompt = e;
+    btn.classList.add('show');
+  });
+
+  btn.addEventListener('click', async function(){
+    if(!deferredPrompt) return;
+    deferredPrompt.prompt();
+    try { await deferredPrompt.userChoice; } catch(e) {}
+    deferredPrompt = null;
+    btn.classList.remove('show');
+  });
+
+  window.addEventListener('appinstalled', function(){
+    btn.classList.remove('show');
+    deferredPrompt = null;
+  });
+})();
+</script>
+
 </body>
 
 </html>
