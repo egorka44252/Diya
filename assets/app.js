@@ -557,7 +557,7 @@ document.querySelectorAll(".services > div").forEach((service) => {
 
 // Обработчики для кнопок в "Меню"
 document
-  .querySelectorAll(".columnMenu > div > div, .columnMenu > button")
+  .querySelectorAll(".columnMenu > div > div:not(#openSettingsBtn), .columnMenu > button")
   .forEach((menuItem) => {
     menuItem.addEventListener("click", function (e) {
       e.preventDefault();
@@ -1186,7 +1186,9 @@ document.querySelectorAll(".modal").forEach((modal) => {
 
     applySettings(loadSettings());
 
-    openBtn && openBtn.addEventListener('click', function() {
+    openBtn && openBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
       fillForm(loadSettings());
       modal.classList.remove('hidden');
       setTimeout(initSignatureCanvas, 50);
