@@ -205,21 +205,44 @@ document.querySelectorAll(".close_block").forEach((el) => {
 
   if (window.Swiper && document.querySelector(".documentSlider")) {
     new Swiper(".documentSlider", {
+      effect: "coverflow",
+      speed: 620,
       pagination: { el: ".swiper-pagination", clickable: true },
       slidesPerView: 1.12,
       centeredSlides: true,
-      spaceBetween: 16,
+      spaceBetween: 8,
       grabCursor: true,
       touchRatio: 1,
-      threshold: 8,
+      threshold: 4,
       touchStartPreventDefault: false,
       simulateTouch: true,
       allowTouchMove: true,
       touchEventsTarget: "container",
-      resistanceRatio: 0.6,
+      resistanceRatio: 0.72,
+      followFinger: true,
+      watchSlidesProgress: true,
+      preventInteractionOnTransition: false,
+      coverflowEffect: {
+        rotate: 58,
+        stretch: 0,
+        depth: 150,
+        modifier: 1,
+        scale: 0.94,
+        slideShadows: false
+      },
       cssMode: false,
       observer: true,
-      observeParents: true
+      observeParents: true,
+      on: {
+        init(swiper) {
+          swiper.slides.forEach(slide => slide.classList.add("document-slide-animated"));
+        },
+        setTransition(swiper, duration) {
+          swiper.slides.forEach(slide => {
+            slide.style.transitionDuration = `${duration}ms`;
+          });
+        }
+      }
     });
   }
 })();

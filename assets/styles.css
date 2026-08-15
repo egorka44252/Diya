@@ -1316,6 +1316,27 @@ body {
 .documentSlider .swiper-slide {
     opacity: 1;
     transform: scale(1);
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    will-change: transform;
+}
+
+.documentSlider .document-slide-animated {
+    transition-property: transform, opacity, filter;
+    transition-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.documentSlider .swiper-slide-active {
+    z-index: 3;
+}
+
+.documentSlider .swiper-slide:not(.swiper-slide-active) {
+    filter: saturate(0.98);
+}
+
+.documentSlider .swiper-pagination {
+    bottom: 0 !important;
 }
 
 
