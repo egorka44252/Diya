@@ -1324,7 +1324,7 @@ body {
 
 .documentSlider .document-slide-animated {
     transition-property: transform, opacity, filter;
-    transition-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.35, 1);
 }
 
 .documentSlider .swiper-slide-active {
