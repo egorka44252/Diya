@@ -543,30 +543,25 @@ body {
 }
 
 .footer>div>img {
-    filter: brightness(0) invert(1);
     width: 25px;
     height: 25px;
 }
 
-
-.footer > div.active > img {
+.footer > div.active > img,
+.footer > div.active.footer-ai-tab svg {
     filter: none;
 }
 
 .footer > div.active > span {
-    color: #000;
+    color: #fff;
 }
 
 .footer > div.active {
-    background: #fff;
-    color: #000;
+    background: #222;
+    color: #fff;
     border-radius: 12px;
     padding: 4px 10px;
     margin: -4px 0;
-}
-
-.footer > div.active.footer-ai-tab svg {
-    filter: invert(1);
 }
 
 .footer>div {
