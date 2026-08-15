@@ -106,15 +106,18 @@ document.querySelectorAll(".footer > div").forEach((div) => {
       $(".video-background").removeClass("active");
     }
     if (index == 1) {
-      document.querySelector(".main.active").style.display = "flex";
-      document.querySelector(".main.active").style.flexDirection = "column";
+      const activeMain = document.querySelector(".main.active");
+      const footer = document.querySelector(".footer");
+      if (!activeMain || !footer) return;
+      activeMain.style.display = "flex";
+      activeMain.style.flexDirection = "column";
 
-      document.querySelector(".footer").style.position = "unset";
+      footer.style.position = "unset";
 
       document.querySelectorAll(".swiper-container").forEach(function (el) {
         el.style.height = "unset";
       });
-      document.querySelector(".footer").style.zIndex = "0";
+      footer.style.zIndex = "0";
 
       if (window.innerHeight < 700) {
         document.querySelectorAll(".swiper-slide").forEach(function (el) {
@@ -126,13 +129,16 @@ document.querySelectorAll(".footer > div").forEach((div) => {
         });
       }
     } else {
-      document.querySelector(".main.active").style.display = "block";
-      document.querySelector(".main.active").style.flexDirection = "";
+      const activeMain = document.querySelector(".main.active");
+      const footer = document.querySelector(".footer");
+      if (!activeMain || !footer) return;
+      activeMain.style.display = "block";
+      activeMain.style.flexDirection = "";
       document.querySelectorAll(".swiper-container").forEach(function (el) {
         el.style.height = "60%";
       });
-      document.querySelector(".footer").style.position = "absolute";
-      document.querySelector(".footer").style.zIndex = "2";
+      footer.style.position = "absolute";
+      footer.style.zIndex = "2";
       document.querySelectorAll(".swiper-slide").forEach(function (el) {
         el.style.height = "100%";
       });
@@ -197,7 +203,7 @@ document.querySelectorAll(".close_block").forEach((el) => {
     });
   }
 
-  document.addEventListener('DOMContentLoaded', function() {
+  if (window.Swiper && document.querySelector(".documentSlider")) {
     new Swiper(".documentSlider", {
       pagination: { el: ".swiper-pagination", clickable: true },
       slidesPerView: 1.12,
@@ -209,11 +215,13 @@ document.querySelectorAll(".close_block").forEach((el) => {
       touchStartPreventDefault: false,
       simulateTouch: true,
       allowTouchMove: true,
-      touchEventsTarget: 'container',
+      touchEventsTarget: "container",
       resistanceRatio: 0.6,
       cssMode: false,
+      observer: true,
+      observeParents: true
     });
-  });
+  }
 })();
 
 document.querySelectorAll("#dataNow").forEach(function (el) {
@@ -226,10 +234,13 @@ document.querySelectorAll("#dataNow").forEach(function (el) {
 });
 
 const notification = document.getElementById("notification");
+let notificationTimer = null;
 
 function showNotification() {
+  if (!notification) return;
   notification.classList.add("show");
-  setTimeout(() => {
+  clearTimeout(notificationTimer);
+  notificationTimer = setTimeout(() => {
     notification.classList.remove("show");
   }, 3000);
 }
@@ -241,51 +252,45 @@ document.querySelectorAll(".copyPng").forEach((el) => {
   });
 });
 
-let countdownInterval;
+let countdownInterval = null;
+let countdownEndAt = 0;
 
-// Генерация случайных блоков цифр под штрихкодом
+// Генерация цифр под штрихкодом.
+// Оставлено как отдельная функция, чтобы существующий интерфейс не менялся.
 function randomizeShText(shTextElement) {
   if (!shTextElement) return;
   const spans = shTextElement.querySelectorAll("span");
   const codes = [
-    Math.floor(Math.random() * 9000 + 1000), // 4 цифры
-    Math.floor(Math.random() * 9000 + 1000), // 4 цифры
-    Math.floor(Math.random() * 90000 + 10000), // 5 цифр
+    Math.floor(Math.random() * 9000 + 1000),
+    Math.floor(Math.random() * 9000 + 1000),
+    Math.floor(Math.random() * 90000 + 10000),
   ];
   spans.forEach((span, idx) => {
-    const code = codes[idx % codes.length];
-    span.textContent = code;
+    span.textContent = String(codes[idx % codes.length]);
   });
 }
 
-// Функция для запуска обратного отсчета
 function startCountdown(element, minutes, seconds) {
-  if (countdownInterval) {
-    clearInterval(countdownInterval);
-  }
-  // Обновление элемента на странице, чтобы отобразить текущее время обратного отсчета
-  function updateCountdown() {
-    // Если время вышло, остановите таймер
-    if (minutes === 0 && seconds === 0) {
+  if (!element) return;
+
+  clearInterval(countdownInterval);
+  const totalSeconds = Math.max(0, (Number(minutes) || 0) * 60 + (Number(seconds) || 0));
+  countdownEndAt = Date.now() + totalSeconds * 1000;
+
+  const render = () => {
+    const left = Math.max(0, Math.ceil((countdownEndAt - Date.now()) / 1000));
+    const mm = Math.floor(left / 60);
+    const ss = left % 60;
+    element.textContent = `${mm}:${String(ss).padStart(2, "0")}`;
+
+    if (left <= 0) {
       clearInterval(countdownInterval);
-      return;
+      countdownInterval = null;
     }
+  };
 
-    // Уменьшите количество секунд
-    seconds--;
-
-    // Если секунды меньше нуля, уменьшите количество минут и установите секунды в 59
-    if (seconds < 0) {
-      seconds = 59;
-      minutes--;
-    }
-
-    // Обновите элемент обратного отсчета на странице
-    element.textContent = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
-  }
-
-  // Запустите таймер, вызывая updateCountdown каждую секунду
-  countdownInterval = setInterval(updateCountdown, 1000);
+  render();
+  if (totalSeconds > 0) countdownInterval = setInterval(render, 250);
 }
 
 // Найдите все элементы с классом 'countdown'
@@ -359,15 +364,17 @@ document.querySelectorAll(".qrChange > div > div").forEach(function (e) {
   });
 });
 
-new Swiper(".sliderNews", {
-  pagination: {
-    el: ".swiper-pagination2",
-    clickable: true,
-  },
-  // slidesPerView: 1.15,
-  // centeredSlides: true,
-  spaceBetween: 30,
-});
+if (window.Swiper && document.querySelector(".sliderNews")) {
+  new Swiper(".sliderNews", {
+    pagination: {
+      el: ".swiper-pagination2",
+      clickable: true,
+    },
+    spaceBetween: 30,
+    observer: true,
+    observeParents: true,
+  });
+}
 
 function getCurrentDateTime() {
   // Получаем текущую дату и время
@@ -626,7 +633,8 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-document.querySelector(".biometry-btn").addEventListener("click", () => {
+const biometryBtn = document.querySelector(".biometry-btn");
+if (biometryBtn) biometryBtn.addEventListener("click", () => {
   const startDiv = $(".start-div");
 
   startDiv.removeClass("active").addClass("hiding");
@@ -640,12 +648,14 @@ document.querySelector(".biometry-btn").addEventListener("click", () => {
 });
 
 function showErrorPopup() {
-  document.getElementById("error-popup").classList.add("active");
+  const popup = document.getElementById("error-popup");
+  if (popup) popup.classList.add("active");
 }
 
 document.querySelectorAll(".error-close, .error-retry").forEach((btn) => {
   btn.addEventListener("click", () => {
-    document.getElementById("error-popup").classList.remove("active");
+    const popup = document.getElementById("error-popup");
+    if (popup) popup.classList.remove("active");
   });
 });
 
@@ -1205,10 +1215,25 @@ document.querySelectorAll(".modal").forEach((modal) => {
       if (!file) return;
       var reader = new FileReader();
       reader.onload = function(e) {
-        var dataUrl = e.target.result;
-        var preview = document.getElementById('photoPreview');
-        if (preview) preview.src = dataUrl;
-        var s = loadSettings(); s.photo = dataUrl; saveSettings(s);
+        var source = new Image();
+        source.onload = function() {
+          // Keep localStorage small and loading fast without changing the UI.
+          var maxSide = 1200;
+          var scale = Math.min(1, maxSide / Math.max(source.naturalWidth, source.naturalHeight));
+          var canvas = document.createElement('canvas');
+          canvas.width = Math.max(1, Math.round(source.naturalWidth * scale));
+          canvas.height = Math.max(1, Math.round(source.naturalHeight * scale));
+          var ctx = canvas.getContext('2d');
+          ctx.drawImage(source, 0, 0, canvas.width, canvas.height);
+          var dataUrl = canvas.toDataURL('image/jpeg', 0.86);
+
+          var preview = document.getElementById('photoPreview');
+          if (preview) preview.src = dataUrl;
+          var s = loadSettings();
+          s.photo = dataUrl;
+          saveSettings(s);
+        };
+        source.src = e.target.result;
       };
       reader.readAsDataURL(file);
     });
