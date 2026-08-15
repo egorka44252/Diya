@@ -26,7 +26,6 @@
     <script>const nocache1 = Math.random();</script>
     <link rel="stylesheet" href="assets/styles.css" />
 
-
     <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', function() {
@@ -38,7 +37,6 @@
     </script>
 
     <script>
-      // Android/Chrome: позволяет установить сайт на рабочий стол как приложение.
       let deferredInstallPrompt = null;
       window.addEventListener('beforeinstallprompt', (event) => {
         event.preventDefault();
@@ -64,6 +62,7 @@
     data-scroll-lock-saved-inline-overflow-y-property="" style="overflow: hidden; padding-right: 0px"
     data-scroll-lock-locked="true" data-scroll-lock-filled-gap="true" data-scroll-lock-current-fill-gap-method="padding"
     class="bg-start">
+    
     <div class="document_block_div pasport_block_div">
         <div>
             <div class="main_block">
@@ -72,8 +71,7 @@
                     <span>Повна інформація</span>
                 </div>
                 <div class="border" style="padding-left: 12px">
-                    <img style="width: 22px; height: 22px" src="assets/vitag.png"
-                        alt="" />
+                    <img style="width: 22px; height: 22px" src="assets/vitag.png" alt="" />
                     <span>Витяг про місце проживання</span>
                 </div>
                 <div>
@@ -89,19 +87,15 @@
                     <span>Питання та відповіді</span>
                 </div>
                 <div class="qrChangeInfo">
-                    <div data-index="pasport" id="openQr">
+                    <div data-index="pasport" class="btn-open-qr">
                         <div style="background: black">
-                            <img src="assets/qr-code.png" style="
-                                                filter: brightness(0) invert(1);
-                                            " alt="" />
+                            <img src="assets/qr-code.png" style="filter: brightness(0) invert(1);" alt="" />
                         </div>
                         <span>QR-код</span>
                     </div>
-                    <div data-index="pasport" id="openSh">
+                    <div data-index="pasport" class="btn-open-sh">
                         <div style="background: black">
-                            <img src="assets/free-icon-barcode-7797192.png" style="
-                                                filter: brightness(0) invert(1);
-                                            " alt="" />
+                            <img src="assets/free-icon-barcode-7797192.png" style="filter: brightness(0) invert(1);" alt="" />
                         </div>
                         <span>Штрихкод</span>
                     </div>
@@ -112,6 +106,7 @@
             </div>
         </div>
     </div>
+
     <div class="document_block_div zagran_block_div">
         <div>
             <div class="main_block">
@@ -120,8 +115,7 @@
                     <span>Повна інформація</span>
                 </div>
                 <div class="border" style="padding-left: 12px">
-                    <img style="width: 22px; height: 22px" src="assets/vitag.png"
-                        alt="" />
+                    <img style="width: 22px; height: 22px" src="assets/vitag.png" alt="" />
                     <span>Витяг про місце проживання</span>
                 </div>
                 <div>
@@ -137,19 +131,15 @@
                     <span>Питання та відповіді</span>
                 </div>
                 <div class="qrChangeInfo">
-                    <div data-index="zagran" id="openQr">
+                    <div data-index="zagran" class="btn-open-qr">
                         <div style="background: black">
-                            <img src="assets/qr-code.png" style="
-                                                filter: brightness(0) invert(1);
-                                            " alt="" />
+                            <img src="assets/qr-code.png" style="filter: brightness(0) invert(1);" alt="" />
                         </div>
                         <span>QR-код</span>
                     </div>
-                    <div data-index="zagran" id="openSh">
+                    <div data-index="zagran" class="btn-open-sh">
                         <div style="background: black">
-                            <img src="assets/free-icon-barcode-7797192.png" style="
-                                                filter: brightness(0) invert(1);
-                                            " alt="" />
+                            <img src="assets/free-icon-barcode-7797192.png" style="filter: brightness(0) invert(1);" alt="" />
                         </div>
                         <span>Штрихкод</span>
                     </div>
@@ -160,6 +150,7 @@
             </div>
         </div>
     </div>
+
     <div class="document_block_div study_block_div">
         <div>
             <div class="main_block">
@@ -180,19 +171,15 @@
                     <span>Питання та відповіді</span>
                 </div>
                 <div class="qrChangeInfo">
-                    <div data-index="study" id="openQr">
+                    <div data-index="study" class="btn-open-qr">
                         <div style="background: black">
-                            <img src="assets/qr-code.png" style="
-                                                filter: brightness(0) invert(1);
-                                            " alt="" />
+                            <img src="assets/qr-code.png" style="filter: brightness(0) invert(1);" alt="" />
                         </div>
                         <span>QR-код</span>
                     </div>
-                    <div data-index="study" id="openSh">
+                    <div data-index="study" class="btn-open-sh">
                         <div style="background: black">
-                            <img src="assets/free-icon-barcode-7797192.png" style="
-                                                filter: brightness(0) invert(1);
-                                            " alt="" />
+                            <img src="assets/free-icon-barcode-7797192.png" style="filter: brightness(0) invert(1);" alt="" />
                         </div>
                         <span>Штрихкод</span>
                     </div>
@@ -203,6 +190,7 @@
             </div>
         </div>
     </div>
+
     <div class="document_block_div podatki_block_div">
         <div>
             <div class="main_block">
@@ -219,19 +207,15 @@
                     <span>Питання та відповіді</span>
                 </div>
                 <div class="qrChangeInfo">
-                    <div data-index="podatki" id="openQr">
+                    <div data-index="podatki" class="btn-open-qr">
                         <div style="background: black">
-                            <img src="assets/qr-code.png" style="
-                                                filter: brightness(0) invert(1);
-                                            " alt="" />
+                            <img src="assets/qr-code.png" style="filter: brightness(0) invert(1);" alt="" />
                         </div>
                         <span>QR-код</span>
                     </div>
-                    <div data-index="podatki" id="openSh">
+                    <div data-index="podatki" class="btn-open-sh">
                         <div style="background: black">
-                            <img src="assets/free-icon-barcode-7797192.png" style="
-                                                filter: brightness(0) invert(1);
-                                            " alt="" />
+                            <img src="assets/free-icon-barcode-7797192.png" style="filter: brightness(0) invert(1);" alt="" />
                         </div>
                         <span>Штрихкод</span>
                     </div>
@@ -242,6 +226,7 @@
             </div>
         </div>
     </div>
+
     <div class="document_block_div eDoc_block_div">
         <div>
             <div class="main_block">
@@ -249,7 +234,7 @@
                     <img src="assets/document.png" alt="" />
                     <span>Повна інформація</span>
                 </div>
-                <div class="border" id="openQr" data-index="eDoc">
+                <div class="border btn-open-qr" data-index="eDoc">
                     <img src="assets/qr-code.png" alt="" />
                     <span>Код для перевірки</span>
                 </div>
@@ -269,6 +254,7 @@
             <div class="close_block" data-index="eDoc">Закрити</div>
         </div>
     </div>
+
     <div class="document_block_div prava_block_div">
         <div>
             <div class="main_block">
@@ -276,7 +262,6 @@
                     <img src="assets/document.png" alt="" />
                     <span>Повна інформація</span>
                 </div>
-
                 <div>
                     <img src="assets/star.png" alt="" />
                     <span>Оцінити документ</span>
@@ -295,6 +280,7 @@
             </div>
         </div>
     </div>
+
     <div class="document_block_div birth_block_div">
         <div>
             <div class="main_block">
@@ -321,24 +307,18 @@
         </div>
     </div>
 
-
-
-
     <div class="loadpage">
-
         <video id="intro-video" autoplay muted playsinline style="width: 100%; height: 100vh; object-fit: cover;">
             <source src="assets/0612__3_.mp4" type="video/mp4">
-
-
         </video>
     </div>
+
     <div class="video-background">
         <video autoplay loop muted playsinline style="width: 100%; height: 100vh; object-fit: cover;">
             <source src="assets/background_gradient.mp4" type="video/mp4">
-
         </video>
     </div>
-    </div>
+
     <div id="notification" class="notification">Номер скопійовано</div>
 
     <div class="start-div">
@@ -349,7 +329,6 @@
             <div></div>
             <div></div>
         </div>
-        <!-- Экран ввода кода — последний ряд: биометрия | 0 | ← -->
         <div class="start-block">
             <button>1</button>
             <button>2</button>
@@ -361,28 +340,19 @@
             <button>8</button>
             <button>9</button>
 
-            <!-- Биометрия слева -->
             <div class="biometry-btn">
                 <img src="assets/biometrics.png" alt="Face ID">
             </div>
 
-            <!-- Ноль по центру -->
             <button class="zero-btn">0</button>
 
-            <!-- Удалить справа -->
-
-            <button data-type="delete" style="
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        background: transparent;
-                    " class="delete-btn">
-                <img style="width: 50px; height: 50px" src="assets/delete.png" />
+            <button data-type="delete" style="display: flex; align-items: center; justify-content: center; background: transparent;" class="delete-btn">
+                <img style="width: 50px; height: 50px" src="assets/delete.png" alt="Delete" />
             </button>
-
         </div>
         <div class="forgotPassword">Не пам'ятаю код для входу</div>
     </div>
+
     <div class="main">
         <div class="block block1 blockStart">
             <h1 class="textVizit">
@@ -390,12 +360,10 @@
                 <span id="textName"></span>🎄
             </h1>
             <div class="pre" style="overflow-x: hidden;">
-
                 <div class="aod">
                     <a href="https://www.msp.gov.ua/press-center/news/diya.kartka-zapratsyuvala:-yak-vidkryty-yedynu-multyrakhunkovu-kartku-dlya-vsikh-derzhavnykh-vyplat"
                         target="_blank" style="display: block;">
-                        <img src="assets/karta.png" alt=""
-                            style="width: 100%; border-radius: 17px;" />
+                        <img src="assets/karta.png" alt="" style="width: 100%; border-radius: 17px;" />
                     </a>
                 </div>
                 <div class="nezlamnist" onclick="window.open('https://nezlamnist.gov.ua/', '_blank')">
@@ -410,104 +378,84 @@
                     </div>
                 </div>
                 <div class="threeButtons">
-                    <div id="buttonLoad">
+                    <div class="button-load">
                         <div>
                             <img src="assets/qr.svg" alt="" />
                         </div>
                         <span>Сканувати QR-код</span>
                     </div>
-                    <div id="buttonLoad">
+                    <div class="button-load">
                         <div>
                             <img src="assets/gerb.png" alt="" />
                         </div>
                         <span>Військові облігації</span>
                     </div>
                     <div onclick="window.open('https://t.me/evorog_bot', '_blank')">
-                        <img style="
-                                    width: 54px;
-                                    height: 54px;
-                                    border-radius: 35%;
-                                " src="assets/ing1.jpg" alt="" />
+                        <img style="width: 54px; height: 54px; border-radius: 35%;" src="assets/ing1.jpg" alt="" />
                         <span>Відсутній зв'язок</span>
                     </div>
                 </div>
 
                 <div class="aod1">
                     <a href="https://droneline.army.gov.ua/" target="_blank" style="display: block;">
-                        <img src="assets/e10001.png" alt=""
-                            style="width: 100%; border-radius: 17px;" />
+                        <img src="assets/e10001.png" alt="" style="width: 100%; border-radius: 17px;" />
                     </a>
                 </div>
-
 
                 <div class="aod1">
                     <a href="https://madeinukraine.gov.ua/national-cashback" target="_blank" style="display: block;">
-                        <img src="assets/cashback.jpg" alt=""
-                            style="width: 100%; border-radius: 17px;" />
+                        <img src="assets/cashback.jpg" alt="" style="width: 100%; border-radius: 17px;" />
                     </a>
                 </div>
-
 
                 <span class="popular_poslugu" style="margin-top: 20px; margin-bottom: 15px;">
                     Що нового?
                 </span>
 
-
-
                 <div class="sliderNews swiper-container">
                     <div class="swiper-wrapper news-main">
                         <div class="swiper-slide container-news">
                             <div class="news">
-                                <img src="assets/-1.jpg" />
+                                <img src="assets/-1.jpg" alt="" />
                                 <div>
                                     <span>1 січня, 12:00</span>
-                                    <p>
-                                        Скринінг здоровʼя 40+: як безкоштовно пройти обстеження
-                                    </p>
+                                    <p>Скринінг здоровʼя 40+: як безкоштовно пройти обстеження</p>
                                 </div>
                             </div>
                         </div>
                         <div class="swiper-slide container-news">
                             <div class="news">
-                                <img src="assets/0.jpg" />
+                                <img src="assets/0.jpg" alt="" />
                                 <div>
                                     <span>31 грудня, 10:00</span>
-                                    <p>
-                                        Дія 2025 → 2026: що зробили і що готуємо в новому році
-                                    </p>
+                                    <p>Дія 2025 → 2026: що зробили і що готуємо в новому році</p>
                                 </div>
                             </div>
                         </div>
                         <div class="swiper-slide container-news">
                             <div class="news">
-                                <img src="assets/1.jpg" />
+                                <img src="assets/1.jpg" alt="" />
                                 <div>
                                     <span>11 листопада, 17:00</span>
-                                    <p>
-                                        Нацкешбек: стартували виплати рекордних 500+ млн грн
-                                    </p>
+                                    <p>Нацкешбек: стартували виплати рекордних 500+ млн грн</p>
                                 </div>
                             </div>
                         </div>
                         <div class="swiper-slide container-news">
                             <div class="news">
-                                <img src="assets/2.jpg" />
+                                <img src="assets/2.jpg" alt="" />
                                 <div>
                                     <span>06 листопада, 14:00</span>
-                                    <p>
-                                        Подавайте декларацію вчасно - в Дії до 10 листопада
-                                    </p>
+                                    <p>Подавайте декларацію вчасно - в Дії до 10 листопада</p>
                                 </div>
                             </div>
                         </div>
                         <div class="swiper-slide container-news">
                             <div class="news">
-                                <img src="assets/3.jpg" />
+                                <img src="assets/3.jpg" alt="" />
                                 <div>
                                     <span>06 листопада, 10:00</span>
-                                    <p>
-                                        Оновлюйте місце проживання через застосунок Дія
-                                    </p>
+                                    <p>Оновлюйте місце проживання через застосунок Дія</p>
                                 </div>
                             </div>
                         </div>
@@ -539,8 +487,9 @@
                 </div>
             </div>
         </div>
-        <div class="block2 block active">
 
+        <div class="block2 block active">
+            <!-- Study Modal -->
             <div id="study-modal" class="modal">
                 <div class="study-modal-content modal-content">
                     <div class="handle"></div>
@@ -551,64 +500,25 @@
                         <img class="copyPng" src="assets/copy.png" alt="" />
                     </div>
 
-                    <!-- Вставьте сюда ваше содержимое -->
-                    <div class="line1 marquee" style="
-                                background: linear-gradient(
-                                    90deg,
-                                    #b6eb9f,
-                                    #9ccfcf
-                                );
-                                margin: 10px -20px 10px -20px;
-                                position: relative;
-                                overflow: hidden;
-                                font-weight: 300;
-                                font-size: 13px;
-                                padding: 7px 0;
-                            ">
-                        • Документ оновлено о
-                        <span id="getCurrentDateTime"></span>
+                    <div class="line1 marquee" style="background: linear-gradient(90deg, #b6eb9f, #9ccfcf); margin: 10px -20px 10px -20px; position: relative; overflow: hidden; font-weight: 300; font-size: 13px; padding: 7px 0;">
+                        • Документ оновлено о <span class="getCurrentDateTime"></span>
                     </div>
                     <div class="fullPasportBlock">
-                        <h2 id="name">Тут твоё имя</h2>
+                        <h2 class="user-name">Тут твоё имя</h2>
                         <div class="dataBlock" style="margin-top: 15px">
                             <img src="assets/photo.jpg" style="border: 1px solid #ddd" alt="" />
                             <div class="dataInfo">
-                                <div style="
-                                            margin-top: 15px;
-                                            width: 100%;
-                                            color: #a1a1a1;
-                                        ">
-                                    <span class="dataInfoFirst" style="
-                                                font-size: 13px;
-                                                color: black;
-                                            ">Виданий:
-                                    </span>
-                                    <span style="
-                                                font-size: 13px;
-                                                color: black;
-                                            " id="vidanoStudy"></span>
+                                <div style="margin-top: 15px; width: 100%; color: #a1a1a1;">
+                                    <span class="dataInfoFirst" style="font-size: 13px; color: black;">Виданий:</span>
+                                    <span style="font-size: 13px; color: black;" id="vidanoStudy"></span>
                                 </div>
                                 <div style="width: 100%; color: #a1a1a1">
-                                    <span class="dataInfoFirst" style="
-                                                font-size: 13px;
-                                                color: black;
-                                            ">Дійсний:
-                                    </span>
-                                    <span style="
-                                                font-size: 13px;
-                                                color: black;
-                                            " id="diusnuyDoStudy"></span>
+                                    <span class="dataInfoFirst" style="font-size: 13px; color: black;">Дійсний:</span>
+                                    <span style="font-size: 13px; color: black;" id="diusnuyDoStudy"></span>
                                 </div>
                                 <div style="width: 100%; color: #a1a1a1">
-                                    <span class="dataInfoFirst" style="
-                                                font-size: 13px;
-                                                color: black;
-                                            ">Форма навчання:
-                                    </span>
-                                    <span style="
-                                                font-size: 13px;
-                                                color: black;
-                                            " id="formaStudy"></span>
+                                    <span class="dataInfoFirst" style="font-size: 13px; color: black;">Форма навчання:</span>
+                                    <span style="font-size: 13px; color: black;" id="formaStudy"></span>
                                 </div>
                             </div>
                         </div>
@@ -616,23 +526,14 @@
                     <div class="dataBlock2">
                         <div>
                             <div>
-                                <h3 id="university">
-                                    Державний університет "Житомирська
-                                    політехніка"
-                                </h3>
-                                <h3 id="fakultat" style="margin-top: 10px">
-                                    Факультет педагогічних технологій та
-                                    освіти впродовж життя
-                                </h3>
+                                <h3 id="university">Державний університет "Житомирська політехніка"</h3>
+                                <h3 id="fakultat" style="margin-top: 10px">Факультет педагогічних технологій та освіти впродовж життя</h3>
                             </div>
                         </div>
                     </div>
-                    <div class="content back"
-                        style="margin-top: 15px; padding-right: 0; padding-left: 0; transform: rotateY(0deg); height: 460px;">
+                    <div class="content back" style="margin-top: 15px; padding-right: 0; padding-left: 0; transform: rotateY(0deg); height: 460px;">
                         <div class="qrcodeBlock">
-                            <span>Код діятиме ще
-                                <span data-time="2:59">2:59</span>
-                                хв</span>
+                            <span>Код діятиме ще <span data-time="2:59">2:59</span> хв</span>
                             <div class="qrshBlock">
                                 <div class="qrcode changeCode"></div>
                                 <div class="shText" style="display: none">
@@ -645,19 +546,13 @@
                             <div class="qrChange">
                                 <div data-index="1">
                                     <div style="background: black">
-                                        <img src="assets/qr-code.png" style="
-                                                            filter: brightness(
-                                                                    0
-                                                                )
-                                                                invert(1);
-                                                        " alt="" />
+                                        <img src="assets/qr-code.png" style="filter: brightness(0) invert(1);" alt="" />
                                     </div>
                                     <span>QR-код</span>
                                 </div>
                                 <div data-index="2">
                                     <div>
-                                        <img src="assets/free-icon-barcode-7797192.png"
-                                            alt="" />
+                                        <img src="assets/free-icon-barcode-7797192.png" alt="" />
                                     </div>
                                     <span>Штрихкод</span>
                                 </div>
@@ -666,6 +561,8 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Birth Modal -->
             <div id="birth-modal" class="modal">
                 <div class="modal-content birth-modal-content">
                     <div class="handle"></div>
@@ -674,19 +571,18 @@
                         <h3 id="birthNumber">І-AB №456736</h3>
                         <img class="copyPng" src="assets/copy.png" alt="" />
                     </div>
-                    <div class="line1 marquee"
-                        style="background: linear-gradient(90deg, #b6eb9f, #9ccfcf); margin: 10px -20px 10px -20px; position: relative; overflow: hidden; font-weight: 300; font-size: 13px; padding: 7px 0;">
-                        • Документ оновлено о <span id="getCurrentDateTime"></span>
+                    <div class="line1 marquee" style="background: linear-gradient(90deg, #b6eb9f, #9ccfcf); margin: 10px -20px 10px -20px; position: relative; overflow: hidden; font-weight: 300; font-size: 13px; padding: 7px 0;">
+                        • Документ оновлено о <span class="getCurrentDateTime"></span>
                     </div>
 
                     <div class="dataBlock2">
-                        <h2 id="name">Тут твоє ім'я</h2>
+                        <h2 class="user-name">Тут твоє ім'я</h2>
                         <div>
                             <div>
                                 <h3>Стать:</h3>
                             </div>
                             <div>
-                                <h3 id="sex">Ч</h3>
+                                <h3 class="user-sex">Ч</h3>
                             </div>
                         </div>
                         <div>
@@ -694,7 +590,7 @@
                                 <h3>Дата народження:</h3>
                             </div>
                             <div>
-                                <h3 id="birthDate">15.07.1999</h3>
+                                <h3 class="user-birthdate">15.07.1999</h3>
                             </div>
                         </div>
                         <div>
@@ -702,7 +598,7 @@
                                 <h3>РНОКПП:</h3>
                             </div>
                             <div>
-                                <h3 id="rnokpp">121212</h3>
+                                <h3 class="user-rnokpp">121212</h3>
                             </div>
                         </div>
                         <div>
@@ -710,12 +606,11 @@
                                 <h3>Місце народження:</h3>
                             </div>
                             <div>
-                                <h3 id="placeBirth">Київ</h3>
+                                <h3 class="user-placebirth">Київ</h3>
                             </div>
                         </div>
                     </div>
-                    <div class="content back"
-                        style="margin-top: 15px; padding-right: 0; padding-left: 0; transform: rotateY(0deg); height: 460px;">
+                    <div class="content back" style="margin-top: 15px; padding-right: 0; padding-left: 0; transform: rotateY(0deg); height: 460px;">
                         <div class="qrcodeBlock">
                             <span>Код діятиме ще <span data-time="2:59">2:59</span> хв</span>
                             <div class="qrshBlock">
@@ -727,15 +622,13 @@
                             <div class="qrChange">
                                 <div data-index="1">
                                     <div style="background: black">
-                                        <img src="assets/qr-code.png"
-                                            style="filter: brightness(0) invert(1);" alt="" />
+                                        <img src="assets/qr-code.png" style="filter: brightness(0) invert(1);" alt="" />
                                     </div>
                                     <span>QR-код</span>
                                 </div>
                                 <div data-index="2">
                                     <div>
-                                        <img src="assets/free-icon-barcode-7797192.png"
-                                            alt="" />
+                                        <img src="assets/free-icon-barcode-7797192.png" alt="" />
                                     </div>
                                     <span>Штрихкод</span>
                                 </div>
@@ -744,6 +637,8 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Prava Modal -->
             <div id="prava-modal" class="modal">
                 <div class="prava-modal-content modal-content">
                     <div class="handle"></div>
@@ -754,29 +649,12 @@
                         <img class="copyPng" src="assets/copy.png" alt="" />
                     </div>
 
-                    <!-- Вставьте сюда ваше содержимое -->
-                    <div class="line2 marquee" style="
-                                background: linear-gradient(
-                                    90deg,
-                                    #b6eb9f,
-                                    #9ccfcf
-                                );
-                                margin: 10px -20px 10px -20px;
-                                position: relative;
-                                overflow: hidden;
-                                font-weight: 300;
-                                font-size: 13px;
-                                padding: 7px 0;
-                            ">
-                        Документ діє під час воєнного стану. Ой у лузі
-                        червона калина похилилася, чогось наша славна
-                        Україна зажурилася. А ми тую червону калину
-                        підіймемо, а ми нашу славну Україну, гей, гей,
-                        розвеселимо!
+                    <div class="line2 marquee" style="background: linear-gradient(90deg, #b6eb9f, #9ccfcf); margin: 10px -20px 10px -20px; position: relative; overflow: hidden; font-weight: 300; font-size: 13px; padding: 7px 0;">
+                        Документ діє під час воєнного стану. Ой у лузі червона калина похилилася, чогось наша славна Україна зажурилася. А ми тую червону калину підіймемо, а ми нашу славну Україну, гей, гей, розвеселимо!
                     </div>
                     <div class="fullPasportBlock">
-                        <h2 id="name">Тут твоё имя</h2>
-                        <h3 id="nameEn">This your name</h3>
+                        <h2 class="user-name">Тут твоё имя</h2>
+                        <h3 class="user-name-en">This your name</h3>
                         <div class="dataBlock">
                             <img src="assets/photo.jpg" style="border: 1px solid #ddd" alt="" />
                             <div class="dataInfo">
@@ -785,10 +663,7 @@
                                 </div>
                                 <div style="width: 100%; color: #a1a1a1">
                                     <span class="dataInfoFirst" style="font-size: 13px">Date of birth</span>
-                                    <span style="
-                                                font-size: 13px;
-                                                color: black;
-                                            " id="birthDate">12.07.1999</span>
+                                    <span style="font-size: 13px; color: black;" class="user-birthdate">12.07.1999</span>
                                 </div>
                             </div>
                         </div>
@@ -800,8 +675,8 @@
                                 <span>Sex</span>
                             </div>
                             <div>
-                                <h3 id="sex">Ч</h3>
-                                <span id="sexEn">M</span>
+                                <h3 class="user-sex">Ч</h3>
+                                <span class="user-sex-en">M</span>
                             </div>
                         </div>
                         <div>
@@ -851,11 +726,8 @@
                             <div>
                                 <h3>РНОКПП (ІПН):</h3>
                             </div>
-                            <div style="
-                                        flex-direction: row;
-                                        justify-content: space-between;
-                                    ">
-                                <h3 id="rnokpp"></h3>
+                            <div style="flex-direction: row; justify-content: space-between;">
+                                <h3 class="user-rnokpp"></h3>
                                 <img class="copyPng" src="assets/copy.png" alt="" />
                             </div>
                         </div>
@@ -867,12 +739,10 @@
                         <div style="margin-top: 10px">
                             <div style="gap: 5px">
                                 <h3>
-                                    Пройшов перевірку Державною податковою
-                                    службою
-                                    <span id="dataNow"></span>
+                                    Пройшов перевірку Державною податковою службою
+                                    <span class="dataNow"></span>
                                 </h3>
-                                <span>Verifed by State Tax Service
-                                    <span id="dataNow"></span></span>
+                                <span>Verifed by State Tax Service <span class="dataNow"></span></span>
                             </div>
                         </div>
                     </div>
@@ -882,11 +752,8 @@
                                 <h3>Запис № (УНЗР):</h3>
                                 <span>Record No.</span>
                             </div>
-                            <div style="
-                                        flex-direction: row;
-                                        justify-content: space-between;
-                                    ">
-                                <h3 id="uznr">50030135-073442</h3>
+                            <div style="flex-direction: row; justify-content: space-between;">
+                                <h3 class="user-uznr">50030135-073442</h3>
                                 <img class="copyPng" src="assets/copy.png" alt="" />
                             </div>
                         </div>
@@ -896,9 +763,7 @@
                                 <span>Place of birth</span>
                             </div>
                             <div>
-                                <h3>
-                                    М. <span id="placeBirth"></span> УКРАЇНА
-                                </h3>
+                                <h3>М. <span class="user-placebirth"></span> УКРАЇНА</h3>
                             </div>
                         </div>
                         <div>
@@ -907,7 +772,7 @@
                                 <span>Legal adress</span>
                             </div>
                             <div>
-                                <h3 id="legalAdress">Не вказано</h3>
+                                <h3 class="user-legal-address">Не вказано</h3>
                             </div>
                         </div>
                         <div>
@@ -916,16 +781,13 @@
                                 <span>Registered on</span>
                             </div>
                             <div>
-                                <h3 id="registeredOn">Не вказано</h3>
+                                <h3 class="user-registered-on">Не вказано</h3>
                             </div>
                         </div>
                     </div>
-                    <div class="content back"
-                        style="margin-top: 15px; padding-right: 0; padding-left: 0; transform: rotateY(0deg); height: 460px;">
+                    <div class="content back" style="margin-top: 15px; padding-right: 0; padding-left: 0; transform: rotateY(0deg); height: 460px;">
                         <div class="qrcodeBlock">
-                            <span>Код діятиме ще
-                                <span data-time="2:59">2:59</span>
-                                хв</span>
+                            <span>Код діятиме ще <span data-time="2:59">2:59</span> хв</span>
                             <div class="qrshBlock">
                                 <div class="qrcode changeCode"></div>
                                 <div class="shText" style="display: none">
@@ -938,19 +800,13 @@
                             <div class="qrChange">
                                 <div data-index="1">
                                     <div style="background: black">
-                                        <img src="assets/qr-code.png" style="
-                                                            filter: brightness(
-                                                                    0
-                                                                )
-                                                                invert(1);
-                                                        " alt="" />
+                                        <img src="assets/qr-code.png" style="filter: brightness(0) invert(1);" alt="" />
                                     </div>
                                     <span>QR-код</span>
                                 </div>
                                 <div data-index="2">
                                     <div>
-                                        <img src="assets/free-icon-barcode-7797192.png"
-                                            alt="" />
+                                        <img src="assets/free-icon-barcode-7797192.png" alt="" />
                                     </div>
                                     <span>Штрихкод</span>
                                 </div>
@@ -959,34 +815,19 @@
                     </div>
                 </div>
             </div>
+
+            <!-- eDoc Modal -->
             <div id="eDoc-modal" class="modal">
                 <div class="modal-content eDoc-modal-content">
                     <div class="handle"></div>
                     <h1>єДокумент</h1>
 
-                    <!-- Вставьте сюда ваше содержимое -->
-                    <div class="line2 marquee" style="
-                                background: linear-gradient(
-                                    90deg,
-                                    #b6eb9f,
-                                    #9ccfcf
-                                );
-                                margin: 10px -20px 10px -20px;
-                                position: relative;
-                                overflow: hidden;
-                                font-weight: 300;
-                                font-size: 13px;
-                                padding: 7px 0;
-                            ">
-                        Документ діє під час воєнного стану. Ой у лузі
-                        червона калина похилилася, чогось наша славна
-                        Україна зажурилася. А ми тую червону калину
-                        підіймемо, а ми нашу славну Україну, гей, гей,
-                        розвеселимо!
+                    <div class="line2 marquee" style="background: linear-gradient(90deg, #b6eb9f, #9ccfcf); margin: 10px -20px 10px -20px; position: relative; overflow: hidden; font-weight: 300; font-size: 13px; padding: 7px 0;">
+                        Документ діє під час воєнного стану. Ой у лузі червона калина похилилася, чогось наша славна Україна зажурилася. А ми тую червону калину підіймемо, а ми нашу славну Україну, гей, гей, розвеселимо!
                     </div>
                     <div class="fullPasportBlock">
-                        <h2 id="name">Тут твоё имя</h2>
-                        <h3 id="nameEn">This your name</h3>
+                        <h2 class="user-name">Тут твоё имя</h2>
+                        <h3 class="user-name-en">This your name</h3>
                         <div class="dataBlock">
                             <img src="assets/photo.jpg" style="border: 1px solid #ddd" alt="" />
                             <div class="dataInfo">
@@ -995,10 +836,7 @@
                                 </div>
                                 <div style="width: 100%; color: #a1a1a1">
                                     <span class="dataInfoFirst" style="font-size: 13px">Date of birth</span>
-                                    <span style="
-                                                font-size: 13px;
-                                                color: black;
-                                            " id="birthDate">12.07.1999</span>
+                                    <span style="font-size: 13px; color: black;" class="user-birthdate">12.07.1999</span>
                                 </div>
                             </div>
                         </div>
@@ -1010,34 +848,27 @@
                                 <span>Sex</span>
                             </div>
                             <div>
-                                <h3 id="sex">Ч</h3>
-                                <span id="sexEn">M</span>
+                                <h3 class="user-sex">Ч</h3>
+                                <span class="user-sex-en">M</span>
                             </div>
                         </div>
                         <div>
                             <div>
                                 <h3>РНОКПП (ІПН):</h3>
                             </div>
-                            <div style="
-                                        flex-direction: row;
-                                        justify-content: space-between;
-                                    ">
-                                <h3 id="rnokpp"></h3>
+                            <div style="flex-direction: row; justify-content: space-between;">
+                                <h3 class="user-rnokpp"></h3>
                                 <img class="copyPng" src="assets/copy.png" alt="" />
                             </div>
                         </div>
                         <div>
                             <div>
                                 <h3>Документ що посвідчує особу:</h3>
-                                <h3>
-                                    Паспорт громадянина України <span id="nomerPasport">008759371</span>
-                                </h3>
+                                <h3>Паспорт громадянина України <span class="user-passport-num">008759371</span></h3>
                             </div>
                             <div style="opacity: 0; width: 20%; height: 0">
                                 <h3>Документ що посвідчує особу:</h3>
-                                <h3>
-                                    Паспорт громадянина України <span id="nomerPasport">008759371</span>
-                                </h3>
+                                <h3>Паспорт громадянина України <span class="user-passport-num">008759371</span></h3>
                             </div>
                         </div>
                     </div>
@@ -1045,45 +876,31 @@
                     <div class="dataBlock2">
                         <div>
                             <div>
-                                <h3 style="margin-bottom: 5px">
-                                    Місце проживання зазначене в банку:
-                                </h3>
-                                <h3 id="adress"></h3>
+                                <h3 style="margin-bottom: 5px">Місце проживання зазначене в банку:</h3>
+                                <h3 class="user-address"></h3>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Passport Modal -->
             <div id="pasport-modal" class="modal">
                 <div class="modal-content pasport-modal-content">
                     <div class="handle"></div>
                     <h1>Паспорт громадянина України</h1>
 
                     <div class="numberNN" style="gap: 10px">
-                        <h3 id="nomerPasport">008759371</h3>
+                        <h3 class="user-passport-num">008759371</h3>
                         <img class="copyPng" src="assets/copy.png" alt="" />
                     </div>
 
-                    <!-- Вставьте сюда ваше содержимое -->
-                    <div class="line1 marquee" style="
-                                background: linear-gradient(
-                                    90deg,
-                                    #b6eb9f,
-                                    #9ccfcf
-                                );
-                                margin: 10px -20px 10px -20px;
-                                position: relative;
-                                overflow: hidden;
-                                font-weight: 300;
-                                font-size: 13px;
-                                padding: 7px 0;
-                            ">
-                        • Документ оновлено о
-                        <span id="getCurrentDateTime"></span>
+                    <div class="line1 marquee" style="background: linear-gradient(90deg, #b6eb9f, #9ccfcf); margin: 10px -20px 10px -20px; position: relative; overflow: hidden; font-weight: 300; font-size: 13px; padding: 7px 0;">
+                        • Документ оновлено о <span class="getCurrentDateTime"></span>
                     </div>
                     <div class="fullPasportBlock">
-                        <h2 id="name">Тут твоё имя</h2>
-                        <h3 id="nameEn">This your name</h3>
+                        <h2 class="user-name">Тут твоё имя</h2>
+                        <h3 class="user-name-en">This your name</h3>
                         <div class="dataBlock">
                             <img src="assets/photo.jpg" style="border: 1px solid #ddd" alt="" />
                             <div class="dataInfo">
@@ -1092,10 +909,7 @@
                                 </div>
                                 <div style="width: 100%; color: #a1a1a1">
                                     <span class="dataInfoFirst" style="font-size: 13px">Date of birth</span>
-                                    <span style="
-                                                font-size: 13px;
-                                                color: black;
-                                            " id="birthDate">12.07.1999</span>
+                                    <span style="font-size: 13px; color: black;" class="user-birthdate">12.07.1999</span>
                                 </div>
                                 <img src="sign.png" alt="" />
                             </div>
@@ -1108,8 +922,8 @@
                                 <span>Sex</span>
                             </div>
                             <div>
-                                <h3 id="sex">Ч</h3>
-                                <span id="sexEn">M</span>
+                                <h3 class="user-sex">Ч</h3>
+                                <span class="user-sex-en">M</span>
                             </div>
                         </div>
                         <div>
@@ -1159,11 +973,8 @@
                             <div>
                                 <h3>РНОКПП (ІПН):</h3>
                             </div>
-                            <div style="
-                                        flex-direction: row;
-                                        justify-content: space-between;
-                                    ">
-                                <h3 id="rnokpp"></h3>
+                            <div style="flex-direction: row; justify-content: space-between;">
+                                <h3 class="user-rnokpp"></h3>
                                 <img class="copyPng" src="assets/copy.png" alt="" />
                             </div>
                         </div>
@@ -1175,12 +986,10 @@
                         <div style="margin-top: 10px">
                             <div style="gap: 5px">
                                 <h3>
-                                    Пройшов перевірку Державною податковою
-                                    службою
-                                    <span id="dataNow"></span>
+                                    Пройшов перевірку Державною податковою службою
+                                    <span class="dataNow"></span>
                                 </h3>
-                                <span>Verifed by State Tax Service
-                                    <span id="dataNow"></span></span>
+                                <span>Verifed by State Tax Service <span class="dataNow"></span></span>
                             </div>
                         </div>
                     </div>
@@ -1190,11 +999,8 @@
                                 <h3>Запис № (УНЗР):</h3>
                                 <span>Record No.</span>
                             </div>
-                            <div style="
-                                        flex-direction: row;
-                                        justify-content: space-between;
-                                    ">
-                                <h3 id="uznr">50030135-073442</h3>
+                            <div style="flex-direction: row; justify-content: space-between;">
+                                <h3 class="user-uznr">50030135-073442</h3>
                                 <img class="copyPng" src="assets/copy.png" alt="" />
                             </div>
                         </div>
@@ -1204,9 +1010,7 @@
                                 <span>Place of birth</span>
                             </div>
                             <div>
-                                <h3>
-                                    М. <span id="placeBirth"></span> УКРАЇНА
-                                </h3>
+                                <h3>М. <span class="user-placebirth"></span> УКРАЇНА</h3>
                             </div>
                         </div>
                         <div>
@@ -1215,7 +1019,7 @@
                                 <span>Legal adress</span>
                             </div>
                             <div>
-                                <h3 id="legalAdress">Не вказано</h3>
+                                <h3 class="user-legal-address">Не вказано</h3>
                             </div>
                         </div>
                         <div>
@@ -1224,16 +1028,13 @@
                                 <span>Registered on</span>
                             </div>
                             <div>
-                                <h3 id="registeredOn">Не вказано</h3>
+                                <h3 class="user-registered-on">Не вказано</h3>
                             </div>
                         </div>
                     </div>
-                    <div class="content back"
-                        style="margin-top: 15px; padding-right: 0; padding-left: 0; transform: rotateY(0deg); height: 460px;">
+                    <div class="content back" style="margin-top: 15px; padding-right: 0; padding-left: 0; transform: rotateY(0deg); height: 460px;">
                         <div class="qrcodeBlock">
-                            <span>Код діятиме ще
-                                <span data-time="2:59">2:59</span>
-                                хв</span>
+                            <span>Код діятиме ще <span data-time="2:59">2:59</span> хв</span>
                             <div class="qrshBlock">
                                 <div class="qrcode changeCode"></div>
                                 <div class="shText" style="display: none">
@@ -1246,19 +1047,13 @@
                             <div class="qrChange">
                                 <div data-index="1">
                                     <div style="background: black">
-                                        <img src="assets/qr-code.png" style="
-                                                            filter: brightness(
-                                                                    0
-                                                                )
-                                                                invert(1);
-                                                        " alt="" />
+                                        <img src="assets/qr-code.png" style="filter: brightness(0) invert(1);" alt="" />
                                     </div>
                                     <span>QR-код</span>
                                 </div>
                                 <div data-index="2">
                                     <div>
-                                        <img src="assets/free-icon-barcode-7797192.png"
-                                            alt="" />
+                                        <img src="assets/free-icon-barcode-7797192.png" alt="" />
                                     </div>
                                     <span>Штрихкод</span>
                                 </div>
@@ -1267,6 +1062,8 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Zagran Modal -->
             <div id="zagran-modal" class="modal">
                 <div class="modal-content zagran-modal-content">
                     <div class="handle"></div>
@@ -1277,26 +1074,12 @@
                         <img class="copyPng" src="assets/copy.png" alt="" />
                     </div>
 
-                    <!-- Вставьте сюда ваше содержимое -->
-                    <div class="line1 marquee" style="
-                                background: linear-gradient(
-                                    90deg,
-                                    #b6eb9f,
-                                    #9ccfcf
-                                );
-                                margin: 10px -20px 10px -20px;
-                                position: relative;
-                                overflow: hidden;
-                                font-weight: 300;
-                                font-size: 13px;
-                                padding: 7px 0;
-                            ">
-                        • Document updated on
-                        <span id="getCurrentDateTime"></span>
+                    <div class="line1 marquee" style="background: linear-gradient(90deg, #b6eb9f, #9ccfcf); margin: 10px -20px 10px -20px; position: relative; overflow: hidden; font-weight: 300; font-size: 13px; padding: 7px 0;">
+                        • Document updated on <span class="getCurrentDateTime"></span>
                     </div>
                     <div class="fullPasportBlock">
-                        <h2 id="name">Тут твоё имя</h2>
-                        <h3 id="nameEn">This your name</h3>
+                        <h2 class="user-name">Тут твоё имя</h2>
+                        <h3 class="user-name-en">This your name</h3>
                         <div class="dataBlock">
                             <img src="assets/photo.jpg" style="border: 1px solid #ddd" alt="" />
                             <div class="dataInfo">
@@ -1305,10 +1088,7 @@
                                 </div>
                                 <div style="width: 100%; color: #a1a1a1">
                                     <span class="dataInfoFirst" style="font-size: 13px">Date of birth</span>
-                                    <span style="
-                                                font-size: 13px;
-                                                color: black;
-                                            " id="birthDate">12.07.1999</span>
+                                    <span style="font-size: 13px; color: black;" class="user-birthdate">12.07.1999</span>
                                 </div>
                                 <img src="sign.png" alt="" />
                             </div>
@@ -1321,8 +1101,8 @@
                                 <span>Sex</span>
                             </div>
                             <div>
-                                <h3 id="sex">Ч</h3>
-                                <span id="sexEn">M</span>
+                                <h3 class="user-sex">Ч</h3>
+                                <span class="user-sex-en">M</span>
                             </div>
                         </div>
                         <div>
@@ -1344,7 +1124,7 @@
                                 <span>Data of issue</span>
                             </div>
                             <div>
-                                <h3 id="dateGive">12.02.2020</h3>
+                                <h3>12.02.2020</h3>
                             </div>
                         </div>
                         <div>
@@ -1353,7 +1133,7 @@
                                 <span>Data of expiry</span>
                             </div>
                             <div>
-                                <h3 id="dateOut">12.02.2028</h3>
+                                <h3>12.02.2028</h3>
                             </div>
                         </div>
                         <div>
@@ -1362,7 +1142,7 @@
                                 <span>Authority</span>
                             </div>
                             <div>
-                                <h3 id="organ">1340</h3>
+                                <h3>1340</h3>
                             </div>
                         </div>
                     </div>
@@ -1372,11 +1152,8 @@
                             <div>
                                 <h3>РНОКПП (ІПН):</h3>
                             </div>
-                            <div style="
-                                        flex-direction: row;
-                                        justify-content: space-between;
-                                    ">
-                                <h3 id="rnokpp"></h3>
+                            <div style="flex-direction: row; justify-content: space-between;">
+                                <h3 class="user-rnokpp"></h3>
                                 <img class="copyPng" src="assets/copy.png" alt="" />
                             </div>
                         </div>
@@ -1388,12 +1165,10 @@
                         <div style="margin-top: 10px">
                             <div style="gap: 5px">
                                 <h3>
-                                    Пройшов перевірку Державною податковою
-                                    службою
-                                    <span id="dataNow"></span>
+                                    Пройшов перевірку Державною податковою службою
+                                    <span class="dataNow"></span>
                                 </h3>
-                                <span>Verifed by State Tax Service
-                                    <span id="dataNow"></span></span>
+                                <span>Verifed by State Tax Service <span class="dataNow"></span></span>
                             </div>
                         </div>
                     </div>
@@ -1403,11 +1178,8 @@
                                 <h3>Запис № (УНЗР):</h3>
                                 <span>Record No.</span>
                             </div>
-                            <div style="
-                                        flex-direction: row;
-                                        justify-content: space-between;
-                                    ">
-                                <h3 id="uznr">50030135-073442</h3>
+                            <div style="flex-direction: row; justify-content: space-between;">
+                                <h3 class="user-uznr">50030135-073442</h3>
                                 <img class="copyPng" src="assets/copy.png" alt="" />
                             </div>
                         </div>
@@ -1417,9 +1189,7 @@
                                 <span>Place of birth</span>
                             </div>
                             <div>
-                                <h3>
-                                    М. <span id="placeBirth"></span> УКРАЇНА
-                                </h3>
+                                <h3>М. <span class="user-placebirth"></span> УКРАЇНА</h3>
                             </div>
                         </div>
                         <div>
@@ -1428,7 +1198,7 @@
                                 <span>Legal adress</span>
                             </div>
                             <div>
-                                <h3 id="legalAdress">Не вказано</h3>
+                                <h3 class="user-legal-address">Не вказано</h3>
                             </div>
                         </div>
                         <div>
@@ -1437,16 +1207,13 @@
                                 <span>Registered on</span>
                             </div>
                             <div>
-                                <h3 id="registeredOn">Не вказано</h3>
+                                <h3 class="user-registered-on">Не вказано</h3>
                             </div>
                         </div>
                     </div>
-                    <div class="content back"
-                        style="margin-top: 15px; padding-right: 0; padding-left: 0; transform: rotateY(0deg); height: 460px;">
+                    <div class="content back" style="margin-top: 15px; padding-right: 0; padding-left: 0; transform: rotateY(0deg); height: 460px;">
                         <div class="qrcodeBlock">
-                            <span>Код діятиме ще
-                                <span data-time="2:59">2:59</span>
-                                хв</span>
+                            <span>Код діятиме ще <span data-time="2:59">2:59</span> хв</span>
                             <div class="qrshBlock">
                                 <div class="qrcode changeCode"></div>
                                 <div class="shText" style="display: none">
@@ -1459,19 +1226,13 @@
                             <div class="qrChange">
                                 <div data-index="1">
                                     <div style="background: black">
-                                        <img src="assets/qr-code.png" style="
-                                                            filter: brightness(
-                                                                    0
-                                                                )
-                                                                invert(1);
-                                                        " alt="" />
+                                        <img src="assets/qr-code.png" style="filter: brightness(0) invert(1);" alt="" />
                                     </div>
                                     <span>QR-код</span>
                                 </div>
                                 <div data-index="2">
                                     <div>
-                                        <img src="assets/free-icon-barcode-7797192.png"
-                                            alt="" />
+                                        <img src="assets/free-icon-barcode-7797192.png" alt="" />
                                     </div>
                                     <span>Штрихкод</span>
                                 </div>
@@ -1480,9 +1241,8 @@
                     </div>
                 </div>
             </div>
+
             <div id="overlay" class="overlay hidden"></div>
-
-
 
             <div class="documentSlider swiper-container">
                 <div class="swiper-wrapper" style="margin-bottom: 20px;">
@@ -1495,82 +1255,38 @@
                                     <div class="dataInfo">
                                         <div>
                                             <span class="dataInfoFirst">Дата народження:</span>
-                                            <span id="birthDate">12.07.1999</span>
+                                            <span class="user-birthdate">12.07.1999</span>
                                         </div>
                                         <div>
                                             <span class="dataInfoFirst">РНОКПП:</span>
-                                            <span id="rnokpp"></span>
+                                            <span class="user-rnokpp"></span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="line2 marquee" style="
-                                            background: linear-gradient(
-                                                90deg,
-                                                #b6eb9f,
-                                                #9ccfcf
-                                            );
-                                            margin: auto -15px 5px -15px;
-                                            position: relative;
-                                            overflow: hidden;
-                                            font-weight: 300;
-                                            font-size: 13px;
-                                            padding: 7px 0;
-                                        ">
-                                    Документ діє під час воєнного стану. Ой
-                                    у лузі червона калина похилилася, чогось
-                                    наша славна Україна зажурилася. А ми тую
-                                    червону калину підіймемо, а ми нашу
-                                    славну Україну, гей, гей, розвеселимо!
+                                <div class="line2 marquee" style="background: linear-gradient(90deg, #b6eb9f, #9ccfcf); margin: auto -15px 5px -15px; position: relative; overflow: hidden; font-weight: 300; font-size: 13px; padding: 7px 0;">
+                                    Документ діє під час воєнного стану. Ой у лузі червона калина похилилася, чогось наша славна Україна зажурилася. А ми тую червону калину підіймемо, а ми нашу славну Україну, гей, гей, розвеселимо!
                                 </div>
 
                                 <div class="fioBlock" style="margin-right: 0">
-                                    <h2 id="name">Тут твоё имя</h2>
-                                    <div class="arrowSvg moreInfo" data-index="eDoc" style="
-                                                background-color: transparent;
-                                                bottom: 0;
-                                                right: 0;
-                                            ">
-                                        <img style="
-                                                    filter: brightness(1)
-                                                        invert(0);
-                                                    width: 34px;
-                                                    height: 34px;
-                                                    transform: rotate(0);
-                                                " src="assets/dots.png" alt="" />
+                                    <h2 class="user-name">Тут твоё имя</h2>
+                                    <div class="arrowSvg moreInfo" data-index="eDoc" style="background-color: transparent; bottom: 0; right: 0;">
+                                        <img style="filter: brightness(1) invert(0); width: 34px; height: 34px; transform: rotate(0);" src="assets/dots.png" alt="" />
                                     </div>
                                 </div>
                             </div>
 
                             <div class="content back">
-                                <!-- Невидимый блок — нужен только для работы переворота -->
-                                <div class="qrcodeBlock"
-                                    style="position:absolute; opacity:0; pointer-events:none; z-index:-1;">
+                                <div class="qrcodeBlock" style="position:absolute; opacity:0; pointer-events:none; z-index:-1;">
                                     <span>Код діятиме ще <span data-time="02:00">02:00</span></span>
                                 </div>
 
-                                <!-- Только QR, без теней, чуть ниже и аккуратно по центру -->
-                                <div style="
-                                        height: 100%;
-                                        display: flex;
-                                        align-items: center;
-                                        justify-content: center;
-                                        padding-top: 70px;     /* сдвигаем чуть ниже */
-                                        padding-bottom: 40px;
-                                        background: #fff;
-                                        box-sizing: border-box;
-                                    ">
-                                    <div style="
-                                            width: 300px;
-                                            height: 300px;
-                                            background: #fff url(assets/qr-dd.png) center/contain no-repeat;
-                                            border-radius: 24px;
-                                            padding: 16px;
-                                            box-sizing: border-box;
-                                        "></div>
+                                <div style="height: 100%; display: flex; align-items: center; justify-content: center; padding-top: 70px; padding-bottom: 40px; background: #fff; box-sizing: border-box;">
+                                    <div style="width: 300px; height: 300px; background: #fff url(assets/qr-dd.png) center/contain no-repeat; border-radius: 24px; padding: 16px; box-sizing: border-box;"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                     <div class="swiper-slide">
                         <div class="slider podatki">
                             <div class="content front">
@@ -1581,80 +1297,32 @@
                                             <span style="font-size: 18px" class="dataInfoFirst">РНОКПП</span>
                                         </div>
                                         <div>
-                                            <span id="name" style="
-                                                        line-height: 1.4;
-                                                        font-size: 15px;
-                                                    " class="dataInfoFirst"></span>
+                                            <span style="line-height: 1.4; font-size: 15px;" class="dataInfoFirst user-name"></span>
                                         </div>
-                                        <div style="
-                                                    width: 100%;
-                                                    font-size: 13px;
-                                                ">
+                                        <div style="width: 100%; font-size: 13px;">
                                             <span class="dataInfoFirst">Дата народження:</span>
-                                            <span id="birthDate">12.07.1999</span>
+                                            <span class="user-birthdate">12.07.1999</span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="line1 marquee" style="
-                                            background: linear-gradient(
-                                                90deg,
-                                                #b6eb9f,
-                                                #9ccfcf
-                                            );
-                                            margin: auto -15px 5px -15px;
-                                            position: relative;
-                                            overflow: hidden;
-                                            font-weight: 300;
-                                            font-size: 13px;
-                                            padding: 7px 0;
-                                        ">
-                                    • Документ оновлено о
-                                    <span id="getCurrentDateTime"></span>
+                                <div class="line1 marquee" style="background: linear-gradient(90deg, #b6eb9f, #9ccfcf); margin: auto -15px 5px -15px; position: relative; overflow: hidden; font-weight: 300; font-size: 13px; padding: 7px 0;">
+                                    • Документ оновлено о <span class="getCurrentDateTime"></span>
                                 </div>
 
-                                <div class="fioBlock" style="
-                                            margin-right: 0;
-                                            display: flex;
-                                            justify-content: space-between;
-                                            align-items: center;
-                                            padding-top: 15px;
-                                        ">
-                                    <div style="
-                                                display: flex;
-                                                align-items: center;
-                                                gap: 10px;
-                                            ">
-                                        <h2 style="
-                                                    font-size: 26px;
-                                                    margin-top: 0;
-                                                    font-weight: 300;
-                                                " id="rnokpp"></h2>
-                                        <img class="copyPng" src="assets/copy.png"
-                                            alt="" />
+                                <div class="fioBlock" style="margin-right: 0; display: flex; justify-content: space-between; align-items: center; padding-top: 15px;">
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <h2 style="font-size: 26px; margin-top: 0; font-weight: 300;" class="user-rnokpp"></h2>
+                                        <img class="copyPng" src="assets/copy.png" alt="" />
                                     </div>
-                                    <div class="arrowSvg moreInfo" data-index="podatki" style="
-                                                background-color: transparent;
-                                                bottom: 0;
-                                                right: 0;
-                                                position: relative;
-                                                padding: 0;
-                                            ">
-                                        <img style="
-                                                    filter: brightness(1)
-                                                        invert(0);
-                                                    width: 34px;
-                                                    height: 34px;
-                                                    transform: rotate(0);
-                                                " src="assets/dots.png" alt="" />
+                                    <div class="arrowSvg moreInfo" data-index="podatki" style="background-color: transparent; bottom: 0; right: 0; position: relative; padding: 0;">
+                                        <img style="filter: brightness(1) invert(0); width: 34px; height: 34px; transform: rotate(0);" src="assets/dots.png" alt="" />
                                     </div>
                                 </div>
                             </div>
 
                             <div class="content back">
                                 <div class="qrcodeBlock">
-                                    <span>Код діятиме ще
-                                        <span data-time="2:59">2:59</span>
-                                        хв</span>
+                                    <span>Код діятиме ще <span data-time="2:59">2:59</span> хв</span>
                                     <div class="qrshBlock">
                                         <div class="qrcode changeCode"></div>
                                         <div class="shText" style="display: none">
@@ -1667,19 +1335,13 @@
                                     <div class="qrChange">
                                         <div data-index="1">
                                             <div style="background: black">
-                                                <img src="assets/qr-code.png" style="
-                                                            filter: brightness(
-                                                                    0
-                                                                )
-                                                                invert(1);
-                                                        " alt="" />
+                                                <img src="assets/qr-code.png" style="filter: brightness(0) invert(1);" alt="" />
                                             </div>
                                             <span>QR-код</span>
                                         </div>
                                         <div data-index="2">
                                             <div>
-                                                <img src="assets/free-icon-barcode-7797192.png"
-                                                    alt="" />
+                                                <img src="assets/free-icon-barcode-7797192.png" alt="" />
                                             </div>
                                             <span>Штрихкод</span>
                                         </div>
@@ -1688,6 +1350,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="swiper-slide">
                         <div class="slider pasport">
                             <div class="content front">
@@ -1697,55 +1360,30 @@
                                     <div class="dataInfo">
                                         <div>
                                             <span class="dataInfoFirst">Дата народження:</span>
-                                            <span id="birthDate">12.07.1999</span>
+                                            <span class="user-birthdate">12.07.1999</span>
                                         </div>
                                         <div>
                                             <span class="dataInfoFirst">Номер:</span>
-                                            <span id="nomerPasport">008759371</span>
+                                            <span class="user-passport-num">008759371</span>
                                         </div>
                                         <img src="sign.png" alt="" />
                                     </div>
                                 </div>
-                                <div class="line1 marquee" style="
-                                            background: linear-gradient(
-                                                90deg,
-                                                #b6eb9f,
-                                                #9ccfcf
-                                            );
-                                            margin: auto -15px 5px -15px;
-                                            position: relative;
-                                            overflow: hidden;
-                                            font-weight: 300;
-                                            font-size: 13px;
-                                            padding: 7px 0;
-                                        ">
-                                    • Документ оновлено о
-                                    <span id="getCurrentDateTime"></span>
+                                <div class="line1 marquee" style="background: linear-gradient(90deg, #b6eb9f, #9ccfcf); margin: auto -15px 5px -15px; position: relative; overflow: hidden; font-weight: 300; font-size: 13px; padding: 7px 0;">
+                                    • Документ оновлено о <span class="getCurrentDateTime"></span>
                                 </div>
 
                                 <div class="fioBlock" style="margin-right: 0">
-                                    <h2 id="name">Тут твоё имя</h2>
-                                    <div class="arrowSvg moreInfo" data-index="pasport" style="
-                                                background-color: transparent;
-                                                bottom: 0;
-                                                right: 0;
-                                            ">
-                                        <img style="
-                                                    filter: brightness(1)
-                                                        invert(0);
-                                                    width: 34px;
-                                                    height: 34px;
-                                                    transform: rotate(0);
-                                                " src="assets/dots.png" alt="" />
+                                    <h2 class="user-name">Тут твоё имя</h2>
+                                    <div class="arrowSvg moreInfo" data-index="pasport" style="background-color: transparent; bottom: 0; right: 0;">
+                                        <img style="filter: brightness(1) invert(0); width: 34px; height: 34px; transform: rotate(0);" src="assets/dots.png" alt="" />
                                     </div>
                                 </div>
                             </div>
 
                             <div class="content back">
                                 <div class="qrcodeBlock">
-                                    <span>Код діятиме ще
-                                        <span data-time="2:59">2:59</span>
-                                        хв</span>
+                                    <span>Код діятиме ще <span data-time="2:59">2:59</span> хв</span>
                                     <div class="qrshBlock">
                                         <div class="qrcode changeCode"></div>
                                         <div class="shText" style="display: none">
@@ -1758,19 +1396,13 @@
                                     <div class="qrChange">
                                         <div data-index="1">
                                             <div style="background: black">
-                                                <img src="assets/qr-code.png" style="
-                                                            filter: brightness(
-                                                                    0
-                                                                )
-                                                                invert(1);
-                                                        " alt="" />
+                                                <img src="assets/qr-code.png" style="filter: brightness(0) invert(1);" alt="" />
                                             </div>
                                             <span>QR-код</span>
                                         </div>
                                         <div data-index="2">
                                             <div>
-                                                <img src="assets/free-icon-barcode-7797192.png"
-                                                    alt="" />
+                                                <img src="assets/free-icon-barcode-7797192.png" alt="" />
                                             </div>
                                             <span>Штрихкод</span>
                                         </div>
@@ -1779,6 +1411,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="swiper-slide">
                         <div class="slider dip">
                             <div class="content front">
@@ -1798,36 +1431,19 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="line1 marquee" style="
-                                            background: linear-gradient(
-                                                90deg,
-                                                #b6eb9f,
-                                                #9ccfcf
-                                            );
-                                            margin: auto -15px 5px -15px;
-                                            position: relative;
-                                            overflow: hidden;
-                                            font-weight: 300;
-                                            font-size: 13px;
-                                            padding: 7px 0;
-                                        ">
-                                    • Документ оновлено о
-                                    <span id="getCurrentDateTime"></span>
+                                <div class="line1 marquee" style="background: linear-gradient(90deg, #b6eb9f, #9ccfcf); margin: auto -15px 5px -15px; position: relative; overflow: hidden; font-weight: 300; font-size: 13px; padding: 7px 0;">
+                                    • Документ оновлено о <span class="getCurrentDateTime"></span>
                                 </div>
 
-                                <div class="fioBlock"
-                                    style="margin-right: 0; margin-top: 10px; display: flex; align-items: center; gap: 10px;">
+                                <div class="fioBlock" style="margin-right: 0; margin-top: 10px; display: flex; align-items: center; gap: 10px;">
                                     <h2 id="number_dip" style="margin-top: 0; width: unset;">2</h2>
                                     <img class="copyPng" src="assets/copy.png" alt="">
-
                                 </div>
                             </div>
 
                             <div class="content back">
                                 <div class="qrcodeBlock">
-                                    <span>Код діятиме ще
-                                        <span data-time="2:59">2:59</span>
-                                        хв</span>
+                                    <span>Код діятиме ще <span data-time="2:59">2:59</span> хв</span>
                                     <div class="qrshBlock">
                                         <div class="qrcode changeCode"></div>
                                         <div class="shText" style="display: none">
@@ -1840,19 +1456,13 @@
                                     <div class="qrChange">
                                         <div data-index="1">
                                             <div style="background: black">
-                                                <img src="assets/qr-code.png" style="
-                                                            filter: brightness(
-                                                                    0
-                                                                )
-                                                                invert(1);
-                                                        " alt="" />
+                                                <img src="assets/qr-code.png" style="filter: brightness(0) invert(1);" alt="" />
                                             </div>
                                             <span>QR-код</span>
                                         </div>
                                         <div data-index="2">
                                             <div>
-                                                <img src="assets/free-icon-barcode-7797192.png"
-                                                    alt="" />
+                                                <img src="assets/free-icon-barcode-7797192.png" alt="" />
                                             </div>
                                             <span>Штрихкод</span>
                                         </div>
@@ -1861,6 +1471,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="swiper-slide">
                         <div class="slider zagran">
                             <div class="content front">
@@ -1870,7 +1481,7 @@
                                     <div class="dataInfo">
                                         <div style="width: 100%">
                                             <span class="dataInfoFirst">Date of birth:</span>
-                                            <span id="birthDate">12.07.1999</span>
+                                            <span class="user-birthdate">12.07.1999</span>
                                         </div>
                                         <div>
                                             <span class="dataInfoFirst">Document number:</span>
@@ -1879,46 +1490,21 @@
                                         <img src="sign.png" alt="" />
                                     </div>
                                 </div>
-                                <div class="line1 marquee" style="
-                                            background: linear-gradient(
-                                                90deg,
-                                                #b6eb9f,
-                                                #9ccfcf
-                                            );
-                                            margin: auto -15px 5px -15px;
-                                            position: relative;
-                                            overflow: hidden;
-                                            font-weight: 300;
-                                            font-size: 13px;
-                                            padding: 7px 0;
-                                        ">
-                                    • Document updated оn
-                                    <span id="getCurrentDateTime"></span>
+                                <div class="line1 marquee" style="background: linear-gradient(90deg, #b6eb9f, #9ccfcf); margin: auto -15px 5px -15px; position: relative; overflow: hidden; font-weight: 300; font-size: 13px; padding: 7px 0;">
+                                    • Document updated оn <span class="getCurrentDateTime"></span>
                                 </div>
 
                                 <div class="fioBlock" style="margin-right: 0">
-                                    <h2 id="nameEn">Тут твоё имя</h2>
-                                    <div class="arrowSvg moreInfo" data-index="zagran" style="
-                                                background-color: transparent;
-                                                bottom: 0;
-                                                right: 0;
-                                            ">
-                                        <img style="
-                                                    filter: brightness(1)
-                                                        invert(0);
-                                                    width: 34px;
-                                                    height: 34px;
-                                                    transform: rotate(0);
-                                                " src="assets/dots.png" alt="" />
+                                    <h2 class="user-name-en">Тут твоё имя</h2>
+                                    <div class="arrowSvg moreInfo" data-index="zagran" style="background-color: transparent; bottom: 0; right: 0;">
+                                        <img style="filter: brightness(1) invert(0); width: 34px; height: 34px; transform: rotate(0);" src="assets/dots.png" alt="" />
                                     </div>
                                 </div>
                             </div>
 
                             <div class="content back">
                                 <div class="qrcodeBlock">
-                                    <span>Код діятиме ще
-                                        <span data-time="2:59">2:59</span>
-                                        хв</span>
+                                    <span>Код діятиме ще <span data-time="2:59">2:59</span> хв</span>
                                     <div class="qrshBlock">
                                         <div class="qrcode changeCode"></div>
                                         <div class="shText" style="display: none">
@@ -1931,19 +1517,13 @@
                                     <div class="qrChange">
                                         <div data-index="1">
                                             <div style="background: black">
-                                                <img src="assets/qr-code.png" style="
-                                                            filter: brightness(
-                                                                    0
-                                                                )
-                                                                invert(1);
-                                                        " alt="" />
+                                                <img src="assets/qr-code.png" style="filter: brightness(0) invert(1);" alt="" />
                                             </div>
                                             <span>QR-код</span>
                                         </div>
                                         <div data-index="2">
                                             <div>
-                                                <img src="assets/free-icon-barcode-7797192.png"
-                                                    alt="" />
+                                                <img src="assets/free-icon-barcode-7797192.png" alt="" />
                                             </div>
                                             <span>Штрихкод</span>
                                         </div>
@@ -1952,69 +1532,43 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="swiper-slide">
                         <div class="slider study">
                             <div class="content front">
-                                <h1>
-                                    Студентський квиток
-                                </h1>
+                                <h1>Студентський квиток</h1>
                                 <div class="dataBlock">
                                     <img src="assets/photo.jpg" alt="" />
                                     <div class="dataInfo">
                                         <div>
                                             <span class="dataInfoFirst">Номер:</span>
-                                            <span id="nomerStudy"></span>
+                                            <span class="user-nomer-study"></span>
                                         </div>
                                         <div style="width: 100%">
                                             <span class="dataInfoFirst">Дійсний до:</span>
-                                            <span id="diusnuyDoStudy"></span>
+                                            <span class="user-diusnuy-study"></span>
                                         </div>
                                         <div style="width: 100%">
                                             <span class="dataInfoFirst">Форма навчання:</span>
-                                            <span id="formaStudy"></span>
+                                            <span class="user-forma-study"></span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="line1 marquee" style="
-                                            background: linear-gradient(
-                                                90deg,
-                                                #b6eb9f,
-                                                #9ccfcf
-                                            );
-                                            margin: auto -15px 5px -15px;
-                                            position: relative;
-                                            overflow: hidden;
-                                            font-weight: 300;
-                                            font-size: 13px;
-                                            padding: 7px 0;
-                                        ">
-                                    • Документ оновлено о
-                                    <span id="getCurrentDateTime"></span>
+                                <div class="line1 marquee" style="background: linear-gradient(90deg, #b6eb9f, #9ccfcf); margin: auto -15px 5px -15px; position: relative; overflow: hidden; font-weight: 300; font-size: 13px; padding: 7px 0;">
+                                    • Документ оновлено о <span class="getCurrentDateTime"></span>
                                 </div>
 
                                 <div class="fioBlock" style="margin-right: 0">
-                                    <h2 id="name">Тут твоё имя</h2>
-                                    <div class="arrowSvg moreInfo" data-index="study" style="
-                                                background-color: transparent;
-                                                bottom: 0;
-                                                right: 0;
-                                            ">
-                                        <img style="
-                                                    filter: brightness(1)
-                                                        invert(0);
-                                                    width: 34px;
-                                                    height: 34px;
-                                                    transform: rotate(0);
-                                                " src="assets/dots.png" alt="" />
+                                    <h2 class="user-name">Тут твоё имя</h2>
+                                    <div class="arrowSvg moreInfo" data-index="study" style="background-color: transparent; bottom: 0; right: 0;">
+                                        <img style="filter: brightness(1) invert(0); width: 34px; height: 34px; transform: rotate(0);" src="assets/dots.png" alt="" />
                                     </div>
                                 </div>
                             </div>
 
                             <div class="content back">
                                 <div class="qrcodeBlock">
-                                    <span>Код діятиме ще
-                                        <span data-time="2:59">2:59</span>
-                                        хв</span>
+                                    <span>Код діятиме ще <span data-time="2:59">2:59</span> хв</span>
                                     <div class="qrshBlock">
                                         <div class="qrcode changeCode"></div>
                                         <div class="shText" style="display: none">
@@ -2027,19 +1581,13 @@
                                     <div class="qrChange">
                                         <div data-index="1">
                                             <div style="background: black">
-                                                <img src="assets/qr-code.png" style="
-                                                            filter: brightness(
-                                                                    0
-                                                                )
-                                                                invert(1);
-                                                        " alt="" />
+                                                <img src="assets/qr-code.png" style="filter: brightness(0) invert(1);" alt="" />
                                             </div>
                                             <span>QR-код</span>
                                         </div>
                                         <div data-index="2">
                                             <div>
-                                                <img src="assets/free-icon-barcode-7797192.png"
-                                                    alt="" />
+                                                <img src="assets/free-icon-barcode-7797192.png" alt="" />
                                             </div>
                                             <span>Штрихкод</span>
                                         </div>
@@ -2048,6 +1596,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="swiper-slide">
                         <div class="slider prava">
                             <div class="content front">
@@ -2057,67 +1606,33 @@
                                     <div class="dataInfo">
                                         <div style="margin-bottom: 10px">
                                             <span class="dataInfoFirst">Дата народження:</span>
-
-                                            <span id="birthDate">12.07.1999</span>
+                                            <span class="user-birthdate">12.07.1999</span>
                                         </div>
-                                        <div style="
-                                                    width: 100%;
-                                                    margin-bottom: 10px;
-                                                ">
+                                        <div style="width: 100%; margin-bottom: 10px;">
                                             <span class="dataInfoFirst">Категорія:</span>
                                             <span id="rightsCategories">A</span>
-
-
                                         </div>
                                         <div style="margin-bottom: 10px">
                                             <span class="dataInfoFirst">Номер документа:</span>
-
-                                            <span id="pravaNnumber">KBE968639</span>
+                                            <span class="user-prava-number">KBE968639</span>
                                         </div>
-
                                     </div>
                                 </div>
-                                <div class="line1 marquee" style="
-                                            background: linear-gradient(
-                                                90deg,
-                                                #b6eb9f,
-                                                #9ccfcf
-                                            );
-                                            margin: auto -15px 5px -15px;
-                                            position: relative;
-                                            overflow: hidden;
-                                            font-weight: 300;
-                                            font-size: 13px;
-                                            padding: 7px 0;
-                                        ">
-                                    • Документ оновлено о
-                                    <span id="getCurrentDateTime"></span>
+                                <div class="line1 marquee" style="background: linear-gradient(90deg, #b6eb9f, #9ccfcf); margin: auto -15px 5px -15px; position: relative; overflow: hidden; font-weight: 300; font-size: 13px; padding: 7px 0;">
+                                    • Документ оновлено о <span class="getCurrentDateTime"></span>
                                 </div>
 
                                 <div class="fioBlock" style="margin-right: 0">
-                                    <h2 id="name">KBE968639</h2>
-                                    <div class="arrowSvg moreInfo" data-index="prava" style="
-                                                background-color: transparent;
-                                                bottom: 0;
-                                                right: 0;
-                                                padding: 0;
-                                            ">
-                                        <img style="
-                                                    filter: brightness(1)
-                                                        invert(0);
-                                                    width: 34px;
-                                                    height: 34px;
-                                                    transform: rotate(0);
-                                                " src="assets/dots.png" alt="" />
+                                    <h2 class="user-prava-number">KBE968639</h2>
+                                    <div class="arrowSvg moreInfo" data-index="prava" style="background-color: transparent; bottom: 0; right: 0; padding: 0;">
+                                        <img style="filter: brightness(1) invert(0); width: 34px; height: 34px; transform: rotate(0);" src="assets/dots.png" alt="" />
                                     </div>
                                 </div>
                             </div>
 
                             <div class="content back">
                                 <div class="qrcodeBlock">
-                                    <span>Код діятиме ще
-                                        <span data-time="2:59">2:59</span>
-                                        хв</span>
+                                    <span>Код діятиме ще <span data-time="2:59">2:59</span> хв</span>
                                     <div class="qrshBlock">
                                         <div class="qrcode changeCode"></div>
                                         <div class="shText" style="display: none">
@@ -2130,19 +1645,13 @@
                                     <div class="qrChange">
                                         <div data-index="1">
                                             <div style="background: black">
-                                                <img src="assets/qr-code.png" style="
-                                                            filter: brightness(
-                                                                    0
-                                                                )
-                                                                invert(1);
-                                                        " alt="" />
+                                                <img src="assets/qr-code.png" style="filter: brightness(0) invert(1);" alt="" />
                                             </div>
                                             <span>QR-код</span>
                                         </div>
                                         <div data-index="2">
                                             <div>
-                                                <img src="assets/free-icon-barcode-7797192.png"
-                                                    alt="" />
+                                                <img src="assets/free-icon-barcode-7797192.png" alt="" />
                                             </div>
                                             <span>Штрихкод</span>
                                         </div>
@@ -2151,6 +1660,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="swiper-slide">
                         <div class="slider birth">
                             <div class="content front">
@@ -2158,40 +1668,23 @@
                                 <div class="dataBlock">
                                     <div class="dataInfo" style="gap: 10px;">
                                         <div style="width: 100%">
-                                            <span class="dataInfoFirst" style="width: 100%; font-size: 18px;">Свідоцтва
-                                                про народження</span>
+                                            <span class="dataInfoFirst" style="width: 100%; font-size: 18px;">Свідоцтва про народження</span>
                                         </div>
                                         <div style="font-size: 11px;">
                                             <span class="dataInfoFirst">Дата народження:</span>
-                                            <span style="margin-bottom: 7px" id="birthDate">12.07.1999</span>
+                                            <span style="margin-bottom: 7px" class="user-birthdate">12.07.1999</span>
                                             <span class="dataInfoFirst">Місце народження:</span>
-                                            <span id="placeBirth">Київ</span>
+                                            <span class="user-placebirth">Київ</span>
                                         </div>
                                     </div>
-
                                 </div>
-                                <div class="line1 marquee" style="
-                                            background: linear-gradient(
-                                                90deg,
-                                                #b6eb9f,
-                                                #9ccfcf
-                                            );
-                                            margin: auto -15px 5px -15px;
-                                            position: relative;
-                                            overflow: hidden;
-                                            font-weight: 300;
-                                            font-size: 13px;
-                                            padding: 7px 0;
-                                        ">
-                                    • Документ оновлено о
-                                    <span id="getCurrentDateTime"></span>
+                                <div class="line1 marquee" style="background: linear-gradient(90deg, #b6eb9f, #9ccfcf); margin: auto -15px 5px -15px; position: relative; overflow: hidden; font-weight: 300; font-size: 13px; padding: 7px 0;">
+                                    • Документ оновлено о <span class="getCurrentDateTime"></span>
                                 </div>
                                 <div class="fioBlock" style="margin-right: 0">
-                                    <h2 id="name">Тут твоє ім'я</h2>
-                                    <div class="arrowSvg moreInfo" data-index="birth"
-                                        style="background-color: transparent; bottom: 0; right: 0;">
-                                        <img style="filter: brightness(1) invert(0); width: 34px; height: 34px; transform: rotate(0);"
-                                            src="assets/dots.png" alt="" />
+                                    <h2 class="user-name">Тут твоє ім'я</h2>
+                                    <div class="arrowSvg moreInfo" data-index="birth" style="background-color: transparent; bottom: 0; right: 0;">
+                                        <img style="filter: brightness(1) invert(0); width: 34px; height: 34px; transform: rotate(0);" src="assets/dots.png" alt="" />
                                     </div>
                                 </div>
                             </div>
@@ -2207,15 +1700,13 @@
                                     <div class="qrChange">
                                         <div data-index="1">
                                             <div style="background: black">
-                                                <img src="assets/qr-code.png"
-                                                    style="filter: brightness(0) invert(1);" alt="" />
+                                                <img src="assets/qr-code.png" style="filter: brightness(0) invert(1);" alt="" />
                                             </div>
                                             <span>QR-код</span>
                                         </div>
                                         <div data-index="2">
                                             <div>
-                                                <img src="assets/free-icon-barcode-7797192.png"
-                                                    alt="" />
+                                                <img src="assets/free-icon-barcode-7797192.png" alt="" />
                                             </div>
                                             <span>Штрихкод</span>
                                         </div>
@@ -2245,10 +1736,10 @@
                                     </div>
                                 </div>
                                 <div class="line1 marquee" style="background: linear-gradient(90deg,#b6eb9f,#9ccfcf);margin: auto -15px 5px -15px;position: relative;overflow: hidden;font-weight: 300;font-size: 13px;padding: 7px 0;">
-                                    • Документ оновлено о <span id="getCurrentDateTime"></span>
+                                    • Документ оновлено о <span class="getCurrentDateTime"></span>
                                 </div>
                                 <div class="fioBlock" style="margin-right: 0">
-                                    <h2 id="name">Тут твоє ім'я</h2>
+                                    <h2 class="user-name">Тут твоє ім'я</h2>
                                     <div class="arrowSvg moreInfo" data-index="osvita" style="background-color: transparent; bottom: 0; right: 0;">
                                         <img style="filter: brightness(1) invert(0); width: 34px; height: 34px; transform: rotate(0);" src="assets/dots.png" alt="" />
                                     </div>
@@ -2285,11 +1776,11 @@
                     <div class="swiper-slide">
                         <div class="slider" style="display: flex; flex-direction: column; gap: 10px;">
                             <div style="display: flex; align-items: center; justify-content: center; gap: 15px; height: 100%; flex-direction: column; background: rgba(255, 255, 255, 0.4); border-radius: 24px;">
-                                <img style="height: 35px;" src="assets/addDocument.png" />
+                                <img style="height: 35px;" src="assets/addDocument.png" alt="" />
                                 <span style="font-size: 18px;">Додати документ</span>
                             </div>
                             <div style="display: flex; align-items: center; justify-content: center; gap: 15px; height: 100%; flex-direction: column; background: rgba(255, 255, 255, 0.4); border-radius: 24px; text-align: center;">
-                                <img style="height: 35px;" src="assets/swapDocument.png" />
+                                <img style="height: 35px;" src="assets/swapDocument.png" alt="" />
                                 <span style="font-size: 18px;">Змінити порядок <br />документів</span>
                             </div>
                         </div>
@@ -2298,8 +1789,8 @@
                 <div class="swiper-pagination"></div>
             </div>
         </div>
+
         <div class="block diya-ai-block" style="padding:0;">
-            <!-- Top bar -->
             <div class="dai-topbar">
                 <button class="dai-topbar-btn">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
@@ -2314,12 +1805,9 @@
                 </button>
             </div>
 
-            <!-- Messages area -->
             <div class="dai-messages" id="diyaAiMessages">
-                <!-- Date chip -->
                 <div class="dai-date-chip" id="daiDateChip"></div>
 
-                <!-- Initial AI message -->
                 <div class="dai-msg-block">
                     <div class="dai-msg-row">
                         <div class="dai-sparkle-icon">
@@ -2345,7 +1833,6 @@
                 </div>
             </div>
 
-            <!-- Input bar -->
             <div class="dai-input-bar">
                 <button class="dai-sparkle-btn" id="diyaAiSend">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3l2 7.2L21 12l-7 2L12 21l-2-7L3 12l7-2L12 3Z" fill="currentColor"/><path d="M19 3l.8 2.4L22 6.2l-2.2.8L19 9.5l-.8-2.3L16 6.2l2.2-.8L19 3Z" fill="currentColor" opacity="0.5"/></svg>
@@ -2353,9 +1840,9 @@
                 <input type="text" id="diyaAiInput" class="dai-input" placeholder="Чим можу допомогти?" autocomplete="off" />
             </div>
         </div>
+
         <div class="block block1" style="padding: 0 15px">
             <h1 class="textVizit">Сервіси</h1>
-
 
             <div class="pre">
                 <div class="search">
@@ -2363,110 +1850,77 @@
                 </div>
                 <div class="services">
                     <div>
-                        <div>
-                            <img src="assets/helmet.png" alt="" />
-                        </div>
+                        <div><img src="assets/helmet.png" alt="" /></div>
                         <span>Допомога армії</span>
                     </div>
                     <div>
-                        <div>
-                            <img src="assets/thunder.png" alt="" />
-                        </div>
+                        <div><img src="assets/thunder.png" alt="" /></div>
                         <span>Незламність</span>
                     </div>
                     <div>
-                        <div>
-                            <img src="assets/gerb.png" alt="" />
-                        </div>
+                        <div><img src="assets/gerb.png" alt="" /></div>
                         <span>Військові облігації</span>
                     </div>
                     <div>
-                        <div>
-                            <img src="assets/repair.png" alt="" />
-                        </div>
+                        <div><img src="assets/repair.png" alt="" /></div>
                         <span>єВідновлення</span>
                     </div>
                     <div>
-                        <div>
-                            <img src="assets/helmet.png" alt="" />
-                        </div>
+                        <div><img src="assets/helmet.png" alt="" /></div>
                         <span>Допомога армії</span>
                     </div>
                     <div>
-                        <div>
-                            <img src="assets/car.png" alt="" />
-                        </div>
+                        <div><img src="assets/car.png" alt="" /></div>
                         <span>Водієві</span>
                     </div>
                     <div>
-                        <div>
-                            <img src="assets/house.png" alt="" />
-                        </div>
+                        <div><img src="assets/house.png" alt="" /></div>
                         <span>Місце проживання</span>
                     </div>
                     <div>
-                        <div>
-                            <img src="assets/idea.png" alt="" />
-                        </div>
+                        <div><img src="assets/idea.png" alt="" /></div>
                         <span>Обмін лампочок</span>
                     </div>
                     <div>
-                        <div>
-                            <img src="assets/box.png" alt="" />
-                        </div>
+                        <div><img src="assets/box.png" alt="" /></div>
                         <span>Послуги для ВПО</span>
                     </div>
                     <div>
-                        <div>
-                            <img src="assets/case.png" alt="" />
-                        </div>
+                        <div><img src="assets/case.png" alt="" /></div>
                         <span>Податки</span>
                     </div>
                     <div>
-                        <div>
-                            <img src="assets/charity.png" alt="" />
-                        </div>
+                        <div><img src="assets/charity.png" alt="" /></div>
                         <span>Допомога по безробіттю</span>
                     </div>
                     <div>
-                        <div>
-                            <img src="assets/verdict.png" alt="" />
-                        </div>
+                        <div><img src="assets/verdict.png" alt="" /></div>
                         <span>Судові послуги</span>
                     </div>
                     <div>
-                        <div>
-                            <img src="assets/osela.png" alt="" />
-                        </div>
+                        <div><img src="assets/osela.png" alt="" /></div>
                         <span>єОселя</span>
                     </div>
                     <div>
-                        <div>
-                            <img src="assets/alert.png" alt="" />
-                        </div>
+                        <div><img src="assets/alert.png" alt="" /></div>
                         <span>Виконавчі провадження</span>
                     </div>
                     <div>
-                        <div>
-                            <img src="assets/dovidka.png" alt="" />
-                        </div>
+                        <div><img src="assets/dovidka.png" alt="" /></div>
                         <span>Довідки та витяги</span>
                     </div>
                     <div>
-                        <div>
-                            <img src="assets/controller.png" alt="" />
-                        </div>
+                        <div><img src="assets/controller.png" alt="" /></div>
                         <span>Розваги</span>
                     </div>
                     <div>
-                        <div>
-                            <img src="assets/covid.png" alt="" />
-                        </div>
+                        <div><img src="assets/covid.png" alt="" /></div>
                         <span>COVID-сертифікати</span>
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="block block1" style="padding: 0 20px">
             <h1 style="margin-bottom: 5px" class="textVizit">Меню</h1>
             <span style="font-size: 13px; color: rgb(92, 92, 92); margin-bottom: 15px; width: 100%;">Версія Дії: 4.7.0.1645</span>
@@ -2538,14 +1992,12 @@
                 </div>
 
                 <div class="settings-body">
-
-                    <!-- ФОТО -->
                     <div class="settings-section-title">Фото</div>
                     <div class="settings-group">
                         <div class="settings-field settings-field-photo">
                             <div class="photo-upload-wrap">
                                 <div class="photo-preview-wrap">
-                                    <img id="photoPreview" src="photo.jpg" alt="фото" />
+                                    <img id="photoPreview" src="assets/photo.jpg" alt="фото" />
                                 </div>
                                 <div class="photo-upload-actions">
                                     <label class="photo-upload-btn" for="photoFileInput">
@@ -2559,53 +2011,50 @@
                         </div>
                     </div>
 
-                    <!-- ОСОБИСТІ ДАНІ -->
                     <div class="settings-section-title">Особисті дані</div>
                     <div class="settings-group">
                         <div class="settings-field">
-                            <label>Прізвище</label>
-                            <input type="text" id="set_last_name" placeholder="-" autocomplete="off" />
+                            <label for="set_last_name">Прізвище</label>
+                            <input type="text" id="set_last_name" placeholder="КУЛІКОВ" autocomplete="off" />
                         </div>
                         <div class="settings-field border-top">
-                            <label>Ім'я</label>
-                            <input type="text" id="set_first_name" placeholder="-" autocomplete="off" />
+                            <label for="set_first_name">Ім'я</label>
+                            <input type="text" id="set_first_name" placeholder="РУСЛАН" autocomplete="off" />
                         </div>
                         <div class="settings-field border-top">
-                            <label>По батькові</label>
-                            <input type="text" id="set_middle_name" placeholder="-" autocomplete="off" />
+                            <label for="set_middle_name">По батькові</label>
+                            <input type="text" id="set_middle_name" placeholder="ЮРІЙОВИЧ" autocomplete="off" />
                         </div>
                         <div class="settings-field border-top">
-                            <label>Ім'я латиницею</label>
-                            <input type="text" id="set_name_en" placeholder="--- ---" autocomplete="off" />
+                            <label for="set_name_en">Ім'я латиницею</label>
+                            <input type="text" id="set_name_en" placeholder="RUSLAN KULIKOV" autocomplete="off" />
                         </div>
                     </div>
 
-                    <!-- ДОКУМЕНТИ -->
                     <div class="settings-section-title">Документи</div>
                     <div class="settings-group">
                         <div class="settings-field">
-                            <label>Дата народження</label>
-                            <input type="text" id="set_birthdate" placeholder="11.11.1111" inputmode="numeric" autocomplete="off" />
+                            <label for="set_birthdate">Дата народження</label>
+                            <input type="text" id="set_birthdate" placeholder="05.06.2010" inputmode="numeric" autocomplete="off" />
                         </div>
                         <div class="settings-field border-top">
-                            <label>РНОКПП (ІПН)</label>
-                            <input type="text" id="set_rnokpp" placeholder="0000000000" inputmode="numeric" autocomplete="off" />
+                            <label for="set_rnokpp">РНОКПП (ІПН)</label>
+                            <input type="text" id="set_rnokpp" placeholder="4033307794" inputmode="numeric" autocomplete="off" />
                         </div>
                         <div class="settings-field border-top">
-                            <label>Номер паспорту</label>
-                            <input type="text" id="set_passport_num" placeholder="000000000" autocomplete="off" />
+                            <label for="set_passport_num">Номер паспорту</label>
+                            <input type="text" id="set_passport_num" placeholder="010934294" autocomplete="off" />
                         </div>
                         <div class="settings-field border-top">
-                            <label>Номер закордонного паспорту</label>
-                            <input type="text" id="set_zagran_num" placeholder="GG000000" autocomplete="off" />
+                            <label for="set_zagran_num">Номер закордонного паспорту</label>
+                            <input type="text" id="set_zagran_num" placeholder="GE135791" autocomplete="off" />
                         </div>
                         <div class="settings-field border-top">
-                            <label>Місце народження</label>
-                            <input type="text" id="set_place_birth" placeholder="Город" autocomplete="off" />
+                            <label for="set_place_birth">Місце народження</label>
+                            <input type="text" id="set_place_birth" placeholder="Дніпро" autocomplete="off" />
                         </div>
                     </div>
 
-                    <!-- ПІДПИС -->
                     <div class="settings-section-title">Підпис</div>
                     <div class="settings-group">
                         <div class="settings-field settings-field-sign">
@@ -2616,11 +2065,12 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
+
         <div class="block"></div>
+
         <div class="footer">
             <div data-index="1" class="active">
                 <img src="assets/news.png" alt="" /><span>Стрічка</span>
@@ -2638,7 +2088,6 @@
             <div data-index="4">
                 <img src="assets/circle.png" alt="" /><span>Сервіси</span>
             </div>
-
             <div data-index="5">
                 <img src="assets/user.png" alt="" /><span>Меню</span>
             </div>
@@ -2653,24 +2102,23 @@
             <button class="error-retry">Спробувати ще</button>
         </div>
     </div>
+
     <div id="no-internet-popup" class="no-internet-modal">
         <div class="no-internet-content">
             <div class="error-icon">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM13 17H11V15H13V17ZM13 13H11V7H13V13Z"
-                        fill="white" />
+                    <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM13 17H11V15H13V17ZM13 13H11V7H13V13Z" fill="white" />
                 </svg>
             </div>
             <p>Застаріла версія застосунку!</p>
             <button id="update-button" class="update-btn">Оновити</button>
         </div>
     </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="assets/jquery.marquee.min.js" type="text/javascript"></script>
-
     <script src="assets/app.js"></script>
 
     <script>
@@ -2680,54 +2128,47 @@
             }
         }, { passive: false });
 
-        document.addEventListener('gesturestart', function (e) {
-            e.preventDefault();
-        });
-
-        document.addEventListener('gesturechange', function (e) {
-            e.preventDefault();
-        });
-
-        document.addEventListener('gestureend', function (e) {
-            e.preventDefault();
-        });
+        document.addEventListener('gesturestart', function (e) { e.preventDefault(); });
+        document.addEventListener('gesturechange', function (e) { e.preventDefault(); });
+        document.addEventListener('gestureend', function (e) { e.preventDefault(); });
     </script>
-<style>
-#pwaInstallButton{
-  position:fixed;left:50%;bottom:78px;transform:translateX(-50%);
-  z-index:2147483647;display:none;border:0;border-radius:14px;
-  padding:13px 22px;background:#000;color:#fff;font:600 16px Arial,sans-serif;
-  box-shadow:0 6px 24px rgba(0,0,0,.25);cursor:pointer
-}
-#pwaInstallButton.show{display:block}
-</style>
-<button id="pwaInstallButton" type="button">Установить как приложение</button>
-<script>
-(function(){
-  let deferredPrompt = null;
-  const btn = document.getElementById('pwaInstallButton');
 
-  window.addEventListener('beforeinstallprompt', function(e){
-    e.preventDefault();
-    deferredPrompt = e;
-    btn.classList.add('show');
-  });
+    <style>
+    #pwaInstallButton {
+      position: fixed; left: 50%; bottom: 78px; transform: translateX(-50%);
+      z-index: 2147483647; display: none; border: 0; border-radius: 14px;
+      padding: 13px 22px; background: #000; color: #fff; font: 600 16px Arial, sans-serif;
+      box-shadow: 0 6px 24px rgba(0,0,0,.25); cursor: pointer;
+    }
+    #pwaInstallButton.show { display: block; }
+    </style>
 
-  btn.addEventListener('click', async function(){
-    if(!deferredPrompt) return;
-    deferredPrompt.prompt();
-    try { await deferredPrompt.userChoice; } catch(e) {}
-    deferredPrompt = null;
-    btn.classList.remove('show');
-  });
+    <button id="pwaInstallButton" type="button">Установить как приложение</button>
 
-  window.addEventListener('appinstalled', function(){
-    btn.classList.remove('show');
-    deferredPrompt = null;
-  });
-})();
-</script>
+    <script>
+    (function(){
+      let deferredPrompt = null;
+      const btn = document.getElementById('pwaInstallButton');
 
+      window.addEventListener('beforeinstallprompt', function(e){
+        e.preventDefault();
+        deferredPrompt = e;
+        btn.classList.add('show');
+      });
+
+      btn.addEventListener('click', async function(){
+        if(!deferredPrompt) return;
+        deferredPrompt.prompt();
+        try { await deferredPrompt.userChoice; } catch(e) {}
+        deferredPrompt = null;
+        btn.classList.remove('show');
+      });
+
+      window.addEventListener('appinstalled', function(){
+        btn.classList.remove('show');
+        deferredPrompt = null;
+      });
+    })();
+    </script>
 </body>
-
 </html>
