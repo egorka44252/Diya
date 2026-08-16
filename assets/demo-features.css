@@ -1,46 +1,10 @@
-#demoFeatureRoot{display:none;position:fixed;inset:0;z-index:99999;font-family:inherit;color:#111}
-#demoFeatureRoot.open{display:block}
-.df-screen{height:100%;overflow:auto;background:linear-gradient(135deg,#d9eaf7,#eef8ef)}
-.df-head{height:92px;display:grid;grid-template-columns:56px 1fr 56px;align-items:end;padding:0 18px 14px}
-.df-head h1{margin:0;text-align:left;font-size:27px;font-weight:500}
-.df-back{border:0;background:none;font-size:46px;line-height:1;cursor:pointer;text-align:left}
-.df-content{padding:0 22px 40px;max-width:620px;margin:auto}
-.df-tabs{display:flex;gap:10px;overflow:auto;padding:10px 0 20px}
-.df-tabs button{border:0;background:#f7fafc;padding:14px 22px;border-radius:28px;white-space:nowrap;font-size:16px}
-.df-tabs .active{background:#fff}
-.df-empty{text-align:center;padding:115px 10px}
-.df-empty.small{padding:60px 10px}
-.df-emoji{font-size:48px;margin-bottom:22px}
-.df-empty h2{font-size:24px;font-weight:500;line-height:1.2}
-.df-card,.df-list{background:#fff;border-radius:22px;padding:22px;margin:12px 0;box-shadow:0 1px 0 rgba(0,0,0,.03)}
-.df-card p{font-size:21px;line-height:1.35}
-.df-free{background:#a8ded9;border-radius:5px;padding:3px 9px;font-size:12px}
-.df-info{background:#d8eaff;border-radius:18px;padding:16px;font-size:16px;line-height:1.35;margin-top:18px}
-.df-info.blue{margin:16px 0}
-.df-row{width:100%;display:flex;justify-content:space-between;align-items:center;border:0;background:#fff;padding:20px 22px;border-radius:22px;margin:8px 0;font-size:19px;text-align:left;cursor:pointer}
-.df-row b{width:32px;height:32px;border-radius:50%;background:#000;color:#fff;display:grid;place-items:center}
-.df-card ol{padding-left:28px;font-size:17px;line-height:1.5}
-.df-black{display:block;width:90%;margin:20px auto 0;background:#000;color:#fff;border:0;border-radius:34px;padding:18px 22px;text-align:center;font-size:18px;text-decoration:none;cursor:pointer}
-.df-search{width:100%;box-sizing:border-box;border:0;border-radius:22px;padding:18px 20px;font-size:17px;margin:8px 0 18px}
-.df-list{padding:0}.df-list .df-row{border-radius:0;margin:0;border-bottom:1px solid #e4e7ea}
-.df-device{position:relative;background:#fff;border-radius:18px;padding:18px;margin:10px 0}
-.df-device strong{font-size:20px;margin-left:10px}
-.df-device p{margin:8px 0;font-size:15px}
-.df-status{font-size:11px;padding:5px 9px;border-radius:10px;color:#fff}
-.df-status.on{background:#18a45a}.df-status.off{background:#d7d7d7;color:#333}
-.df-device .arrow{position:absolute;right:18px;top:50%;font-size:28px;transform:translateY(-50%)}
+#demoFeatureRoot{display:none;position:fixed;inset:0;z-index:99999;background:linear-gradient(135deg,#d9eaf7,#eef8ef);font-family:inherit;color:#111}#demoFeatureRoot.open{display:block}.df-screen{height:100%;overflow:auto}.df-head{height:92px;display:grid;grid-template-columns:56px 1fr 56px;align-items:end;padding:0 18px 14px}.df-head h1{margin:0;text-align:left;font-size:27px;font-weight:500}.df-back{border:0;background:none;font-size:46px;line-height:1;cursor:pointer;text-align:left}.df-content{padding:0 22px 40px;max-width:620px;margin:auto}.df-tabs{display:flex;gap:10px;overflow:auto;padding:10px 0 20px}.df-tabs button{border:0;background:#f7fafc;padding:14px 22px;border-radius:28px;white-space:nowrap;font-size:16px}.df-tabs .active{background:#fff}.df-empty{text-align:center;padding:115px 10px}.df-empty.small{padding:60px 10px}.df-emoji{font-size:48px;margin-bottom:22px}.df-empty h2{font-size:24px;font-weight:500;line-height:1.2}.df-card,.df-list{background:#fff;border-radius:22px;padding:22px;margin:12px 0;box-shadow:0 1px 0 rgba(0,0,0,.03)}.df-card p{font-size:21px;line-height:1.35}.df-free{background:#a8ded9;border-radius:5px;padding:3px 9px;font-size:12px}.df-info{background:#d8eaff;border-radius:18px;padding:16px;font-size:16px;line-height:1.35;margin-top:18px}.df-info.blue{margin:16px 0}.df-row{width:100%;display:flex;justify-content:space-between;align-items:center;border:0;background:#fff;padding:20px 22px;border-radius:22px;margin:8px 0;font-size:19px;text-align:left}.df-row b{width:32px;height:32px;border-radius:50%;background:#000;color:#fff;display:grid;place-items:center}.df-card ol{padding-left:28px;font-size:17px;line-height:1.5}.df-black{display:block;width:90%;margin:20px auto 0;background:#000;color:#fff;border:0;border-radius:34px;padding:18px 22px;text-align:center;font-size:18px;text-decoration:none;cursor:pointer}.df-search{width:100%;box-sizing:border-box;border:0;border-radius:22px;padding:18px 20px;font-size:17px;margin:8px 0 18px}.df-list{padding:0}.df-list .df-row{border-radius:0;margin:0;border-bottom:1px solid #e4e7ea}.support{text-align:center;padding-top:40px}.tg-icon{width:96px;height:96px;border-radius:50%;background:#d4ebfb;display:grid;place-items:center;margin:0 auto 25px;font-size:45px}.support .df-info{text-align:left}.df-device{position:relative;background:#fff;border-radius:18px;padding:18px;margin:10px 0}.df-device strong{font-size:20px;margin-left:10px}.df-device p{margin:8px 0;font-size:15px}.df-status{font-size:11px;padding:5px 9px;border-radius:10px;color:#fff}.df-status.on{background:#18a45a}.df-status.off{background:#d7d7d7;color:#333}.df-device .arrow{position:absolute;right:18px;top:50%;font-size:28px}.df-device .arrow{transform:translateY(-50%)}
+/* Subtle safety label: keeps the prototype distinguishable from an official service. */
+#demoSafetyLabel{position:fixed;right:8px;bottom:7px;z-index:100000;background:rgba(255,255,255,.78);color:#444;padding:3px 7px;border-radius:9px;font:10px Arial,sans-serif;pointer-events:none}
 
-.df-support-overlay{position:fixed;inset:0;background:rgba(0,0,0,.38);display:flex;align-items:flex-end;justify-content:center}
-.df-support-sheet{position:relative;width:100%;max-width:620px;background:#fff;border-radius:28px 28px 0 0;padding:14px 22px 30px;box-sizing:border-box;box-shadow:0 -8px 35px rgba(0,0,0,.16);animation:dfSheetUp .22s ease-out}
-.df-sheet-handle{width:42px;height:5px;border-radius:5px;background:#d7dbe0;margin:0 auto 18px}
-.df-sheet-close{position:absolute;right:18px;top:14px;border:0;background:none;font-size:34px;line-height:1;cursor:pointer}
-.df-support-sheet h1{font-size:28px;font-weight:600;margin:8px 0 6px}
-.df-support-subtitle{font-size:17px;color:#66707b;margin:0 0 20px}
-.df-support-list{border:1px solid #e2e5e8;border-radius:20px;overflow:hidden}
-.df-support-list a{display:grid;grid-template-columns:52px 1fr 24px;align-items:center;gap:10px;padding:18px 16px;color:#111;text-decoration:none;font-size:18px;border-bottom:1px solid #e5e7ea}
-.df-support-list a:last-child{border-bottom:0}
-.df-support-list b{font-size:30px;font-weight:300;color:#8b9299}
-.df-support-icon{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:700;font-size:21px}
-.df-support-icon.tg{background:#2aabee}.df-support-icon.messenger{background:#2f8cff}.df-support-icon.viber{background:#7656b8}
-@keyframes dfSheetUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
-@media(max-width:480px){.df-support-sheet{border-radius:25px 25px 0 0;padding-left:18px;padding-right:18px}.df-support-sheet h1{font-size:25px}}
+/* Не показывать системное окно «сталася помилка» поверх демо-вкладок меню. */
+body:has(#demoFeatureRoot.open) #error-popup {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
