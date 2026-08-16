@@ -1008,6 +1008,9 @@ document.querySelectorAll(".modal").forEach((modal) => {
   }
 
   function applySettings(s) {
+    s = s || {};
+
+    // Photo is used by several document cards.
     if (s.photo) {
       document.querySelectorAll('img[src="photo.jpg"], img[src*="photo.jpg"]').forEach(function(img) {
         if (img.id !== 'photoPreview') {
@@ -1016,24 +1019,37 @@ document.querySelectorAll(".modal").forEach((modal) => {
         }
       });
     }
-    var fullName = [s.last_name, s.first_name, s.middle_name].filter(Boolean).join(' ');
-    if (fullName) document.querySelectorAll('#name').forEach(function(el){ el.textContent = fullName; });
-    if (s.name_en) document.querySelectorAll('#nameEn').forEach(function(el){ el.textContent = s.name_en; });
-    if (s.birthdate) document.querySelectorAll('#birthDate').forEach(function(el){ el.textContent = s.birthdate; });
-    if (s.rnokpp) document.querySelectorAll('#rnokpp').forEach(function(el){ el.textContent = s.rnokpp; });
-    if (s.passport_num) document.querySelectorAll('#nomerPasport').forEach(function(el){ el.textContent = s.passport_num; });
-    if (s.zagran_num) {
-      document.querySelectorAll('#zagran_number').forEach(function(el){ el.textContent = s.zagran_num; });
-      document.querySelectorAll('#zagranNumber').forEach(function(el){ el.textContent = s.zagran_num; });
-    }
-    if (s.place_birth) document.querySelectorAll('#placeBirth').forEach(function(el){ el.textContent = s.place_birth; });
-    if (fullName) document.querySelectorAll('#textName').forEach(function(el){ el.textContent = fullName.split(' ')[1] || ''; });
-    // Update Дія.AI greeting
+
+    var fullName = [s.last_name, s.first_name, s.middle_name].filter(function(v){ return String(v || '').trim(); }).join(' ');
+
+    // The document templates use classes (not IDs), so update every occurrence.
+    document.querySelectorAll('.user-name, #name').forEach(function(el){
+      el.textContent = fullName || 'Тут твоє ім\'я';
+    });
+    document.querySelectorAll('.user-name-en, #nameEn').forEach(function(el){
+      el.textContent = s.name_en || 'This your name';
+    });
+    document.querySelectorAll('.user-birthdate, #birthDate').forEach(function(el){
+      el.textContent = s.birthdate || '12.07.1999';
+    });
+    document.querySelectorAll('.user-placebirth, #placeBirth').forEach(function(el){
+      el.textContent = s.place_birth || 'Київ';
+    });
+    document.querySelectorAll('#rnokpp').forEach(function(el){ el.textContent = s.rnokpp || ''; });
+    document.querySelectorAll('#nomerPasport').forEach(function(el){ el.textContent = s.passport_num || ''; });
+    document.querySelectorAll('#zagran_number, #zagranNumber').forEach(function(el){ el.textContent = s.zagran_num || ''; });
+
+    var firstName = s.first_name || '';
+    document.querySelectorAll('#textName').forEach(function(el){
+      el.textContent = firstName || (s.last_name || '');
+    });
+
     var greetEl = document.getElementById('daiGreetingName');
     if (greetEl) {
-      var firstName = s.first_name || s.last_name || '';
-      if (firstName) greetEl.textContent = firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase();
+      var greetName = s.first_name || s.last_name || '';
+      greetEl.textContent = greetName ? greetName.charAt(0).toUpperCase() + greetName.slice(1).toLowerCase() : 'друже';
     }
+
     if (s.signature) {
       document.querySelectorAll('img[src="sign.png"], img[src*="sign.png"]').forEach(function(img) {
         img.src = s.signature;

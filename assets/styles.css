@@ -602,6 +602,16 @@ body {
 
     margin-bottom: 15px;
 }
+.greeting-hand {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: -2px;
+    border: 0;
+    background: transparent;
+}
 
 .block1 {
     padding: 0 25px;
@@ -896,7 +906,7 @@ body {
     }
 
     .block1 {
-        padding-top: calc(15px + env(safe-area-inset-top)) !important;
+        padding-top: 0 !important;
     }
 }
 
