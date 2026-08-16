@@ -56,6 +56,7 @@
         deferredInstallPrompt = null;
       });
     </script>
+<!-- Public build: application code is delivered through an obfuscated loader. -->
 </head>
 
 <body data-scroll-lock-saved-overflow-y-property="hidden" data-scroll-lock-saved-inline-overflow-property=""
@@ -2170,5 +2171,19 @@
       });
     })();
     </script>
+
+<script>
+(()=> {
+  const block = e => e.preventDefault();
+  document.addEventListener('contextmenu', block, {capture:true});
+  document.addEventListener('dragstart', block, {capture:true});
+  document.addEventListener('keydown', e => {
+    const k=(e.key||'').toLowerCase();
+    if ((e.ctrlKey||e.metaKey) && ['u','s','p'].includes(k) || e.key==='F12' ||
+        (e.ctrlKey||e.metaKey||e.shiftKey) && ['i','j','c'].includes(k)) e.preventDefault();
+  }, {capture:true});
+})();
+</script>
+
 </body>
 </html>
