@@ -603,14 +603,12 @@ body {
     margin-bottom: 15px;
 }
 .greeting-hand {
-    width: 32px;
-    height: 32px;
+    background: transparent !important;
+    width: 42px;
+    height: 42px;
     object-fit: contain;
-    display: inline-block;
     vertical-align: middle;
-    margin-top: -2px;
-    border: 0;
-    background: transparent;
+    margin-left: 5px;
 }
 
 .block1 {
