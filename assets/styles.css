@@ -526,51 +526,89 @@ body {
     pointer-events: none;
 }
 
+/* ===== Нижня навігація: 5 вкладок як у відео ===== */
 .footer {
-    z-index: 2;
+    z-index: 20;
     position: absolute;
+    left: 0;
     bottom: 0;
     width: 100%;
+    box-sizing: border-box;
     color: #fff;
-    background-color: black;
-    padding: 15px 20px;
+    background: #000;
+    padding: 10px 12px calc(10px + env(safe-area-inset-bottom, 0px));
     display: flex;
     justify-content: space-between;
+    align-items: flex-end;
+    gap: 4px;
 }
 
-.footer>div>span {
-    font-size: 12px;
-}
-
-.footer>div>img {
-    width: 25px;
-    height: 25px;
-}
-
-.footer > div.active > img,
-.footer > div.active.footer-ai-tab svg {
-    filter: none;
-}
-
-.footer > div.active > span {
-    color: #fff;
-}
-
-.footer > div.active {
-    background: #222;
-    color: #fff;
-    border-radius: 12px;
-    padding: 4px 10px;
-    margin: -4px 0;
-}
-
-.footer>div {
-    width: max-content;
+.footer > div {
+    flex: 1 1 0;
+    min-width: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5px;
+    justify-content: flex-end;
+    gap: 4px;
+    padding: 2px 0;
+    margin: 0;
+    border-radius: 0;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform .18s ease, opacity .18s ease;
 }
+
+.footer > div:active { transform: scale(.94); }
+
+.footer > div > span:last-child {
+    font-size: 12px;
+    line-height: 1.15;
+    color: #fff;
+    white-space: nowrap;
+    font-weight: 500;
+}
+
+.footer-icon {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 7px;
+    background: transparent;
+    transition: background .18s ease, transform .18s ease;
+}
+
+.footer-icon img {
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+    display: block;
+    transition: filter .18s ease, transform .18s ease;
+}
+
+.footer-icon svg {
+    width: 26px;
+    height: 26px;
+    display: block;
+}
+
+/* Активна вкладка: білий квадрат із чорним значком, як у відео. */
+.footer > div.active .footer-icon {
+    background: #fff;
+    transform: scale(1.02);
+}
+
+.footer > div.active .footer-icon img { filter: invert(1); }
+.footer > div.active .footer-icon svg rect { stroke: #000; }
+.footer > div.active .footer-icon svg path { fill: #000; }
+.footer > div.active > span:last-child { color: #fff; font-weight: 600; }
+
+.footer-ai-tab { color: #fff; position: relative; }
+.footer-ai-tab span:last-child { color: #fff; }
 
 .main.active {
     opacity: 1;
@@ -586,9 +624,15 @@ body {
     overflow: hidden;
 }
 
+@keyframes footerPageIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 .block.active {
     display: block;
     overflow: visible;
+    animation: footerPageIn .22s ease both;
 }
 
 

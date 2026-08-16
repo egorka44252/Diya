@@ -97,10 +97,12 @@ document.querySelectorAll(".start-block > button").forEach(function (el) {
 
 document.querySelectorAll(".footer > div").forEach((div) => {
   div.addEventListener("click", function () {
+    const selected = Number($(this).attr("data-index"));
     $(".footer > div").removeClass("active");
     this.classList.add("active");
-    $(".block.active").removeClass("active");
-    const index = Number($(this).attr("data-index")) - 1;
+    const currentBlock = document.querySelector(".block.active");
+    if (currentBlock) currentBlock.classList.remove("active");
+    const index = selected - 1;
 
     if (Number($(this).attr("data-index")) == 2) {
       $(".video-background").addClass("active");
@@ -114,13 +116,12 @@ document.querySelectorAll(".footer > div").forEach((div) => {
       activeMain.style.display = "flex";
       activeMain.style.flexDirection = "column";
 
-      footer.style.position = "unset";
+      footer.style.position = "absolute";
+      footer.style.zIndex = "20";
 
       document.querySelectorAll(".swiper-container").forEach(function (el) {
         el.style.height = "unset";
       });
-      footer.style.zIndex = "0";
-
       if (window.innerHeight < 700) {
         document.querySelectorAll(".swiper-slide").forEach(function (el) {
           el.style.height = "450px";
@@ -140,13 +141,18 @@ document.querySelectorAll(".footer > div").forEach((div) => {
         el.style.height = "60%";
       });
       footer.style.position = "absolute";
-      footer.style.zIndex = "2";
+      footer.style.zIndex = "20";
       document.querySelectorAll(".swiper-slide").forEach(function (el) {
         el.style.height = "100%";
       });
     }
 
-    document.querySelectorAll(".block")[index].classList.add("active");
+    const targetBlock = document.querySelectorAll(".block")[index];
+    if (targetBlock) {
+      targetBlock.classList.remove("active");
+      void targetBlock.offsetWidth;
+      targetBlock.classList.add("active");
+    }
   });
 });
 
