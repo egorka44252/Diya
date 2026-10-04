@@ -1,0 +1,3335 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr" style="height: 100%;">
+
+<head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <script id="iphone-layout-detection-v92">
+    // CSS fixes below are activated on iOS only; Android layout is untouched.
+    (function(){
+      var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+        (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      if (iOS) document.documentElement.classList.add('ios-device');
+    })();
+    </script>
+    <script id="iphone-standalone-screen-height-v96">
+    /* Only installed iOS PWA: reconcile the iOS visual viewport with the
+       actual app window. Do not make Safari browser tabs cover its toolbar.
+       Android and document-carousel height calculations are not modified. */
+    (function(){
+      var root=document.documentElement;
+      if(!root.classList.contains('ios-device')) return;
+      var raf=0;
+      function isStandalone(){
+        return navigator.standalone===true ||
+          (window.matchMedia && matchMedia('(display-mode: standalone)').matches);
+      }
+      function update(){
+        raf=0;
+        var height=window.innerHeight || 0;
+        if(window.visualViewport){
+          height=Math.max(height,window.visualViewport.height+window.visualViewport.offsetTop);
+        }
+        if(isStandalone() && window.screen && window.innerWidth){
+          var portrait=window.innerHeight>=window.innerWidth;
+          var physicalHeight=portrait ? Math.max(screen.width,screen.height) : Math.min(screen.width,screen.height);
+          var physicalWidth=portrait ? Math.min(screen.width,screen.height) : Math.max(screen.width,screen.height);
+          var gap=physicalHeight-height;
+          if(Math.abs(physicalWidth-window.innerWidth)<32 && gap>12 && gap<170){
+            height=physicalHeight;
+          }
+        }
+        if(height>0) root.style.setProperty('--ios-app-height',Math.round(height)+'px');
+      }
+      function queue(){if(!raf) raf=requestAnimationFrame(update);}
+      update();
+      addEventListener('pageshow',queue);
+      addEventListener('resize',queue,{passive:true});
+      addEventListener('orientationchange',function(){setTimeout(queue,160);},{passive:true});
+      if(window.visualViewport) window.visualViewport.addEventListener('resize',queue,{passive:true});
+      document.addEventListener('visibilitychange',function(){if(!document.hidden)queue();});
+    })();
+    </script>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Дія">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#c9dff0">
+    <link rel="icon" type="image/png" href="assets/favicon.png?v=2" />
+    <link rel="apple-touch-icon-precomposed" href="assets/favicon.png?v=2" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="icon" sizes="192x192" href="assets/icon-192.png" />
+    <link rel="icon" sizes="512x512" href="assets/icon-512.png" />
+    <title>Дія</title>
+    <meta name="app-mode" content="github-static">
+    <link type="image/png" href="assets/favicon.png?v=2" rel="shortcut icon" />
+    <script src="assets/anime.js"></script>
+    <link rel="stylesheet" href="assets/swiper-lite.css?v=162" />
+        <script src="assets/swiper-lite.js?v=162"></script>
+        <script>const nocache1 = Math.random();</script>
+    <link rel="stylesheet" href="assets/styles.css?v=162" />
+    <link rel="stylesheet" href="assets/ios-adaptation.css?v=1" />
+
+    <script>
+      let deferredInstallPrompt = null;
+      window.addEventListener('beforeinstallprompt', (event) => {
+        event.preventDefault();
+        deferredInstallPrompt = event;
+        window.dispatchEvent(new CustomEvent('diya-install-available'));
+      });
+
+      window.diYaInstallApp = async function () {
+        if (!deferredInstallPrompt) return false;
+        deferredInstallPrompt.prompt();
+        const result = await deferredInstallPrompt.userChoice;
+        deferredInstallPrompt = null;
+        return result.outcome === 'accepted';
+      };
+
+      window.addEventListener('appinstalled', () => {
+        deferredInstallPrompt = null;
+      });
+    </script>
+<!-- Public build: application code is delivered through an obfuscated loader. -->
+<script src="assets/ios-adaptation.js?v=1" defer></script>
+
+<style id="documents-demo-watermark-style">
+/* Demo-only watermark: visible behind document cards. */
+.document_block_div { overflow: hidden; }
+.document-demo-watermark {
+  position: absolute;
+  inset: -35%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  transform: rotate(-18deg);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(260px, 1fr));
+  grid-auto-rows: 110px;
+  align-content: center;
+  gap: 35px 55px;
+  opacity: .16;
+}
+.document-demo-watermark span {
+  display: block;
+  white-space: nowrap;
+  color: #d00000;
+  font-size: 28px;
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: .4px;
+  user-select: none;
+}
+.document_block_div > div { position: relative; z-index: 1; }
+</style>
+<script>
+(function(){
+  function addDocumentWatermarks(){
+    document.querySelectorAll('.document_block_div').forEach(function(card){
+      if(card.querySelector('.document-demo-watermark')) return;
+      var wm=document.createElement('div');
+      wm.className='document-demo-watermark';
+      wm.setAttribute('aria-hidden','true');
+      for(var i=0;i<32;i++){
+        var span=document.createElement('span');
+        span.textContent='НЕ Є ОФІЦІЙНИМ ДОКУМЕНТОМ';
+        wm.appendChild(span);
+      }
+      card.insertBefore(wm, card.firstChild);
+    });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',addDocumentWatermarks);
+  else addDocumentWatermarks();
+  setTimeout(addDocumentWatermarks,500);
+})();
+</script>
+<style id="demo-watermark-style">
+.demo-watermark-app{position:fixed;inset:-25%;pointer-events:none;z-index:2147482000;overflow:hidden;transform:rotate(-18deg);display:none;opacity:.18;}
+.demo-watermark-app .wm-grid{display:grid;grid-template-columns:repeat(5,420px);gap:70px 90px;transform:scale(1.15);}
+.demo-watermark-app span{font-size:34px;font-weight:900;color:#d00000;white-space:nowrap;letter-spacing:1px;}
+</style>
+<style id="demo-signature-safety-v58">.demo-document-disclaimer{position:sticky;top:0;z-index:99999;background:#b00020;color:#fff;text-align:center;font-weight:800;font-size:11px;letter-spacing:.4px;padding:6px 8px;border-radius:8px;margin:0 0 8px}.demo-signature-image{object-fit:contain;max-width:140px;max-height:70px}</style>
+
+<style id="full-access-warning-style">
+#fullAccessWarning{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(0,0,0,.18);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);z-index:2147483647;pointer-events:none}
+#fullAccessWarning.show{display:flex}
+#fullAccessWarning .warning-box{width:min(360px,calc(100vw - 48px));padding:16px 14px;border-radius:16px;pointer-events:none;background:#fff;color:#111;text-align:center;box-shadow:0 24px 90px rgba(0,0,0,.35);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+#fullAccessWarning .warning-icon{font-size:26px;line-height:1;margin-bottom:7px}
+#fullAccessWarning .warning-title{font-size:15px;font-weight:900;letter-spacing:-.3px}
+#fullAccessWarning .warning-text{margin-top:5px;font-size:11px;line-height:1.35;color:#686b73}
+</style>
+<style id="mobile-performance-v1">
+/* Mobile performance: preserve appearance while reducing expensive repaints. */
+@media (max-width: 900px) {
+  .bg-start::before,.bg-start::after { filter: blur(42px); -webkit-filter: blur(42px); will-change: transform; }
+  .documentSlider .swiper-slide { contain: layout paint; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+  .documentSlider .swiper-wrapper { transform: translate3d(0,0,0); will-change: transform; }
+  .kalyna-marquee, .dai-marquee-track { will-change: transform; transform: translate3d(0,0,0); }
+  .footer, .footer > button { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+  .main.active > * { contain: layout style; }
+}
+</style>
+</head>
+
+<body data-scroll-lock-saved-overflow-y-property="hidden" data-scroll-lock-saved-inline-overflow-property=""
+    data-scroll-lock-saved-inline-overflow-y-property="" style="overflow: hidden; padding-right: 0px"
+    data-scroll-lock-locked="true" data-scroll-lock-filled-gap="true" data-scroll-lock-current-fill-gap-method="padding"
+    class="bg-start">
+    
+    <div class="document_block_div pasport_block_div">
+        <div>
+            <div class="main_block">
+                <div class="border" id="fullInfoPasport">
+                    <img src="assets/document.png" alt="" / loading="lazy" decoding="async">
+                    <span>Повна інформація</span>
+                </div>
+                <div class="border" style="padding-left: 12px">
+                    <img style="width: 22px; height: 22px" src="assets/vitag.png" alt="" / loading="lazy" decoding="async">
+                    <span>Витяг про місце проживання</span>
+                </div>
+                <div>
+                    <img src="assets/star.png" alt="" / loading="lazy" decoding="async">
+                    <span>Оцінити документ</span>
+                </div>
+                <div>
+                    <img src="assets/exchange.png" alt="" / loading="lazy" decoding="async">
+                    <span>Змінити порядок документів</span>
+                </div>
+                <div class="border">
+                    <img src="assets/question.png" alt="" / loading="lazy" decoding="async">
+                    <span>Питання та відповіді</span>
+                </div>
+                <div class="qrChangeInfo">
+                    <div data-index="pasport" class="btn-open-qr">
+                        <div style="background: black">
+                            <img src="assets/qr-code.png" style="filter: brightness(0) invert(1);" alt="" / loading="lazy" decoding="async">
+                        </div>
+                        <span>QR-код</span>
+                    </div>
+                    <div data-index="pasport" class="btn-open-sh">
+                        <div style="background: black">
+                            <img src="assets/free-icon-barcode-7797192.png" style="filter: brightness(0) invert(1);" alt="" / loading="lazy" decoding="async">
+                        </div>
+                        <span>Штрихкод</span>
+                    </div>
+                </div>
+            </div>
+            <div class="close_block" data-index="pasport">
+                Закрити
+            </div>
+        </div>
+    </div>
+
+    <div class="document_block_div zagran_block_div">
+        <div>
+            <div class="main_block">
+                <div class="border" id="fullInfoZagran">
+                    <img src="assets/document.png" alt="" / loading="lazy" decoding="async">
+                    <span>Повна інформація</span>
+                </div>
+                <div class="border" style="padding-left: 12px">
+                    <img style="width: 22px; height: 22px" src="assets/vitag.png" alt="" / loading="lazy" decoding="async">
+                    <span>Витяг про місце проживання</span>
+                </div>
+                <div>
+                    <img src="assets/star.png" alt="" / loading="lazy" decoding="async">
+                    <span>Оцінити документ</span>
+                </div>
+                <div>
+                    <img src="assets/exchange.png" alt="" / loading="lazy" decoding="async">
+                    <span>Змінити порядок документів</span>
+                </div>
+                <div class="border">
+                    <img src="assets/question.png" alt="" / loading="lazy" decoding="async">
+                    <span>Питання та відповіді</span>
+                </div>
+                <div class="qrChangeInfo">
+                    <div data-index="zagran" class="btn-open-qr">
+                        <div style="background: black">
+                            <img src="assets/qr-code.png" style="filter: brightness(0) invert(1);" alt="" / loading="lazy" decoding="async">
+                        </div>
+                        <span>QR-код</span>
+                    </div>
+                    <div data-index="zagran" class="btn-open-sh">
+                        <div style="background: black">
+                            <img src="assets/free-icon-barcode-7797192.png" style="filter: brightness(0) invert(1);" alt="" / loading="lazy" decoding="async">
+                        </div>
+                        <span>Штрихкод</span>
+                    </div>
+                </div>
+            </div>
+            <div class="close_block" data-index="zagran">
+                Закрити
+            </div>
+        </div>
+    </div>
+
+    <div class="document_block_div study_block_div">
+        <div>
+            <div class="main_block">
+                <div class="border" id="fullInfoStudy">
+                    <img src="assets/document.png" alt="" / loading="lazy" decoding="async">
+                    <span>Повна інформація</span>
+                </div>
+                <div>
+                    <img src="assets/star.png" alt="" / loading="lazy" decoding="async">
+                    <span>Оцінити документ</span>
+                </div>
+                <div>
+                    <img src="assets/exchange.png" alt="" / loading="lazy" decoding="async">
+                    <span>Змінити порядок документів</span>
+                </div>
+                <div class="border">
+                    <img src="assets/question.png" alt="" / loading="lazy" decoding="async">
+                    <span>Питання та відповіді</span>
+                </div>
+                <div class="qrChangeInfo">
+                    <div data-index="study" class="btn-open-qr">
+                        <div style="background: black">
+                            <img src="assets/qr-code.png" style="filter: brightness(0) invert(1);" alt="" / loading="lazy" decoding="async">
+                        </div>
+                        <span>QR-код</span>
+                    </div>
+                    <div data-index="study" class="btn-open-sh">
+                        <div style="background: black">
+                            <img src="assets/free-icon-barcode-7797192.png" style="filter: brightness(0) invert(1);" alt="" / loading="lazy" decoding="async">
+                        </div>
+                        <span>Штрихкод</span>
+                    </div>
+                </div>
+            </div>
+            <div class="close_block" data-index="study">
+                Закрити
+            </div>
+        </div>
+    </div>
+
+    <div class="document_block_div podatki_block_div">
+        <div>
+            <div class="main_block">
+                <div>
+                    <img src="assets/star.png" alt="" / loading="lazy" decoding="async">
+                    <span>Оцінити документ</span>
+                </div>
+                <div>
+                    <img src="assets/exchange.png" alt="" / loading="lazy" decoding="async">
+                    <span>Змінити порядок документів</span>
+                </div>
+                <div class="border">
+                    <img src="assets/question.png" alt="" / loading="lazy" decoding="async">
+                    <span>Питання та відповіді</span>
+                </div>
+                <div class="qrChangeInfo">
+                    <div data-index="podatki" class="btn-open-qr">
+                        <div style="background: black">
+                            <img src="assets/qr-code.png" style="filter: brightness(0) invert(1);" alt="" / loading="lazy" decoding="async">
+                        </div>
+                        <span>QR-код</span>
+                    </div>
+                    <div data-index="podatki" class="btn-open-sh">
+                        <div style="background: black">
+                            <img src="assets/free-icon-barcode-7797192.png" style="filter: brightness(0) invert(1);" alt="" / loading="lazy" decoding="async">
+                        </div>
+                        <span>Штрихкод</span>
+                    </div>
+                </div>
+            </div>
+            <div class="close_block" data-index="podatki">
+                Закрити
+            </div>
+        </div>
+    </div>
+
+    <div class="document_block_div eDoc_block_div">
+        <div>
+            <div class="main_block">
+                <div id="fullInfoeDoc">
+                    <img src="assets/document.png" alt="" / loading="lazy" decoding="async">
+                    <span>Повна інформація</span>
+                </div>
+                <div class="border btn-open-qr" data-index="eDoc">
+                    <img src="assets/qr-code.png" alt="" / loading="lazy" decoding="async">
+                    <span>Код для перевірки</span>
+                </div>
+                <div>
+                    <img src="assets/star.png" alt="" / loading="lazy" decoding="async">
+                    <span>Оцінити документ</span>
+                </div>
+                <div>
+                    <img src="assets/exchange.png" alt="" / loading="lazy" decoding="async">
+                    <span>Змінити порядок документів</span>
+                </div>
+                <div>
+                    <img src="assets/question.png" alt="" / loading="lazy" decoding="async">
+                    <span>Питання та відповіді</span>
+                </div>
+            </div>
+            <div class="close_block" data-index="eDoc">Закрити</div>
+        </div>
+    </div>
+
+    <div class="document_block_div prava_block_div">
+        <div>
+            <div class="main_block">
+                <div class="border" id="fullInfoPrava">
+                    <img src="assets/document.png" alt="" / loading="lazy" decoding="async">
+                    <span>Повна інформація</span>
+                </div>
+                <div>
+                    <img src="assets/star.png" alt="" / loading="lazy" decoding="async">
+                    <span>Оцінити документ</span>
+                </div>
+                <div>
+                    <img src="assets/exchange.png" alt="" / loading="lazy" decoding="async">
+                    <span>Змінити порядок документів</span>
+                </div>
+                <div>
+                    <img src="assets/question.png" alt="" / loading="lazy" decoding="async">
+                    <span>Питання та відповіді</span>
+                </div>
+            </div>
+            <div class="close_block" data-index="prava">
+                Закрити
+            </div>
+        </div>
+    </div>
+
+    <div class="document_block_div birth_block_div">
+        <div>
+            <div class="main_block">
+                <div class="border" id="fullInfoBirth">
+                    <img src="assets/document.png" alt="" / loading="lazy" decoding="async">
+                    <span>Повна інформація</span>
+                </div>
+                <div>
+                    <img src="assets/star.png" alt="" / loading="lazy" decoding="async">
+                    <span>Оцінити документ</span>
+                </div>
+                <div>
+                    <img src="assets/exchange.png" alt="" / loading="lazy" decoding="async">
+                    <span>Змінити порядок документів</span>
+                </div>
+                <div class="border">
+                    <img src="assets/question.png" alt="" / loading="lazy" decoding="async">
+                    <span>Питання та відповіді</span>
+                </div>
+            </div>
+            <div class="close_block" data-index="birth">
+                Закрити
+            </div>
+        </div>
+    </div>
+
+<div id="notification" class="notification">Номер скопійовано</div>
+
+    <div class="main active">
+        <div class="block block1 blockStart active">
+            <h1 class="textVizit">
+                <span>Привіт, </span>
+                <span id="textName"></span><img class="greeting-hand" src="assets/hand-wave.png" alt="👋" / loading="lazy" decoding="async">
+            </h1>
+            <div class="pre" style="overflow-x: hidden;">
+                <div class="aod">
+                    <a href="https://www.msp.gov.ua/press-center/news/diya.kartka-zapratsyuvala:-yak-vidkryty-yedynu-multyrakhunkovu-kartku-dlya-vsikh-derzhavnykh-vyplat"
+                        target="_blank" style="display: block;">
+                        <img src="assets/karta.png" alt="" style="width: 100%; border-radius: 17px;" / loading="lazy" decoding="async">
+                    </a>
+                </div>
+                <div class="nezlamnist" onclick="window.open('https://nezlamnist.gov.ua/', '_blank')">
+                    <h2>Незламність</h2>
+                    <p>Мапа пунктів Незламності та Укриттів</p>
+
+                    <div class="nezlamnist-flex">
+                        <img class="lightSrc" src="assets/light.png" alt="" / loading="lazy" decoding="async">
+                        <div class="arrowSvg">
+                            <img src="assets/arrow.svg" alt="" / loading="lazy" decoding="async">
+                        </div>
+                    </div>
+                </div>
+                <div class="threeButtons">
+                    <div class="button-load">
+                        <div>
+                            <img src="assets/qr.svg" alt="" / loading="lazy" decoding="async">
+                        </div>
+                        <span>Сканувати QR-код</span>
+                    </div>
+                    <div class="button-load">
+                        <div>
+                            <img src="assets/gerb.png" alt="" / loading="lazy" decoding="async">
+                        </div>
+                        <span>Військові облігації</span>
+                    </div>
+                    <div onclick="window.open('https://t.me/evorog_bot', '_blank')">
+                        <img style="width: 54px; height: 54px; border-radius: 35%;" src="assets/ing1.jpg" alt="" / loading="lazy" decoding="async">
+                        <span>Відсутній зв'язок</span>
+                    </div>
+                </div>
+
+                <div class="aod1">
+                    <a href="https://droneline.army.gov.ua/" target="_blank" style="display: block;">
+                        <img src="assets/e10001.png" alt="" style="width: 100%; border-radius: 17px;" / loading="lazy" decoding="async">
+                    </a>
+                </div>
+
+                <div class="aod1">
+                    <a href="https://madeinukraine.gov.ua/national-cashback" target="_blank" style="display: block;">
+                        <img src="assets/cashback.jpg" alt="" style="width: 100%; border-radius: 17px;" / loading="lazy" decoding="async">
+                    </a>
+                </div>
+
+                <span class="popular_poslugu" style="margin-top: 20px; margin-bottom: 15px;">
+                    Що нового?
+                </span>
+
+                <div class="sliderNews swiper-container">
+                    <div class="swiper-wrapper news-main">
+                        <div class="swiper-slide container-news">
+                            <div class="news">
+                                <img src="assets/-1.jpg" alt="" / loading="lazy" decoding="async">
+                                <div>
+                                    <span>1 січня, 12:00</span>
+                                    <p>Скринінг здоровʼя 40+: як безкоштовно пройти обстеження</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide container-news">
+                            <div class="news">
+                                <img src="assets/0.jpg" alt="" / loading="lazy" decoding="async">
+                                <div>
+                                    <span>31 грудня, 10:00</span>
+                                    <p>Дія 2025 → 2026: що зробили і що готуємо в новому році</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide container-news">
+                            <div class="news">
+                                <img src="assets/1.jpg" alt="" / loading="lazy" decoding="async">
+                                <div>
+                                    <span>11 листопада, 17:00</span>
+                                    <p>Нацкешбек: стартували виплати рекордних 500+ млн грн</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide container-news">
+                            <div class="news">
+                                <img src="assets/2.jpg" alt="" / loading="lazy" decoding="async">
+                                <div>
+                                    <span>06 листопада, 14:00</span>
+                                    <p>Подавайте декларацію вчасно - в Дії до 10 листопада</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide container-news">
+                            <div class="news">
+                                <img src="assets/3.jpg" alt="" / loading="lazy" decoding="async">
+                                <div>
+                                    <span>06 листопада, 10:00</span>
+                                    <p>Оновлюйте місце проживання через застосунок Дія</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin: 10px 0 0 0" class="swiper-pagination2"></div>
+                </div>
+
+                <span style="margin-top: 20px;" class="popular_poslugu">Популярні послуги</span>
+
+                <div class="popular_poslugu_block" style="margin-bottom: 200px">
+                    <div>
+                        <span>Опитування</span>
+                        <div class="arrowSvg">
+                            <img src="assets/arrow.svg" alt="" / loading="lazy" decoding="async">
+                        </div>
+                    </div>
+                    <div>
+                        <span>Реєстрація пошкодженого майна</span>
+                        <div class="arrowSvg">
+                            <img src="assets/arrow.svg" alt="" / loading="lazy" decoding="async">
+                        </div>
+                    </div>
+                    <div class="popular_none">
+                        <span>Заміна водійского посвідчення</span>
+                        <div class="arrowSvg">
+                            <img src="assets/arrow.svg" alt="" / loading="lazy" decoding="async">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="block2 block active">
+            <!-- Study Modal -->
+            <div id="study-modal" class="modal">
+                <div class="study-modal-content modal-content">
+                    <div class="handle"></div>
+                    <h1>Студентський квиток</h1>
+
+                    <div class="numberNN" style="gap: 10px">
+                        <h3 id="nomerStudy"></h3>
+                        <img class="copyPng" src="assets/copy.png" alt="" / loading="lazy" decoding="async">
+                    </div>
+
+                    <div class="line1 marquee" style="background: linear-gradient(90deg, #b6eb9f, #9ccfcf); margin: 10px -20px 10px -20px; position: relative; overflow: hidden; font-weight: 300; font-size: 13px; padding: 7px 0;">
+                        • Документ оновлено о <span class="getCurrentDateTime"></span>
+                    </div>
+                    <div class="fullPasportBlock">
+                        <h2 class="user-name">Тут твоё имя</h2>
+                        <div class="dataBlock" style="margin-top: 15px">
+                            <img src="assets/photo.jpg" style="border: 1px solid #ddd" alt="" / loading="lazy" decoding="async" data-document-photo="1">
+                            <div class="dataInfo">
+                                <div style="margin-top: 15px; width: 100%; color: #a1a1a1;">
+                                    <span class="dataInfoFirst" style="font-size: 13px; color: black;">Виданий:</span>
+                                    <span style="font-size: 13px; color: black;" id="vidanoStudy"></span>
+                                </div>
+                                <div style="width: 100%; color: #a1a1a1">
+                                    <span class="dataInfoFirst" style="font-size: 13px; color: black;">Дійсний:</span>
+                                    <span style="font-size: 13px; color: black;" id="diusnuyDoStudy"></span>
+                                </div>
+                                <div style="width: 100%; color: #a1a1a1">
+                                    <span class="dataInfoFirst" style="font-size: 13px; color: black;">Форма навчання:</span>
+                                    <span style="font-size: 13px; color: black;" id="formaStudy"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dataBlock2">
+                        <div>
+                            <div>
+                                <h3 id="university">Державний університет "Житомирська політехніка"</h3>
+                                <h3 id="fakultat" style="margin-top: 10px">Факультет педагогічних технологій та освіти впродовж життя</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content back" style="margin-top: 15px; padding-right: 0; padding-left: 0; transform: rotateY(0deg); height: 460px;">
+                        <div class="qrcodeBlock">
+                            <span>Код діятиме ще <span data-time="2:59">2:59</span> хв</span>
+                            <div class="qrshBlock">
+                                <div class="qrcode changeCode"></div>
+                                <div class="shText" style="display: none">
+                                    <span>1977</span>
+                                    <span>3411</span>
+                                    <span>48475</span>
+                                </div>
+                            </div>
+
+                            <div class="qrChange">
+                                <div data-index="1">
+                                    <div style="background: black">
+                                        <img src="assets/qr-code.png" style="filter: brightness(0) invert(1);" alt="" / loading="lazy" decoding="async">
+                                    </div>
+                                    <span>QR-код</span>
+                                </div>
+                                <div data-index="2">
+                                    <div>
+                                        <img src="assets/free-icon-barcode-7797192.png" alt="" / loading="lazy" decoding="async">
+                                    </div>
+                                    <span>Штрихкод</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Birth Modal -->
+            <div id="birth-modal" class="modal">
+                <div class="modal-content birth-modal-content">
+                    <div class="handle"></div>
+                    <h1>Актовий запис про моє народження</h1>
+                    <div class="numberNN" style="gap: 10px">
+                        <h3 id="birthNumber">І-AB №456736</h3>
+                        <img class="copyPng" src="assets/copy.png" alt="" / loading="lazy" decoding="async">
+                    </div>
+                    <div class="line1 marquee" style="background: linear-gradient(90deg, #b6eb9f, #9ccfcf); margin: 10px -20px 10px -20px; position: relative; overflow: hidden; font-weight: 300; font-size: 13px; padding: 7px 0;">
+                        • Документ оновлено о <span class="getCurrentDateTime"></span>
+                    </div>
+
+                    <div class="dataBlock2">
+                        <h2 class="user-name">Тут твоє ім'я</h2>
+                        <div>
+                            <div>
+                                <h3>Стать:</h3>
+                            </div>
+                            <div>
+                                <h3 class="user-sex">Ч</h3>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <h3>Дата народження:</h3>
+                            </div>
+                            <div>
+                                <h3 class="user-birthdate">15.07.1999</h3>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <h3>РНОКПП:</h3>
+                            </div>
+                            <div>
+                                <h3 class="user-rnokpp">121212</h3>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <h3>Місце народження:</h3>
+                            </div>
+                            <div>
+                                <h3 class="user-placebirth">Київ</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content back" style="margin-top: 15px; padding-right: 0; padding-left: 0; transform: rotateY(0deg); height: 460px;">
+                        <div class="qrcodeBlock">
+                            <span>Код діятиме ще <span data-time="2:59">2:59</span> хв</span>
+                            <div class="qrshBlock">
+                                <div class="qrcode changeCode"></div>
+                                <div class="shText" style="display: none">
+                                    <span>1977</span><span>3411</span><span>48475</span>
+                                </div>
+                            </div>
+                            <div class="qrChange">
+                                <div data-index="1">
+                                    <div style="background: black">
+                                        <img src="assets/qr-code.png" style="filter: brightness(0) invert(1);" alt="" / loading="lazy" decoding="async">
+                                    </div>
+                                    <span>QR-код</span>
+                                </div>
+                                <div data-index="2">
+                                    <div>
+                                        <img src="assets/free-icon-barcode-7797192.png" alt="" / loading="lazy" decoding="async">
+                                    </div>
+                                    <span>Штрихкод</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Prava Modal -->
+            <div id="prava-modal" class="modal">
+                <div class="prava-modal-content modal-content">
+                    <div class="handle"></div>
+                    <h1>Посвідчення водія</h1>
+
+                    <div class="numberNN" style="gap: 10px">
+                        <h3 id="pravaNnumber">KBE968639</h3>
+                        <img class="copyPng" src="assets/copy.png" alt="" / loading="lazy" decoding="async">
+                    </div>
+
+                    <div class="line2 marquee" style="background: linear-gradient(90deg, #b6eb9f, #9ccfcf); margin: 10px -20px 10px -20px; position: relative; overflow: hidden; font-weight: 300; font-size: 13px; padding: 7px 0;">
+                        <span class="kalyna-marquee">Ой у лузі червона калина похилилася, чогось наша славна Україна зажурилася. А ми тую червону калину підіймемо, а ми нашу славну Україну, гей, гей, розвеселимо!
+                    </div>
+                    <div class="fullPasportBlock">
+                        <h2 class="user-name">Тут твоё имя</h2>
+                        <h3 class="user-name-en">This your name</h3>
+                        <div class="dataBlock">
+                            <img src="assets/photo.jpg" style="border: 1px solid #ddd" alt="" / loading="lazy" decoding="async" data-document-photo="1">
+                            <div class="dataInfo">
+                                <div style="margin-bottom: 10px">
+                                    <span class="dataInfoFirst" style="font-size: 13px">Дата народження:</span>
+                                </div>
+                                <div style="width: 100%; color: #a1a1a1">
+                                    <span class="dataInfoFirst" style="font-size: 13px">Date of birth</span>
+                                    <span style="font-size: 13px; color: black;" class="user-birthdate">12.07.1999</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dataBlock2">
+                        <div>
+                            <div>
+                                <h3>Стать:</h3>
+                                <span>Sex</span>
+                            </div>
+                            <div>
+                                <h3 class="user-sex">Ч</h3>
+                                <span class="user-sex-en">M</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <h3>Громадянство:</h3>
+                                <span>Nathionality</span>
+                            </div>
+                            <div>
+                                <h3>Україна</h3>
+                                <span>Ukraine</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dataBlock2">
+                        <div>
+                            <div>
+                                <h3>Дата видачі:</h3>
+                                <span>Data of issue</span>
+                            </div>
+                            <div>
+                                <h3 id="dateGivePrava">12.02.2020</h3>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <h3>Дійсний до:</h3>
+                                <span>Data of expiry</span>
+                            </div>
+                            <div>
+                                <h3 id="srokPrav">12.02.2028</h3>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <h3>Орган що видав:</h3>
+                                <span>Authority</span>
+                            </div>
+                            <div>
+                                <h3 id="pravaOrgan">ТСЦ 8631</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dataBlock2" style="gap: 5px">
+                        <div>
+                            <div>
+                                <h3>РНОКПП (ІПН):</h3>
+                            </div>
+                            <div style="flex-direction: row; justify-content: space-between;">
+                                <h3 class="user-rnokpp"></h3>
+                                <img class="copyPng" src="assets/copy.png" alt="" / loading="lazy" decoding="async">
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <span>Individual Tax Number</span>
+                            </div>
+                        </div>
+                        <div style="margin-top: 10px">
+                            <div style="gap: 5px">
+                                <h3>
+                                    Пройшов перевірку Державною податковою службою
+                                    <span class="dataNow"></span>
+                                </h3>
+                                <span>Verifed by State Tax Service <span class="dataNow"></span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dataBlock2">
+                        <div>
+                            <div>
+                                <h3>Запис № (УНЗР):</h3>
+                                <span>Record No.</span>
+                            </div>
+                            <div style="flex-direction: row; justify-content: space-between;">
+                                <h3 class="user-uznr">50030135-073442</h3>
+                                <img class="copyPng" src="assets/copy.png" alt="" / loading="lazy" decoding="async">
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <h3>Місце народження:</h3>
+                                <span>Place of birth</span>
+                            </div>
+                            <div>
+                                <h3>М. <span class="user-placebirth"></span> УКРАЇНА</h3>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <h3>Місце проживання:</h3>
+                                <span>Legal adress</span>
+                            </div>
+                            <div>
+                                <h3 class="user-legal-address">Не вказано</h3>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <h3>Дата реєстрації:</h3>
+                                <span>Registered on</span>
+                            </div>
+                            <div>
+                                <h3 class="user-registered-on">Не вказано</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content back" style="margin-top: 15px; padding-right: 0; padding-left: 0; transform: rotateY(0deg); height: 460px;">
+                        <div class="qrcodeBlock">
+                            <span>Код діятиме ще <span data-time="2:59">2:59</span> хв</span>
+                            <div class="qrshBlock">
+                                <div class="qrcode changeCode"></div>
+                                <div class="shText" style="display: none">
+                                    <span>1977</span>
+                                    <span>3411</span>
+                                    <span>48475</span>
+                                </div>
+                            </div>
+
+                            <div class="qrChange">
+                                <div data-index="1">
+                                    <div style="background: black">
+                                        <img src="assets/qr-code.png" style="filter: brightness(0) invert(1);" alt="" / loading="lazy" decoding="async">
+                                    </div>
+                                    <span>QR-код</span>
+                                </div>
+                                <div data-index="2">
+                                    <div>
+                                        <img src="assets/free-icon-barcode-7797192.png" alt="" / loading="lazy" decoding="async">
+                                    </div>
+                                    <span>Штрихкод</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- eDoc Modal -->
+            <div id="eDoc-modal" class="modal">
+                <div class="modal-content eDoc-modal-content">
+                    <div class="handle"></div>
+                    <h1>єДокумент</h1>
+
+                    <div class="line2 marquee" style="background: linear-gradient(90deg, #b6eb9f, #9ccfcf); margin: 10px -20px 10px -20px; position: relative; overflow: hidden; font-weight: 300; font-size: 13px; padding: 7px 0;">
+                        <span class="kalyna-marquee">Ой у лузі червона калина похилилася, чогось наша славна Україна зажурилася. А ми тую червону калину підіймемо, а ми нашу славну Україну, гей, гей, розвеселимо!
+                    </div>
+                    <div class="fullPasportBlock">
+                        <h2 class="user-name">Тут твоё имя</h2>
+                        <h3 class="user-name-en">This your name</h3>
+                        <div class="dataBlock">
+                            <img src="assets/photo.jpg" style="border: 1px solid #ddd" alt="" / loading="lazy" decoding="async" data-document-photo="1">
+                            <div class="dataInfo">
+                                <div style="margin-bottom: 10px">
+                                    <span class="dataInfoFirst" style="font-size: 13px">Дата народження:</span>
+                                </div>
+                                <div style="width: 100%; color: #a1a1a1">
+                                    <span class="dataInfoFirst" style="font-size: 13px">Date of birth</span>
+                                    <span style="font-size: 13px; color: black;" class="user-birthdate">12.07.1999</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dataBlock2">
+                        <div>
+                            <div>
+                                <h3>Стать:</h3>
+                                <span>Sex</span>
+                            </div>
+                            <div>
+                                <h3 class="user-sex">Ч</h3>
+                                <span class="user-sex-en">M</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <h3>РНОКПП (ІПН):</h3>
+                            </div>
+                            <div style="flex-direction: row; justify-content: space-between;">
+                                <h3 class="user-rnokpp"></h3>
+                                <img class="copyPng" src="assets/copy.png" alt="" / loading="lazy" decoding="async">
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <h3>Документ що посвідчує особу:</h3>
+                                <h3>Паспорт громадянина України <span class="user-passport-num">008759371</span></h3>
+                            </div>
+                            <div style="opacity: 0; width: 20%; height: 0">
+                                <h3>Документ що посвідчує особу:</h3>
+                                <h3>Паспорт громадянина України <span class="user-passport-num">008759371</span></h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dataBlock2">
+                        <div>
+                            <div>
+                                <h3 style="margin-bottom: 5px">Місце проживання зазначене в банку:</h3>
+                                <h3 class="user-address"></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Passport Modal -->
+            <div id="pasport-modal" class="modal">
+                <div class="modal-content pasport-modal-content">
+                    <div class="handle"></div>
+                    <h1>Паспорт громадянина України</h1>
+
+                    <div class="numberNN" style="gap: 10px">
+                        <h3 class="user-passport-num">008759371</h3>
+                        <img class="copyPng" src="assets/copy.png" alt="" / loading="lazy" decoding="async">
+                    </div>
+
+                    <div class="line1 marquee" style="background: linear-gradient(90deg, #b6eb9f, #9ccfcf); margin: 10px -20px 10px -20px; position: relative; overflow: hidden; font-weight: 300; font-size: 13px; padding: 7px 0;">
+                        • Документ оновлено о <span class="getCurrentDateTime"></span>
+                    </div>
+                    <div class="fullPasportBlock">
+                        <h2 class="user-name">Тут твоё имя</h2>
+                        <h3 class="user-name-en">This your name</h3>
+                        <div class="dataBlock">
+                            <img src="assets/photo.jpg" style="border: 1px solid #ddd" alt="" / loading="lazy" decoding="async" data-document-photo="1">
+                            <div class="dataInfo">
+                                <div style="margin-bottom: 10px">
+                                    <span class="dataInfoFirst" style="font-size: 13px">Дата народження:</span>
+                                </div>
+                                <div style="width: 100%; color: #a1a1a1">
+                                    <span class="dataInfoFirst" style="font-size: 13px">Date of birth</span>
+                                    <span style="font-size: 13px; color: black;" class="user-birthdate">12.07.1999</span>
+                                </div>
+                                <img class="demo-signature-image" src="sign.png" alt="Demo signature" / loading="lazy" decoding="async">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dataBlock2">
+                        <div>
+                            <div>
+                                <h3>Стать:</h3>
+                                <span>Sex</span>
+                            </div>
+                            <div>
+                                <h3 class="user-sex">Ч</h3>
+                                <span class="user-sex-en">M</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <h3>Громадянство:</h3>
+                                <span>Nathionality</span>
+                            </div>
+                            <div>
+                                <h3>Україна</h3>
+                                <span>Ukraine</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dataBlock2">
+                        <div>
+                            <div>
+                                <h3>Дата видачі:</h3>
+                                <span>Data of issue</span>
+                            </div>
+                            <div>
+                                <h3 id="dateGive">12.02.2020</h3>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <h3>Дійсний до:</h3>
+                                <span>Data of expiry</span>
+                            </div>
+                            <div>
+                                <h3 id="dateOut">12.02.2028</h3>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <h3>Орган що видав:</h3>
+                                <span>Authority</span>
+                            </div>
+                            <div>
+                                <h3 id="organ">1340</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dataBlock2" style="gap: 5px">
+                        <div>
+                            <div>
+                                <h3>РНОКПП (ІПН):</h3>
+                            </div>
+                            <div style="flex-direction: row; justify-content: space-between;">
+                                <h3 class="user-rnokpp"></h3>
+                                <img class="copyPng" src="assets/copy.png" alt="" / loading="lazy" decoding="async">
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <span>Individual Tax Number</span>
+                            </div>
+                        </div>
+                        <div style="margin-top: 10px">
+                            <div style="gap: 5px">
+                                <h3>
+                                    Пройшов перевірку Державною податковою службою
+                                    <span class="dataNow"></span>
+                                </h3>
+                                <span>Verifed by State Tax Service <span class="dataNow"></span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dataBlock2">
+                        <div>
+                            <div>
+                                <h3>Запис № (УНЗР):</h3>
+                                <span>Record No.</span>
+                            </div>
+                            <div style="flex-direction: row; justify-content: space-between;">
+                                <h3 class="user-uznr">50030135-073442</h3>
+                                <img class="copyPng" src="assets/copy.png" alt="" / loading="lazy" decoding="async">
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <h3>Місце народження:</h3>
+                                <span>Place of birth</span>
+                            </div>
+                            <div>
+                                <h3>М. <span class="user-placebirth"></span> УКРАЇНА</h3>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <h3>Місце проживання:</h3>
+                                <span>Legal adress</span>
+                            </div>
+                            <div>
+                                <h3 class="user-legal-address">Не вказано</h3>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <h3>Дата реєстрації:</h3>
+                                <span>Registered on</span>
+                            </div>
+                            <div>
+                                <h3 class="user-registered-on">Не вказано</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content back" style="margin-top: 15px; padding-right: 0; padding-left: 0; transform: rotateY(0deg); height: 460px;">
+                        <div class="qrcodeBlock">
+                            <span>Код діятиме ще <span data-time="2:59">2:59</span> хв</span>
+                            <div class="qrshBlock">
+                                <div class="qrcode changeCode"></div>
+                                <div class="shText" style="display: none">
+                                    <span>1977</span>
+                                    <span>3411</span>
+                                    <span>48475</span>
+                                </div>
+                            </div>
+
+                            <div class="qrChange">
+                                <div data-index="1">
+                                    <div style="background: black">
+                                        <img src="assets/qr-code.png" style="filter: brightness(0) invert(1);" alt="" / loading="lazy" decoding="async">
+                                    </div>
+                                    <span>QR-код</span>
+                                </div>
+                                <div data-index="2">
+                                    <div>
+                                        <img src="assets/free-icon-barcode-7797192.png" alt="" / loading="lazy" decoding="async">
+                                    </div>
+                                    <span>Штрихкод</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Zagran Modal -->
+            <div id="zagran-modal" class="modal">
+                <div class="modal-content zagran-modal-content">
+                    <div class="handle"></div>
+                    <h1>International Passport</h1>
+
+                    <div class="numberNN" style="gap: 10px">
+                        <h3 id="zagranNumber"></h3>
+                        <img class="copyPng" src="assets/copy.png" alt="" / loading="lazy" decoding="async">
+                    </div>
+
+                    <div class="line1 marquee" style="background: linear-gradient(90deg, #b6eb9f, #9ccfcf); margin: 10px -20px 10px -20px; position: relative; overflow: hidden; font-weight: 300; font-size: 13px; padding: 7px 0;">
+                        • Document updated on <span class="getCurrentDateTime"></span>
+                    </div>
+                    <div class="fullPasportBlock">
+                        <h2 class="user-name">Тут твоё имя</h2>
+                        <h3 class="user-name-en">This your name</h3>
+                        <div class="dataBlock">
+                            <img src="assets/photo.jpg" style="border: 1px solid #ddd" alt="" / loading="lazy" decoding="async" data-document-photo="1">
+                            <div class="dataInfo">
+                                <div style="margin-bottom: 10px">
+                                    <span class="dataInfoFirst" style="font-size: 13px">Дата народження:</span>
+                                </div>
+                                <div style="width: 100%; color: #a1a1a1">
+                                    <span class="dataInfoFirst" style="font-size: 13px">Date of birth</span>
+                                    <span style="font-size: 13px; color: black;" class="user-birthdate">12.07.1999</span>
+                                </div>
+                                <img class="demo-signature-image" src="sign.png" alt="Demo signature" / loading="lazy" decoding="async">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dataBlock2">
+                        <div>
+                            <div>
+                                <h3>Стать:</h3>
+                                <span>Sex</span>
+                            </div>
+                            <div>
+                                <h3 class="user-sex">Ч</h3>
+                                <span class="user-sex-en">M</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <h3>Громадянство:</h3>
+                                <span>Nathionality</span>
+                            </div>
+                            <div>
+                                <h3>Україна</h3>
+                                <span>Ukraine</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dataBlock2">
+                        <div>
+                            <div>
+                                <h3>Дата видачі:</h3>
+                                <span>Data of issue</span>
+                            </div>
+                            <div>
+                                <h3>12.02.2020</h3>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <h3>Дійсний до:</h3>
+                                <span>Data of expiry</span>
+                            </div>
+                            <div>
+                                <h3>12.02.2028</h3>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <h3>Орган що видав:</h3>
+                                <span>Authority</span>
+                            </div>
+                            <div>
+                                <h3>1340</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dataBlock2" style="gap: 5px">
+                        <div>
+                            <div>
+                                <h3>РНОКПП (ІПН):</h3>
+                            </div>
+                            <div style="flex-direction: row; justify-content: space-between;">
+                                <h3 class="user-rnokpp"></h3>
+                                <img class="copyPng" src="assets/copy.png" alt="" / loading="lazy" decoding="async">
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <span>Individual Tax Number</span>
+                            </div>
+                        </div>
+                        <div style="margin-top: 10px">
+                            <div style="gap: 5px">
+                                <h3>
+                                    Пройшов перевірку Державною податковою службою
+                                    <span class="dataNow"></span>
+                                </h3>
+                                <span>Verifed by State Tax Service <span class="dataNow"></span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dataBlock2">
+                        <div>
+                            <div>
+                                <h3>Запис № (УНЗР):</h3>
+                                <span>Record No.</span>
+                            </div>
+                            <div style="flex-direction: row; justify-content: space-between;">
+                                <h3 class="user-uznr">50030135-073442</h3>
+                                <img class="copyPng" src="assets/copy.png" alt="" / loading="lazy" decoding="async">
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <h3>Місце народження:</h3>
+                                <span>Place of birth</span>
+                            </div>
+                            <div>
+                                <h3>М. <span class="user-placebirth"></span> УКРАЇНА</h3>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <h3>Місце проживання:</h3>
+                                <span>Legal adress</span>
+                            </div>
+                            <div>
+                                <h3 class="user-legal-address">Не вказано</h3>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <h3>Дата реєстрації:</h3>
+                                <span>Registered on</span>
+                            </div>
+                            <div>
+                                <h3 class="user-registered-on">Не вказано</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content back" style="margin-top: 15px; padding-right: 0; padding-left: 0; transform: rotateY(0deg); height: 460px;">
+                        <div class="qrcodeBlock">
+                            <span>Код діятиме ще <span data-time="2:59">2:59</span> хв</span>
+                            <div class="qrshBlock">
+                                <div class="qrcode changeCode"></div>
+                                <div class="shText" style="display: none">
+                                    <span>1977</span>
+                                    <span>3411</span>
+                                    <span>48475</span>
+                                </div>
+                            </div>
+
+                            <div class="qrChange">
+                                <div data-index="1">
+                                    <div style="background: black">
+                                        <img src="assets/qr-code.png" style="filter: brightness(0) invert(1);" alt="" / loading="lazy" decoding="async">
+                                    </div>
+                                    <span>QR-код</span>
+                                </div>
+                                <div data-index="2">
+                                    <div>
+                                        <img src="assets/free-icon-barcode-7797192.png" alt="" / loading="lazy" decoding="async">
+                                    </div>
+                                    <span>Штрихкод</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="overlay" class="overlay hidden"></div>
+
+            <div class="documentSlider swiper-container">
+                <div class="swiper-wrapper" style="margin-bottom: 20px;">
+                    <div class="swiper-slide">
+                        <div class="slider eDoc">
+                            <div class="content front">
+                                <h1>єДокумент</h1>
+                                <div class="dataBlock">
+                                    <img src="assets/photo.jpg" alt="" / loading="lazy" decoding="async" data-document-photo="1">
+                                    <div class="dataInfo">
+                                        <div>
+                                            <span class="dataInfoFirst">Дата народження:</span>
+                                            <span class="user-birthdate">12.07.1999</span>
+                                        </div>
+                                        <div>
+                                            <span class="dataInfoFirst">РНОКПП:</span>
+                                            <span class="user-rnokpp"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="line2 marquee" style="background: linear-gradient(90deg, #b6eb9f, #9ccfcf); margin: auto -15px 5px -15px; position: relative; overflow: hidden; font-weight: 300; font-size: 13px; padding: 7px 0;">
+                                    <span class="kalyna-marquee">Ой у лузі червона калина похилилася, чогось наша славна Україна зажурилася. А ми тую червону калину підіймемо, а ми нашу славну Україну, гей, гей, розвеселимо!
+                                </div>
+
+                                <div class="fioBlock" style="margin-right: 0">
+                                    <h2 class="user-name">Тут твоё имя</h2>
+                                    <div class="arrowSvg moreInfo" data-index="eDoc" style="background-color: transparent; bottom: 0; right: 0;">
+                                        <img style="filter: brightness(1) invert(0); width: 34px; height: 34px; transform: rotate(0);" src="assets/dots.png" alt="" / loading="lazy" decoding="async">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="content back">
+                                <div class="qrcodeBlock" style="display:none!important;"><span></span></div>
+
+                                <div style="height: 100%; display: flex; align-items: center; justify-content: center; padding-top: 70px; padding-bottom: 40px; background: #fff; box-sizing: border-box;">
+                                    <div style="width: 300px; height: 300px; background: #fff url(assets/qr-dd.png) center/contain no-repeat; border-radius: 0; padding: 16px; box-sizing: border-box;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="slider podatki">
+                            <div class="content front">
+                                <h1>Картка платника податкiв</h1>
+                                <div class="dataBlock">
+                                    <div class="dataInfo">
+                                        <div style="margin-bottom: 15px">
+                                            <span style="font-size: 18px" class="dataInfoFirst">РНОКПП</span>
+                                        </div>
+                                        <div>
+                                            <span style="line-height: 1.4; font-size: 15px;" class="dataInfoFirst user-name"></span>
+                                        </div>
+                                        <div style="width: 100%; font-size: 13px;">
+                                            <span class="dataInfoFirst">Дата народження:</span>
+                                            <span class="user-birthdate">12.07.1999</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="line1 marquee" style="background: linear-gradient(90deg, #b6eb9f, #9ccfcf); margin: auto -15px 5px -15px; position: relative; overflow: hidden; font-weight: 300; font-size: 13px; padding: 7px 0;">
+                                    • Документ оновлено о <span class="getCurrentDateTime"></span>
+                                </div>
+
+                                <div class="fioBlock" style="margin-right: 0; display: flex; justify-content: space-between; align-items: center; padding-top: 15px;">
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <h2 style="font-size: 26px; margin-top: 0; font-weight: 300;" class="user-rnokpp"></h2>
+                                        <img class="copyPng" src="assets/copy.png" alt="" / loading="lazy" decoding="async">
+                                    </div>
+                                    <div class="arrowSvg moreInfo" data-index="podatki" style="background-color: transparent; bottom: 0; right: 0; position: relative; padding: 0;">
+                                        <img style="filter: brightness(1) invert(0); width: 34px; height: 34px; transform: rotate(0);" src="assets/dots.png" alt="" / loading="lazy" decoding="async">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="content back">
+                                <div class="qrcodeBlock">
+                                    <span>Код діятиме ще <span data-time="2:59">2:59</span> хв</span>
+                                    <div class="qrshBlock">
+                                        <div class="qrcode changeCode"></div>
+                                        <div class="shText" style="display: none">
+                                            <span>1977</span>
+                                            <span>3411</span>
+                                            <span>48475</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="qrChange">
+                                        <div data-index="1">
+                                            <div style="background: black">
+                                                <img src="assets/qr-code.png" style="filter: brightness(0) invert(1);" alt="" / loading="lazy" decoding="async">
+                                            </div>
+                                            <span>QR-код</span>
+                                        </div>
+                                        <div data-index="2">
+                                            <div>
+                                                <img src="assets/free-icon-barcode-7797192.png" alt="" / loading="lazy" decoding="async">
+                                            </div>
+                                            <span>Штрихкод</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="slider pasport">
+                            <div class="content front">
+                                <h1>Паспорт громадянина України</h1>
+                                <div class="dataBlock">
+                                    <img src="assets/photo.jpg" alt="" / loading="lazy" decoding="async" data-document-photo="1">
+                                    <div class="dataInfo">
+                                        <div>
+                                            <span class="dataInfoFirst">Дата народження:</span>
+                                            <span class="user-birthdate">12.07.1999</span>
+                                        </div>
+                                        <div>
+                                            <span class="dataInfoFirst">Номер:</span>
+                                            <span class="user-passport-num">008759371</span>
+                                        </div>
+                                        <img class="demo-signature-image" src="sign.png" alt="Demo signature" / loading="lazy" decoding="async">
+                                    </div>
+                                </div>
+                                <div class="line1 marquee" style="background: linear-gradient(90deg, #b6eb9f, #9ccfcf); margin: auto -15px 5px -15px; position: relative; overflow: hidden; font-weight: 300; font-size: 13px; padding: 7px 0;">
+                                    • Документ оновлено о <span class="getCurrentDateTime"></span>
+                                </div>
+
+                                <div class="fioBlock" style="margin-right: 0">
+                                    <h2 class="user-name">Тут твоё имя</h2>
+                                    <div class="arrowSvg moreInfo" data-index="pasport" style="background-color: transparent; bottom: 0; right: 0;">
+                                        <img style="filter: brightness(1) invert(0); width: 34px; height: 34px; transform: rotate(0);" src="assets/dots.png" alt="" / loading="lazy" decoding="async">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="content back">
+                                <div class="qrcodeBlock">
+                                    <span>Код діятиме ще <span data-time="3:00">3:00</span> хв</span>
+                                    <div class="qrshBlock">
+                                        <div class="qrcode changeCode"></div>
+                                        <div class="shText" style="display: none">
+                                            <span>1977</span>
+                                            <span>3411</span>
+                                            <span>48475</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="qrChange">
+                                        <div data-index="1">
+                                            <div style="background: black">
+                                                <img src="assets/qr-code.png" style="filter: brightness(0) invert(1);" alt="" / loading="lazy" decoding="async">
+                                            </div>
+                                            <span>QR-код</span>
+                                        </div>
+                                        <div data-index="2">
+                                            <div>
+                                                <img src="assets/free-icon-barcode-7797192.png" alt="" / loading="lazy" decoding="async">
+                                            </div>
+                                            <span>Штрихкод</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="slider dip">
+                            <div class="content front">
+                                <h1 id="stepen_dip">Диплом бакалавра</h1>
+                                <div class="dataBlock">
+                                    <div class="dataInfo">
+                                        <div style="width: 100%">
+                                            <span class="dataInfoFirst" style="width: 100%" id="univer_dip"></span>
+                                        </div>
+                                        <div>
+                                            <span class="dataInfoFirst">Дата видачі:</span>
+                                            <span id="dayout_dip"></span>
+                                        </div>
+                                        <div>
+                                            <span class="dataInfoFirst">Спеціальність:</span>
+                                            <span id="special_dip"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="line1 marquee" style="background: linear-gradient(90deg, #b6eb9f, #9ccfcf); margin: auto -15px 5px -15px; position: relative; overflow: hidden; font-weight: 300; font-size: 13px; padding: 7px 0;">
+                                    • Документ оновлено о <span class="getCurrentDateTime"></span>
+                                </div>
+
+                                <div class="fioBlock" style="margin-right: 0; margin-top: 10px; display: flex; align-items: center; gap: 10px;">
+                                    <h2 id="number_dip" style="margin-top: 0; width: unset;">2</h2>
+                                    <img class="copyPng" src="assets/copy.png" alt="" loading="lazy" decoding="async">
+                                </div>
+                            </div>
+
+                            <div class="content back">
+                                <div class="qrcodeBlock">
+                                    <span>Код діятиме ще <span data-time="2:59">2:59</span> хв</span>
+                                    <div class="qrshBlock">
+                                        <div class="qrcode changeCode"></div>
+                                        <div class="shText" style="display: none">
+                                            <span>1977</span>
+                                            <span>3411</span>
+                                            <span>48475</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="qrChange">
+                                        <div data-index="1">
+                                            <div style="background: black">
+                                                <img src="assets/qr-code.png" style="filter: brightness(0) invert(1);" alt="" / loading="lazy" decoding="async">
+                                            </div>
+                                            <span>QR-код</span>
+                                        </div>
+                                        <div data-index="2">
+                                            <div>
+                                                <img src="assets/free-icon-barcode-7797192.png" alt="" / loading="lazy" decoding="async">
+                                            </div>
+                                            <span>Штрихкод</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="slider zagran">
+                            <div class="content front">
+                                <h1>International Passport</h1>
+                                <div class="dataBlock">
+                                    <img src="assets/photo.jpg" alt="" / loading="lazy" decoding="async" data-document-photo="1">
+                                    <div class="dataInfo">
+                                        <div style="width: 100%">
+                                            <span class="dataInfoFirst">Date of birth:</span>
+                                            <span class="user-birthdate">12.07.1999</span>
+                                        </div>
+                                        <div>
+                                            <span class="dataInfoFirst">Document number:</span>
+                                            <span id="zagran_number"></span>
+                                        </div>
+                                        <img class="demo-signature-image" src="sign.png" alt="Demo signature" / loading="lazy" decoding="async">
+                                    </div>
+                                </div>
+                                <div class="line1 marquee" style="background: linear-gradient(90deg, #b6eb9f, #9ccfcf); margin: auto -15px 5px -15px; position: relative; overflow: hidden; font-weight: 300; font-size: 13px; padding: 7px 0;">
+                                    • Document updated оn <span class="getCurrentDateTime"></span>
+                                </div>
+
+                                <div class="fioBlock" style="margin-right: 0">
+                                    <h2 class="user-name-en">Тут твоё имя</h2>
+                                    <div class="arrowSvg moreInfo" data-index="zagran" style="background-color: transparent; bottom: 0; right: 0;">
+                                        <img style="filter: brightness(1) invert(0); width: 34px; height: 34px; transform: rotate(0);" src="assets/dots.png" alt="" / loading="lazy" decoding="async">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="content back">
+                                <div class="qrcodeBlock">
+                                    <span>Код діятиме ще <span data-time="2:59">2:59</span> хв</span>
+                                    <div class="qrshBlock">
+                                        <div class="qrcode changeCode"></div>
+                                        <div class="shText" style="display: none">
+                                            <span>1977</span>
+                                            <span>3411</span>
+                                            <span>48475</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="qrChange">
+                                        <div data-index="1">
+                                            <div style="background: black">
+                                                <img src="assets/qr-code.png" style="filter: brightness(0) invert(1);" alt="" / loading="lazy" decoding="async">
+                                            </div>
+                                            <span>QR-код</span>
+                                        </div>
+                                        <div data-index="2">
+                                            <div>
+                                                <img src="assets/free-icon-barcode-7797192.png" alt="" / loading="lazy" decoding="async">
+                                            </div>
+                                            <span>Штрихкод</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="slider study">
+                            <div class="content front">
+                                <h1>Студентський квиток</h1>
+                                <div class="dataBlock">
+                                    <img src="assets/photo.jpg" alt="" / loading="lazy" decoding="async" data-document-photo="1">
+                                    <div class="dataInfo">
+                                        <div>
+                                            <span class="dataInfoFirst">Номер:</span>
+                                            <span class="user-nomer-study"></span>
+                                        </div>
+                                        <div style="width: 100%">
+                                            <span class="dataInfoFirst">Дійсний до:</span>
+                                            <span class="user-diusnuy-study"></span>
+                                        </div>
+                                        <div style="width: 100%">
+                                            <span class="dataInfoFirst">Форма навчання:</span>
+                                            <span class="user-forma-study"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="line1 marquee" style="background: linear-gradient(90deg, #b6eb9f, #9ccfcf); margin: auto -15px 5px -15px; position: relative; overflow: hidden; font-weight: 300; font-size: 13px; padding: 7px 0;">
+                                    • Документ оновлено о <span class="getCurrentDateTime"></span>
+                                </div>
+
+                                <div class="fioBlock" style="margin-right: 0">
+                                    <h2 class="user-name">Тут твоё имя</h2>
+                                    <div class="arrowSvg moreInfo" data-index="study" style="background-color: transparent; bottom: 0; right: 0;">
+                                        <img style="filter: brightness(1) invert(0); width: 34px; height: 34px; transform: rotate(0);" src="assets/dots.png" alt="" / loading="lazy" decoding="async">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="content back">
+                                <div class="qrcodeBlock">
+                                    <span>Код діятиме ще <span data-time="2:59">2:59</span> хв</span>
+                                    <div class="qrshBlock">
+                                        <div class="qrcode changeCode"></div>
+                                        <div class="shText" style="display: none">
+                                            <span>1977</span>
+                                            <span>3411</span>
+                                            <span>48475</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="qrChange">
+                                        <div data-index="1">
+                                            <div style="background: black">
+                                                <img src="assets/qr-code.png" style="filter: brightness(0) invert(1);" alt="" / loading="lazy" decoding="async">
+                                            </div>
+                                            <span>QR-код</span>
+                                        </div>
+                                        <div data-index="2">
+                                            <div>
+                                                <img src="assets/free-icon-barcode-7797192.png" alt="" / loading="lazy" decoding="async">
+                                            </div>
+                                            <span>Штрихкод</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="slider prava">
+                            <div class="content front">
+                                <h1>Посвідчення водія</h1>
+                                <div class="dataBlock">
+                                    <img src="assets/photo.jpg" alt="" / loading="lazy" decoding="async" data-document-photo="1">
+                                    <div class="dataInfo">
+                                        <div style="margin-bottom: 10px">
+                                            <span class="dataInfoFirst">Дата народження:</span>
+                                            <span class="user-birthdate">12.07.1999</span>
+                                        </div>
+                                        <div style="width: 100%; margin-bottom: 10px;">
+                                            <span class="dataInfoFirst">Категорія:</span>
+                                            <span id="rightsCategories">A</span>
+                                        </div>
+                                        <div style="margin-bottom: 10px">
+                                            <span class="dataInfoFirst">Номер документа:</span>
+                                            <span class="user-prava-number">KBE968639</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="line1 marquee" style="background: linear-gradient(90deg, #b6eb9f, #9ccfcf); margin: auto -15px 5px -15px; position: relative; overflow: hidden; font-weight: 300; font-size: 13px; padding: 7px 0;">
+                                    • Документ оновлено о <span class="getCurrentDateTime"></span>
+                                </div>
+
+                                <div class="fioBlock" style="margin-right: 0">
+                                    <h2 class="user-prava-number">KBE968639</h2>
+                                    <div class="arrowSvg moreInfo" data-index="prava" style="background-color: transparent; bottom: 0; right: 0; padding: 0;">
+                                        <img style="filter: brightness(1) invert(0); width: 34px; height: 34px; transform: rotate(0);" src="assets/dots.png" alt="" / loading="lazy" decoding="async">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="content back">
+                                <div class="qrcodeBlock">
+                                    <span>Код діятиме ще <span data-time="2:59">2:59</span> хв</span>
+                                    <div class="qrshBlock">
+                                        <div class="qrcode changeCode"></div>
+                                        <div class="shText" style="display: none">
+                                            <span>1977</span>
+                                            <span>3411</span>
+                                            <span>48475</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="qrChange">
+                                        <div data-index="1">
+                                            <div style="background: black">
+                                                <img src="assets/qr-code.png" style="filter: brightness(0) invert(1);" alt="" / loading="lazy" decoding="async">
+                                            </div>
+                                            <span>QR-код</span>
+                                        </div>
+                                        <div data-index="2">
+                                            <div>
+                                                <img src="assets/free-icon-barcode-7797192.png" alt="" / loading="lazy" decoding="async">
+                                            </div>
+                                            <span>Штрихкод</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="slider birth">
+                            <div class="content front">
+                                <h1>Актовий запис про моє народження</h1>
+                                <div class="dataBlock">
+                                    <div class="dataInfo" style="gap: 10px;">
+                                        <div style="width: 100%">
+                                            <span class="dataInfoFirst" style="width: 100%; font-size: 18px;">Свідоцтва про народження</span>
+                                        </div>
+                                        <div style="font-size: 11px;">
+                                            <span class="dataInfoFirst">Дата народження:</span>
+                                            <span style="margin-bottom: 7px" class="user-birthdate">12.07.1999</span>
+                                            <span class="dataInfoFirst">Місце народження:</span>
+                                            <span class="user-placebirth">Київ</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="line1 marquee" style="background: linear-gradient(90deg, #b6eb9f, #9ccfcf); margin: auto -15px 5px -15px; position: relative; overflow: hidden; font-weight: 300; font-size: 13px; padding: 7px 0;">
+                                    • Документ оновлено о <span class="getCurrentDateTime"></span>
+                                </div>
+                                <div class="fioBlock" style="margin-right: 0">
+                                    <h2 class="user-name">Тут твоє ім'я</h2>
+                                    <div class="arrowSvg moreInfo" data-index="birth" style="background-color: transparent; bottom: 0; right: 0;">
+                                        <img style="filter: brightness(1) invert(0); width: 34px; height: 34px; transform: rotate(0);" src="assets/dots.png" alt="" / loading="lazy" decoding="async">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="content back">
+                                <div class="qrcodeBlock">
+                                    <span>Код діятиме ще <span data-time="2:59">2:59</span> хв</span>
+                                    <div class="qrshBlock">
+                                        <div class="qrcode changeCode"></div>
+                                        <div class="shText" style="display: none">
+                                            <span>1977</span><span>3411</span><span>48475</span>
+                                        </div>
+                                    </div>
+                                    <div class="qrChange">
+                                        <div data-index="1">
+                                            <div style="background: black">
+                                                <img src="assets/qr-code.png" style="filter: brightness(0) invert(1);" alt="" / loading="lazy" decoding="async">
+                                            </div>
+                                            <span>QR-код</span>
+                                        </div>
+                                        <div data-index="2">
+                                            <div>
+                                                <img src="assets/free-icon-barcode-7797192.png" alt="" / loading="lazy" decoding="async">
+                                            </div>
+                                            <span>Штрихкод</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="slider osvita">
+                            <div class="content front">
+                                <h1>Свідоцтво про базову середню освіту</h1>
+                                <div class="dataBlock">
+                                    <div class="dataInfo" style="gap: 10px;">
+                                        <div style="width: 100%">
+                                            <span class="dataInfoFirst" style="width: 100%; font-size: 15px;" id="school_name">Загальноосвітня школа</span>
+                                        </div>
+                                        <div style="font-size: 12px;">
+                                            <span class="dataInfoFirst">Серія та номер:</span>
+                                            <span id="osvita_number">БСО № 123456</span>
+                                        </div>
+                                        <div style="font-size: 12px;">
+                                            <span class="dataInfoFirst">Рік видачі:</span>
+                                            <span id="osvita_year">2025</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="line1 marquee" style="background: linear-gradient(90deg,#b6eb9f,#9ccfcf);margin: auto -15px 5px -15px;position: relative;overflow: hidden;font-weight: 300;font-size: 13px;padding: 7px 0;">
+                                    • Документ оновлено о <span class="getCurrentDateTime"></span>
+                                </div>
+                                <div class="fioBlock" style="margin-right: 0">
+                                    <h2 class="user-name">Тут твоє ім'я</h2>
+                                    <div class="arrowSvg moreInfo" data-index="osvita" style="background-color: transparent; bottom: 0; right: 0;">
+                                        <img style="filter: brightness(1) invert(0); width: 34px; height: 34px; transform: rotate(0);" src="assets/dots.png" alt="" / loading="lazy" decoding="async">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="content back">
+                                <div class="qrcodeBlock">
+                                    <span>Код діятиме ще <span data-time="2:59">2:59</span> хв</span>
+                                    <div class="qrshBlock">
+                                        <div class="qrcode changeCode"></div>
+                                        <div class="shText" style="display: none">
+                                            <span>1977</span><span>3411</span><span>48475</span>
+                                        </div>
+                                    </div>
+                                    <div class="qrChange">
+                                        <div data-index="1">
+                                            <div style="background: black">
+                                                <img src="assets/qr-code.png" style="filter: brightness(0) invert(1);" alt="" / loading="lazy" decoding="async">
+                                            </div>
+                                            <span>QR-код</span>
+                                        </div>
+                                        <div data-index="2">
+                                            <div>
+                                                <img src="assets/free-icon-barcode-7797192.png" alt="" / loading="lazy" decoding="async">
+                                            </div>
+                                            <span>Штрихкод</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="slider" style="display: flex; flex-direction: column; gap: 10px;">
+                            <div style="display: flex; align-items: center; justify-content: center; gap: 15px; height: 100%; flex-direction: column; background: rgba(255, 255, 255, 0.4); border-radius: 24px;">
+                                <img style="height: 35px;" src="assets/addDocument.png" alt="" / loading="lazy" decoding="async">
+                                <span style="font-size: 18px;">Додати документ</span>
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: center; gap: 15px; height: 100%; flex-direction: column; background: rgba(255, 255, 255, 0.4); border-radius: 24px; text-align: center;">
+                                <img style="height: 35px;" src="assets/swapDocument.png" alt="" / loading="lazy" decoding="async">
+                                <span style="font-size: 18px;">Змінити порядок <br />документів</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+
+        <div class="block diya-ai-block" style="padding:0;">
+            <div class="dai-topbar">
+                <button class="dai-topbar-btn">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                </button>
+                <div class="dai-marquee-wrap">
+                    <div class="dai-marquee-track">
+                        <span>Працюю в тестовому режимі&nbsp;&bull;&nbsp;Працюю в тестовому режимі&nbsp;&bull;&nbsp;Працюю в тестовому режимі&nbsp;&bull;&nbsp;Працюю в тестовому режимі&nbsp;&bull;&nbsp;</span>
+                    </div>
+                </div>
+                <button class="dai-topbar-btn">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M20 20l-2.5-2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                </button>
+            </div>
+
+            <div class="dai-messages" id="diyaAiMessages">
+                <div class="dai-date-chip" id="daiDateChip"></div>
+
+                <div class="dai-msg-block">
+                    <div class="dai-msg-row">
+                        <div class="dai-sparkle-icon">
+                            <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M10 2l1.8 6.2L18 10l-6.2 1.8L10 18l-1.8-6.2L2 10l6.2-1.8L10 2Z" fill="currentColor"/><path d="M16 2l.9 2.6L19.5 5.5l-2.6.9L16 9l-.9-2.6L12.5 5.5l2.6-.9L16 2Z" fill="currentColor" opacity="0.5"/></svg>
+                        </div>
+                        <div class="dai-msg-text">
+                            <p>Привіт, <span id="daiGreetingName">друже</span>.</p>
+                            <p>Ставте запитання — я допоможу розібратись будь з чим.</p>
+                            <p>Не знаєте, що спитати? Можете замовити витяг про місце проживання через чат.</p>
+                        </div>
+                    </div>
+                    <div class="dai-actions">
+                        <button class="dai-action-btn" title="Подобається">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M7 22V11M2 13v7a2 2 0 002 2h11.26a2 2 0 001.96-1.6l1.54-7A2 2 0 0016.8 11H13V5a2 2 0 00-2-2h-.01a2 2 0 00-2 2v3L7 11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </button>
+                        <button class="dai-action-btn" title="Не подобається">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M17 2v11m5-9v7a2 2 0 01-2 2H8.74a2 2 0 01-1.96 1.6L5.24 21A2 2 0 007.2 23H11v-3a2 2 0 012 2h.01a2 2 0 002-2v-3l2-3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </button>
+                        <button class="dai-action-btn" title="Копіювати">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="9" y="9" width="13" height="13" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dai-input-bar">
+                <button class="dai-sparkle-btn" id="diyaAiSend">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3l2 7.2L21 12l-7 2L12 21l-2-7L3 12l7-2L12 3Z" fill="currentColor"/><path d="M19 3l.8 2.4L22 6.2l-2.2.8L19 9.5l-.8-2.3L16 6.2l2.2-.8L19 3Z" fill="currentColor" opacity="0.5"/></svg>
+                </button>
+                <input type="text" id="diyaAiInput" class="dai-input" placeholder="Чим можу допомогти?" autocomplete="off" />
+            </div>
+        </div>
+
+        <div class="block block1" style="padding: 0 15px">
+            <h1 class="textVizit">Сервіси</h1>
+
+            <div class="pre">
+                <div class="search">
+                    <img src="assets/search.png" alt="" / loading="lazy" decoding="async">Пошук
+                </div>
+                <div class="services">
+                    <div>
+                        <div><img src="assets/helmet.png" alt="" / loading="lazy" decoding="async"></div>
+                        <span>Допомога армії</span>
+                    </div>
+                    <div>
+                        <div><img src="assets/thunder.png" alt="" / loading="lazy" decoding="async"></div>
+                        <span>Незламність</span>
+                    </div>
+                    <div>
+                        <div><img src="assets/gerb.png" alt="" / loading="lazy" decoding="async"></div>
+                        <span>Військові облігації</span>
+                    </div>
+                    <div>
+                        <div><img src="assets/repair.png" alt="" / loading="lazy" decoding="async"></div>
+                        <span>єВідновлення</span>
+                    </div>
+                    <div>
+                        <div><img src="assets/helmet.png" alt="" / loading="lazy" decoding="async"></div>
+                        <span>Допомога армії</span>
+                    </div>
+                    <div>
+                        <div><img src="assets/car.png" alt="" / loading="lazy" decoding="async"></div>
+                        <span>Водієві</span>
+                    </div>
+                    <div>
+                        <div><img src="assets/house.png" alt="" / loading="lazy" decoding="async"></div>
+                        <span>Місце проживання</span>
+                    </div>
+                    <div>
+                        <div><img src="assets/idea.png" alt="" / loading="lazy" decoding="async"></div>
+                        <span>Обмін лампочок</span>
+                    </div>
+                    <div>
+                        <div><img src="assets/box.png" alt="" / loading="lazy" decoding="async"></div>
+                        <span>Послуги для ВПО</span>
+                    </div>
+                    <div>
+                        <div><img src="assets/case.png" alt="" / loading="lazy" decoding="async"></div>
+                        <span>Податки</span>
+                    </div>
+                    <div>
+                        <div><img src="assets/charity.png" alt="" / loading="lazy" decoding="async"></div>
+                        <span>Допомога по безробіттю</span>
+                    </div>
+                    <div>
+                        <div><img src="assets/verdict.png" alt="" / loading="lazy" decoding="async"></div>
+                        <span>Судові послуги</span>
+                    </div>
+                    <div>
+                        <div><img src="assets/osela.png" alt="" / loading="lazy" decoding="async"></div>
+                        <span>єОселя</span>
+                    </div>
+                    <div>
+                        <div><img src="assets/alert.png" alt="" / loading="lazy" decoding="async"></div>
+                        <span>Виконавчі провадження</span>
+                    </div>
+                    <div>
+                        <div><img src="assets/dovidka.png" alt="" / loading="lazy" decoding="async"></div>
+                        <span>Довідки та витяги</span>
+                    </div>
+                    <div>
+                        <div><img src="assets/controller.png" alt="" / loading="lazy" decoding="async"></div>
+                        <span>Розваги</span>
+                    </div>
+                    <div>
+                        <div><img src="assets/covid.png" alt="" / loading="lazy" decoding="async"></div>
+                        <span>COVID-сертифікати</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="block block1" style="padding: 0 20px">
+            <h1 style="margin-bottom: 5px" class="textVizit">Меню</h1>
+            <span style="font-size: 13px; color: rgb(92, 92, 92); margin-bottom: 15px; width: 100%;">Версія Дії: 4.7.0.1645</span>
+
+            <div class="pre">
+                <div class="columnMenu">
+                    <div>
+                        <div style="padding: 10px 15px">
+                            <img style="width: 24px; height: 24px" src="assets/email.png" alt="" / loading="lazy" decoding="async">
+                            <span>Повідомлення</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="border">
+                            <img style="width: 16px; height: 16px" src="assets/key.png" alt="" / loading="lazy" decoding="async">
+                            <span>Дія.Підпис</span>
+                        </div>
+                        <div>
+                            <img src="assets/folders.png" alt="" / loading="lazy" decoding="async">
+                            <span>Історія підписань</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="border" id="openSettingsBtn" style="cursor:pointer;">
+                            <img src="assets/settings.png" alt="" / loading="lazy" decoding="async">
+                            <span>Налаштування</span>
+                        </div>
+<div class="border">
+                            <img style="transform: rotate(180deg)" src="assets/refresh.png" alt="" / loading="lazy" decoding="async">
+                            <span>Оновити застосунок</span>
+                        </div>
+                        <div>
+                            <img style="width: 24px; height: 24px" src="assets/smartphone.png" alt="" / loading="lazy" decoding="async">
+                            <span>Підключені пристрої</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="border">
+                            <img class="menu-support-icon" src="assets/support-chat.svg" alt="" loading="lazy" decoding="async">
+                            <span>Служба підтримки</span>
+                        </div>
+                        <div class="border">
+                            <img class="menu-support-icon" src="assets/support-copy.svg" alt="" loading="lazy" decoding="async">
+                            <span>Копіювати номер пристрою</span>
+                        </div>
+                        <div>
+                            <img class="menu-support-icon" src="assets/support-help.svg" alt="" loading="lazy" decoding="async">
+                            <span>Питання та відповіді</span>
+                        </div>
+                    </div>
+
+                    
+                    <span>Повідомлення про обробку персональних данних</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Modal -->
+        <div id="settingsModal" class="settings-modal hidden">
+            <div class="settings-sheet">
+                <div class="settings-header">
+                    <button class="settings-back" id="closeSettingsBtn">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                    <h2>Налаштування</h2>
+                    <button class="settings-save" id="saveSettingsBtn">Зберегти</button>
+                </div>
+
+                <div class="settings-body">
+                    <div class="settings-section-title">Фото</div>
+                    <div class="settings-group">
+                        <div class="settings-field settings-field-photo">
+                            <div class="photo-upload-wrap">
+                                <div class="photo-preview-wrap">
+                                    <img id="photoPreview" src="assets/photo.jpg" alt="фото" / loading="lazy" decoding="async">
+                                </div>
+                                <div class="photo-upload-actions">
+                                    <label class="photo-upload-btn" for="photoFileInput">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                        Завантажити фото
+                                    </label>
+                                    <input type="file" id="photoFileInput" accept="image/*" style="display:none" />
+                                    <button id="clearPhotoBtn" class="photo-clear-btn">Видалити</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-section-title">Особисті дані</div>
+                    <div class="settings-group">
+                        <div class="settings-field">
+                            <label for="set_last_name">Прізвище</label>
+                            <input type="text" id="set_last_name" placeholder="Фамилия" autocomplete="off" />
+                        </div>
+                        <div class="settings-field border-top">
+                            <label for="set_first_name">Ім'я</label>
+                            <input type="text" id="set_first_name" placeholder="Имя" autocomplete="off" />
+                        </div>
+                        <div class="settings-field border-top">
+                            <label for="set_middle_name">По батькові</label>
+                            <input type="text" id="set_middle_name" placeholder="Отчество" autocomplete="off" />
+                        </div>
+                        <div class="settings-field border-top">
+                            <label for="set_name_en">Ім'я латиницею</label>
+                            <input type="text" id="set_name_en" placeholder="Латиницей Латиницей" autocomplete="off" />
+                        </div>
+                    </div>
+
+                    <div class="settings-section-title">Документи</div>
+                    <div class="settings-group">
+                        <div class="settings-field">
+                            <label for="set_birthdate">Дата народження</label>
+                            <input type="text" id="set_birthdate" placeholder="00.00.0000" inputmode="numeric" autocomplete="off" />
+                        </div>
+                        <div class="settings-field border-top">
+                            <label for="set_rnokpp">РНОКПП (ІПН)</label>
+                            <input type="text" id="set_rnokpp" placeholder="0000000000" inputmode="numeric" autocomplete="off" />
+                        </div>
+                        <div class="settings-field border-top">
+                            <label for="set_passport_num">Номер паспорту</label>
+                            <input type="text" id="set_passport_num" placeholder="000000000" autocomplete="off" />
+                        </div>
+                        <div class="settings-field border-top">
+                            <label for="set_zagran_num">Номер закордонного паспорту</label>
+                            <input type="text" id="set_zagran_num" placeholder="MQ000000" autocomplete="off" />
+                        </div>
+                        <div class="settings-field border-top">
+                            <label for="set_place_birth">Місце народження</label>
+                            <input type="text" id="set_place_birth" placeholder="Город" autocomplete="off" />
+                        </div>
+                        <div class="settings-field border-top"><label for="set_passport_issue">Дата видачі паспорта</label><input type="text" id="set_passport_issue" placeholder="00.00.0000" inputmode="numeric" autocomplete="off" /></div>
+                        <div class="settings-field border-top"><label for="set_passport_expiry">Дата закінчення паспорта</label><input type="text" id="set_passport_expiry" placeholder="00.00.0000" inputmode="numeric" autocomplete="off" /></div>
+                        <div class="settings-field border-top"><label for="set_registration">Адреса реєстрації</label><input type="text" id="set_registration" placeholder="Адреса" autocomplete="off" /></div>
+                        <div class="settings-field border-top"><label for="set_gender">Стать</label><input type="text" id="set_gender" placeholder="Чоловіча / Жіноча" autocomplete="off" /></div>
+                        <div class="settings-field border-top"><label for="set_bank_address">Банківська адреса</label><input type="text" id="set_bank_address" placeholder="Адреса" autocomplete="off" /></div>
+                        <div class="settings-field border-top"><label for="set_student">Студентський</label><input type="text" id="set_student" placeholder="Номер / дані" autocomplete="off" /></div>
+                        <div class="settings-field border-top"><label for="set_driver_license">Водійські права</label><input type="text" id="set_driver_license" placeholder="Номер / дані" autocomplete="off" /></div>
+                    </div>
+
+                    <div class="settings-section-title">Підпис (демо)</div>
+                    <div class="settings-demo-note">Статична версія для GitHub Pages. Фото, дані та намальований підпис зберігаються тільки у цьому браузері на вашому пристрої.</div>
+                    <div class="settings-group">
+                        <div class="settings-field settings-field-sign">
+                            <label>Намалюйте підпис пальцем</label>
+                            <div class="sign-canvas-wrap">
+                                <canvas id="signatureCanvas" width="320" height="100"></canvas>
+                                <button id="clearSignBtn" class="clear-sign-btn">✕ Очистити</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="block"></div>
+
+        <div class="footer">
+            <div data-index="1" class="active">
+                <span class="footer-icon"><img src="assets/nav-feed-on-v90.png" alt="" / loading="lazy" decoding="async"></span><span>Стрічка</span>
+            </div>
+            <div data-index="2">
+                <span class="footer-icon"><img src="assets/nav-documents-off-v88.png" alt="" / loading="lazy" decoding="async"></span><span>Документи</span>
+            </div>
+            <div data-index="3" class="footer-ai-tab">
+                <span class="footer-icon"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Дія.AI">
+                    <rect x="1.5" y="1.5" width="23" height="23" rx="6.5" stroke="white" stroke-width="1.8"/>
+                    <path d="M13 5.2 L14.45 10.9 L20.2 12.5 L14.45 14.05 L13 19.8 L11.55 14.05 L5.8 12.5 L11.55 10.9 Z" fill="white"/>
+                </svg></span>
+                <span>Дія.AI</span>
+            </div>
+            <div data-index="4">
+                <span class="footer-icon"><img src="assets/nav-services-off-v88.png" alt="" / loading="lazy" decoding="async"></span><span>Сервіси</span>
+            </div>
+            <div data-index="5">
+                <span class="footer-icon"><img src="assets/nav-menu-off-v88.png" alt="" / loading="lazy" decoding="async"></span><span>Меню</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="error-popup" class="error-popup">
+        <div class="error-content">
+            <button class="error-close">×</button>
+            <div class="sad-face">😞</div>
+            <h3>На жаль, сталася помилка</h3>
+            <button class="error-retry">Спробувати ще</button>
+        </div>
+    </div>
+
+    <div id="no-internet-popup" class="no-internet-modal">
+        <div class="no-internet-content">
+            <div class="error-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM13 17H11V15H13V17ZM13 13H11V7H13V13Z" fill="white" />
+                </svg>
+            </div>
+            <p>Застаріла версія застосунку!</p>
+            <button id="update-button" class="update-btn">Оновити</button>
+        </div>
+    </div>
+
+    <script src="assets/jquery-3.7.1.min.js?v=162"></script>
+    <script src="assets/jquery.marquee.min.js" type="text/javascript"></script>
+    <script src="assets/app.js?v=162"></script>
+
+    <script>
+        document.addEventListener('touchstart', function (e) {
+            if (e.touches.length > 1) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        document.addEventListener('gesturestart', function (e) { e.preventDefault(); });
+        document.addEventListener('gesturechange', function (e) { e.preventDefault(); });
+        document.addEventListener('gestureend', function (e) { e.preventDefault(); });
+    </script>
+
+    <style>
+    #pwaInstallButton {
+      position: fixed; left: 50%; bottom: 78px; transform: translateX(-50%);
+      z-index: 2147483647; display: none; border: 0; border-radius: 14px;
+      padding: 13px 22px; background: #000; color: #fff; font: 600 16px Arial, sans-serif;
+      box-shadow: 0 6px 24px rgba(0,0,0,.25); cursor: pointer;
+    }
+    #pwaInstallButton.show { display: block; }
+    </style>
+
+    <button id="pwaInstallButton" type="button">Установить как приложение</button>
+
+    <script>
+    (function(){
+      let deferredPrompt = null;
+      const btn = document.getElementById('pwaInstallButton');
+
+      window.addEventListener('beforeinstallprompt', function(e){
+        e.preventDefault();
+        deferredPrompt = e;
+        btn.classList.add('show');
+      });
+
+      btn.addEventListener('click', async function(){
+        if(!deferredPrompt) return;
+        deferredPrompt.prompt();
+        try { await deferredPrompt.userChoice; } catch(e) {}
+        deferredPrompt = null;
+        btn.classList.remove('show');
+      });
+
+      window.addEventListener('appinstalled', function(){
+        btn.classList.remove('show');
+        deferredPrompt = null;
+      });
+    })();
+    </script>
+
+<script>
+(()=> {
+  const block = e => e.preventDefault();
+  document.addEventListener('contextmenu', block, {capture:true});
+  document.addEventListener('dragstart', block, {capture:true});
+  document.addEventListener('keydown', e => {
+    const k=(e.key||'').toLowerCase();
+    if ((e.ctrlKey||e.metaKey) && ['u','s','p'].includes(k) || e.key==='F12' ||
+        (e.ctrlKey||e.metaKey||e.shiftKey) && ['i','j','c'].includes(k)) e.preventDefault();
+  }, {capture:true});
+})();
+</script>
+
+<style>
+/* v7 navigation/service stability fixes */
+html, body { min-height: 100%; }
+body.bg-start { overflow: hidden !important; }
+.main.active { position: fixed; inset: 0; width: 100%; height: 100%; box-sizing: border-box; padding-bottom: 78px; overflow: hidden; }
+.footer { position: fixed !important; left: 0; right: 0; bottom: 0; width: 100%; height: auto; min-height: 64px; box-sizing: border-box; z-index: 2147483000 !important; }
+.main > .block { box-sizing: border-box; height: 100%; max-height: 100%; }
+.main > .block.block1 { overflow: hidden; }
+.main > .block.block1 > .pre { height: calc(100% - 58px); max-height: calc(100% - 58px); padding-bottom: 18px; box-sizing: border-box; }
+.main > .block.block2 { overflow: auto !important; padding-bottom: 18px; box-sizing: border-box; }
+.services { padding-bottom: 110px !important; }
+.services > div { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.services > div:active { transform: scale(.97); }
+.diya-fix-modal { position: fixed; inset: 0; z-index: 2147483646; background: rgba(0,0,0,.42); display:flex; align-items:flex-end; justify-content:center; opacity:0; pointer-events:none; transition:opacity .2s ease; }
+.diya-fix-modal.show { opacity:1; pointer-events:auto; }
+.diya-fix-sheet { width:100%; max-width:560px; max-height:78vh; overflow:auto; box-sizing:border-box; background:#f2f2f7; border-radius:22px 22px 0 0; padding:12px 20px calc(28px + env(safe-area-inset-bottom,0px)); transform:translateY(100%); transition:transform .28s cubic-bezier(.32,.72,0,1); position:relative; }
+.diya-fix-modal.show .diya-fix-sheet { transform:translateY(0); }
+.diya-fix-handle { width:38px; height:5px; border-radius:99px; background:#b8b8bd; margin:0 auto 18px; }
+.diya-fix-sheet h2 { margin:0 40px 12px; text-align:center; font-size:20px; font-weight:600; color:#111; }
+.diya-fix-body { white-space:pre-line; background:#fff; border-radius:16px; padding:18px; color:#333; font-size:15px; line-height:1.45; min-height:60px; }
+.diya-fix-close { position:absolute; right:14px; top:10px; width:34px; height:34px; border:0; border-radius:50%; background:#e5e5ea; font-size:24px; line-height:34px; color:#555; cursor:pointer; }
+</style>
+<script src="assets/navigation-fix-v8.js?v=142"></script>
+
+
+
+<style>
+/* Бегущая строка только на карточке паспорта */
+.kalyna-card-banner{
+  position:relative;
+  overflow:hidden;
+  width:calc(100% + 30px);
+  box-sizing:border-box;
+  margin:auto -15px 5px;
+  padding:7px 0;
+  border-radius:0;
+  background:linear-gradient(90deg,#b6eb9f,#9ccfcf);
+  font-size:13px;
+  font-weight:300;
+  line-height:1.25;
+  white-space:nowrap;
+}
+.kalyna-card-banner .kalyna-marquee{
+  display:flex;
+  gap:0;
+  width:max-content;
+  min-width:max-content;
+  white-space:nowrap;
+  animation:passport-date-scroll 18s linear infinite;
+  will-change:transform;
+}
+.kalyna-card-banner .kalyna-part{
+  display:block;
+  flex:0 0 auto;
+  white-space:nowrap;
+  padding-right:0;
+  margin:0;
+}
+@keyframes passport-date-scroll{
+  from{transform:translate3d(0,0,0)}
+  to{transform:translate3d(-25%,0,0)}
+}
+.footer .kalyna-card-banner,
+.footer .kalyna-marquee{display:none!important}
+</style>
+<script>
+(function(){
+  function getDateText(){
+    var d=new Date();
+    var day=String(d.getDate()).padStart(2,'0');
+    var month=String(d.getMonth()+1).padStart(2,'0');
+    var year=d.getFullYear();
+    return day+'.'+month+'.'+year+' • Документ оновлено о 21:24 |';
+  }
+
+  function normalizePassportBanner(){
+    document.querySelectorAll('.footer .kalyna-card-banner,.footer .kalyna-marquee').forEach(function(e){
+      e.remove();
+    });
+
+    document.querySelectorAll('.swiper-slide').forEach(function(slide){
+      var passport=slide.querySelector('.slider.pasport');
+      if(!passport) return;
+
+      var front=passport.querySelector('.content.front');
+      if(!front) return;
+
+      /* Удаляем старую строку только внутри паспорта */
+      front.querySelectorAll('.kalyna-card-banner').forEach(function(e){e.remove();});
+      front.querySelectorAll('.marquee').forEach(function(e){
+        var t=(e.textContent||'').toLowerCase();
+        if(t.indexOf('ой у лузі')>=0 || t.indexOf('червона калина')>=0 ||
+           t.indexOf('документ оновлено')>=0 || t.indexOf('document updated')>=0){
+          e.remove();
+        }
+      });
+
+      var box=document.createElement('div');
+      box.className='kalyna-card-banner';
+
+      var span=document.createElement('span');
+      span.className='kalyna-marquee';
+      var text=getDateText();
+
+      /* Два одинаковых сегмента дают бесшовный бесконечный цикл */
+      for(var i=0;i<4;i++){
+        var part=document.createElement('span');
+        part.className='kalyna-part';
+        part.textContent=text;
+        span.appendChild(part);
+      }
+
+      box.appendChild(span);
+
+      var fio=front.querySelector('.fioBlock');
+      if(fio) front.insertBefore(box,fio);
+      else front.appendChild(box);
+    });
+  }
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',normalizePassportBanner);
+  }else{
+    normalizePassportBanner();
+  }
+
+  setTimeout(normalizePassportBanner,500);
+  setTimeout(normalizePassportBanner,1500);
+
+  /* Обновляем дату после смены дня без перезагрузки страницы */
+  setInterval(function(){
+    document.querySelectorAll('.slider.pasport .kalyna-marquee').forEach(function(span){
+      var text=getDateText();
+      span.querySelectorAll('.kalyna-part').forEach(function(part){
+        part.textContent=text;
+      });
+    });
+  },60000);
+})();
+</script>
+
+<style id="selected-document-date-banners">
+/* Date banner only on the requested document cards. */
+.date-card-banner{
+  position:relative;
+  overflow:hidden;
+  width:calc(100% + 30px);
+  box-sizing:border-box;
+  margin:auto -15px 5px;
+  padding:7px 0;
+  white-space:nowrap;
+}
+.date-card-banner .date-card-track{
+  display:flex;
+  gap:0;
+  width:max-content;
+  min-width:max-content;
+  white-space:nowrap;
+  animation:date-card-scroll 18s linear infinite;
+  will-change:transform;
+}
+.date-card-banner .date-card-part{
+  display:block;
+  flex:0 0 auto;
+  white-space:nowrap;
+  padding-right:0;
+  margin:0;
+}
+@keyframes date-card-scroll{
+  from{transform:translate3d(0,0,0)}
+  to{transform:translate3d(-50%,0,0)}
+}
+</style>
+<script id="selected-document-date-banner-script">
+(function(){
+  var targets=['.podatki','.dip','.zagran','.study','.prava','.birth','.osvita'];
+
+  function dateText(){
+    var d=new Date();
+    var day=String(d.getDate()).padStart(2,'0');
+    var month=String(d.getMonth()+1).padStart(2,'0');
+    var year=d.getFullYear();
+    return day+'.'+month+'.'+year+' • Документ оновлено о 21:24 |';
+  }
+
+  function applyDateBanners(){
+    targets.forEach(function(sel){
+      document.querySelectorAll('.swiper-slide '+sel).forEach(function(card){
+        var front=card.querySelector('.content.front');
+        if(!front) return;
+
+        var old=front.querySelector('.date-card-banner');
+        if(old){
+          var track=old.querySelector('.date-card-track');
+          if(track){
+            track.querySelectorAll('.date-card-part').forEach(function(part){
+              part.textContent=dateText();
+            });
+          }
+          return;
+        }
+
+        /* Replace the existing banner on this selected card only. */
+        var banner=front.querySelector('.line1.marquee, .line2.marquee');
+        if(!banner) return;
+
+        var box=document.createElement('div');
+        box.className='date-card-banner';
+        box.style.cssText=banner.getAttribute('style')||'';
+
+        var track=document.createElement('span');
+        track.className='date-card-track';
+        var text=dateText();
+
+        for(var i=0;i<4;i++){
+          var part=document.createElement('span');
+          part.className='date-card-part';
+          part.textContent=text;
+          track.appendChild(part);
+        }
+
+        box.appendChild(track);
+        banner.parentNode.replaceChild(box,banner);
+      });
+    });
+  }
+
+  function run(){
+    applyDateBanners();
+    setTimeout(applyDateBanners,500);
+    setTimeout(applyDateBanners,1500);
+  }
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',run);
+  }else{
+    run();
+  }
+
+  setInterval(function(){
+    document.querySelectorAll('.date-card-banner .date-card-part').forEach(function(part){
+      part.textContent=dateText();
+    });
+  },60000);
+})();
+</script>
+
+
+<style id="edoc-date-banner-fix-v2">
+/* єДокумент: faster, genuinely gap-free date banner. */
+.eDoc .line1.marquee.edoc-date-fixed{
+  position:relative!important;
+  overflow:hidden!important;
+  white-space:nowrap!important;
+  box-sizing:border-box!important;
+}
+.eDoc .line1.marquee.edoc-date-fixed .edoc-date-track{
+  display:flex!important;
+  width:max-content!important;
+  min-width:max-content!important;
+  gap:0!important;
+  white-space:nowrap!important;
+  animation:edoc-date-scroll-v2 24s linear infinite!important;
+  will-change:transform;
+}
+.eDoc .line1.marquee.edoc-date-fixed .edoc-date-part{
+  display:block!important;
+  flex:0 0 auto!important;
+  white-space:nowrap!important;
+  margin:0!important;
+  padding:0!important;
+}
+@keyframes edoc-date-scroll-v2{
+  from{transform:translate3d(0,0,0)}
+  to{transform:translate3d(-25%,0,0)}
+}
+</style>
+<script id="edoc-date-banner-fix-v2-script">
+(function(){
+  function dateText(){
+    var d=new Date();
+    var day=String(d.getDate()).padStart(2,'0');
+    var month=String(d.getMonth()+1).padStart(2,'0');
+    var year=d.getFullYear();
+    return day+'.'+month+'.'+year+' • Документ оновлено о 21:24 |';
+  }
+  function fixEDoc(){
+    document.querySelectorAll('.swiper-slide .slider.eDoc').forEach(function(card){
+      var front=card.querySelector('.content.front');
+      if(!front) return;
+      var banner=front.querySelector('.line1.marquee');
+      if(!banner) return;
+      if(banner.classList.contains('edoc-date-fixed')){
+        banner.querySelectorAll('.edoc-date-part').forEach(function(part){part.textContent=dateText();});
+        return;
+      }
+      banner.classList.add('edoc-date-fixed');
+      banner.innerHTML='';
+      var track=document.createElement('span');
+      track.className='edoc-date-track';
+      var text=dateText();
+      /* Four copies guarantee that a third/fourth segment never disappears. */
+      for(var i=0;i<4;i++){
+        var part=document.createElement('span');
+        part.className='edoc-date-part';
+        part.textContent=text;
+        track.appendChild(part);
+      }
+      banner.appendChild(track);
+    });
+  }
+  function run(){fixEDoc();setTimeout(fixEDoc,300);setTimeout(fixEDoc,1000);setTimeout(fixEDoc,2000);}
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run); else run();
+  setInterval(function(){document.querySelectorAll('.eDoc .edoc-date-part').forEach(function(part){part.textContent=dateText();});},60000);
+})();
+</script>
+
+<!-- v33: keep the native footer state; no custom icon color switching. -->
+<style id="banner-offscreen-preparation">
+/* Continuation is a real part of the ticker track, outside the viewport.
+   It is invisible to the user until it enters the clipped banner. */
+.kalyna-card-banner .kalyna-marquee,
+.date-card-banner .date-card-track,
+.eDoc .edoc-date-track{
+  position:relative;
+  overflow:visible!important;
+}
+.kalyna-card-banner, .date-card-banner, .eDoc .line1.marquee.edoc-date-fixed{
+  clip-path:inset(0);
+}
+</style>
+<script id="banner-offscreen-preparation-script">
+(function(){
+  function prepare(){
+    document.querySelectorAll('.kalyna-card-banner .kalyna-marquee, .date-card-banner .date-card-track, .eDoc .edoc-date-track').forEach(function(track){
+      track.setAttribute('aria-hidden','true');
+    });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',prepare); else prepare();
+  setTimeout(prepare,500);
+})();
+</script>
+
+<style id="edoc-banner-text-only-final-fix">
+/* On inactive єДокумент cards keep the green banner itself visible; hide only the moving text. */
+.documentSlider .swiper-slide:not(.swiper-slide-active) .eDoc .line1.marquee.edoc-date-fixed {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+.documentSlider .swiper-slide:not(.swiper-slide-active) .eDoc .line1.marquee.edoc-date-fixed .edoc-date-track {
+  visibility: hidden !important;
+  opacity: 0 !important;
+  animation-play-state: paused !important;
+}
+.documentSlider .swiper-slide.swiper-slide-active .eDoc .line1.marquee.edoc-date-fixed {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+.documentSlider .swiper-slide.swiper-slide-active .eDoc .line1.marquee.edoc-date-fixed .edoc-date-track {
+  visibility: visible !important;
+  opacity: 1 !important;
+  animation-play-state: running !important;
+}
+</style>
+
+
+<style id="edoc-final-behavior-v2">
+/* FINAL: the green єДокумент strip always stays visible. Only its text is toggled. */
+.documentSlider .swiper-slide .eDoc .line1.marquee.edoc-date-fixed{
+  visibility:visible!important;
+  opacity:1!important;
+  display:block!important;
+  overflow:hidden!important;
+  clip-path:inset(0)!important;
+  -webkit-clip-path:inset(0)!important;
+}
+.documentSlider .swiper-slide .eDoc .line1.marquee.edoc-date-fixed .edoc-date-track{
+  animation:edoc-date-scroll-v2 90s linear infinite!important;
+  animation-play-state:paused!important;
+  visibility:hidden!important;
+  opacity:0!important;
+}
+.documentSlider .swiper-slide .eDoc .line1.marquee.edoc-date-fixed.edoc-banner-visible .edoc-date-track{
+  animation-duration:90s!important;
+  animation-play-state:running!important;
+  visibility:visible!important;
+  opacity:1!important;
+}
+</style>
+
+
+<!-- FINAL FIX: banner text never disappears while switching document cards. -->
+<style id="banner-text-never-disappear-final">
+  .documentSlider .swiper-slide .line1.marquee,
+  .documentSlider .swiper-slide .line2.marquee,
+  .documentSlider .swiper-slide .date-card-banner,
+  .documentSlider .swiper-slide .edoc-date-fixed,
+  .documentSlider .swiper-slide .kalyna-card-banner {
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .documentSlider .swiper-slide .line1.marquee .edoc-date-track,
+  .documentSlider .swiper-slide .line2.marquee .kalyna-marquee,
+  .documentSlider .swiper-slide .date-card-banner .date-card-track,
+  .documentSlider .swiper-slide .edoc-date-fixed .edoc-date-track,
+  .documentSlider .swiper-slide .kalyna-card-banner .kalyna-marquee {
+    visibility: visible !important;
+    opacity: 1 !important;
+    animation-play-state: running !important;
+  }
+
+  .documentSlider .swiper-slide .edoc-date-track.edoc-halfway-hidden {
+    visibility: visible !important;
+    opacity: 1 !important;
+    animation-play-state: running !important;
+  }
+</style>
+
+
+
+<!-- v90: One icon layer, transparent outside each vector-drawn image. Do not change Дія.AI. -->
+<style id="bottom-nav-icons-v90">
+.footer > [data-index="1"] .footer-icon,
+.footer > [data-index="2"] .footer-icon,
+.footer > [data-index="4"] .footer-icon,
+.footer > [data-index="5"] .footer-icon {
+  background:transparent!important;
+  background-image:none!important;
+  box-shadow:none!important;
+  border:0!important;
+  transform:none!important;
+}
+.footer > [data-index="1"] .footer-icon img,
+.footer > [data-index="2"] .footer-icon img,
+.footer > [data-index="4"] .footer-icon img,
+.footer > [data-index="5"] .footer-icon img {
+  display:block!important;
+  width:28px!important;
+  height:28px!important;
+  object-fit:contain!important;
+  background:transparent!important;
+  filter:none!important;
+  -webkit-filter:none!important;
+  opacity:1!important;
+  mix-blend-mode:normal!important;
+  transition:none!important;
+}
+</style>
+
+<style id="v131-ios-qr-nav-fix">
+/* v131: iPhone QR sizing + reliable bottom-tab switching */
+.qrcodeBlock{height:100%;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:22px 18px 26px}
+.qrcodeBlock>span:first-child{display:block;text-align:center;width:100%;font-size:18px;color:#9b9b9f;font-weight:600;margin:0 0 18px}
+.qrcodeBlock .qrshBlock{width:100%;display:flex;align-items:center;justify-content:center;flex:1 1 auto;min-height:0}
+.qrcodeBlock .qrcode.changeCode{width:min(68vw,300px);height:min(68vw,300px);max-width:300px;max-height:300px;display:flex;align-items:center;justify-content:center;margin:0 auto;overflow:hidden}
+.qrcodeBlock .qrcode.changeCode>img,.qrcodeBlock .qrcode.changeCode>canvas,.qrcodeBlock .qrcode.changeCode>svg,.qrcodeBlock .qrcode.changeCode img,.qrcodeBlock .qrcode.changeCode canvas,.qrcodeBlock .qrcode.changeCode svg{width:100%!important;height:100%!important;max-width:100%!important;max-height:100%!important;object-fit:contain!important;display:block!important}
+.qrcodeBlock .shText{width:min(74vw,320px);min-height:124px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.qrcodeBlock .shText img,.qrcodeBlock .shText canvas,.qrcodeBlock .shText svg{max-width:100%!important}
+.qrcodeBlock .qrChange{width:100%;display:flex;align-items:flex-end;justify-content:center;gap:36px;margin-top:18px;flex:0 0 auto}
+.qrcodeBlock .qrChange>div{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;min-width:108px;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.qrcodeBlock .qrChange>div>div{width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#e8e8eb}
+.qrcodeBlock .qrChange>div>div img{width:28px;height:28px;object-fit:contain}
+.qrcodeBlock .qrChange>div>span{font-size:19px;line-height:1.1;color:#111;font-weight:500;text-align:center}
+html.ios-device .qrcodeBlock{padding-top:18px!important;padding-bottom:22px!important}
+html.ios-device .qrcodeBlock>span:first-child{margin-bottom:14px!important;font-size:17px!important}
+html.ios-device .qrcodeBlock .qrcode.changeCode{width:min(58vw,250px)!important;height:min(58vw,250px)!important;max-width:250px!important;max-height:250px!important}
+html.ios-device .qrcodeBlock .qrChange{margin-top:14px!important;gap:30px!important}
+html.ios-device .qrcodeBlock .qrChange>div>div{width:56px!important;height:56px!important}
+html.ios-device .qrcodeBlock .qrChange>div>span{font-size:18px!important}
+.footer,.footer *{pointer-events:auto!important}
+</style>
+<!-- v134: old v131 tab handler removed; navigation-fix-v8.js is the single navigation controller -->
+
+
+<style id="v140-gradient-no-jump">
+/* v140 — Android/WebView safe gradient: only transform/opacity are animated.
+   No animated background-position/background-size => no periodic rectangular flashes. */
+html,
+html.ios-device{
+  background:#dbe8ef !important;
+  background-color:#dbe8ef !important;
+}
+body.bg-start,
+html.ios-device body.bg-start{
+  background:transparent !important;
+  background-image:none !important;
+  animation:none !important;
+  isolation:isolate !important;
+}
+body.bg-start::before,
+body.bg-start::after{
+  content:"" !important;
+  display:block !important;
+  position:fixed !important;
+  pointer-events:none !important;
+  z-index:-2 !important;
+  inset:-38vh -42vw !important;
+  width:auto !important;
+  height:auto !important;
+  border-radius:38% !important;
+  opacity:.88 !important;
+  filter:blur(68px) saturate(108%) !important;
+  -webkit-filter:blur(68px) saturate(108%) !important;
+  background-repeat:no-repeat !important;
+  background-size:100% 100% !important;
+  will-change:transform,opacity !important;
+  backface-visibility:hidden !important;
+  -webkit-backface-visibility:hidden !important;
+  transform:translate3d(0,0,0) scale(1.02) !important;
+}
+body.bg-start::before{
+  background:
+    radial-gradient(circle at 24% 30%, rgba(191,171,230,.98) 0%, rgba(191,171,230,.72) 18%, rgba(191,171,230,.28) 39%, rgba(191,171,230,0) 61%),
+    radial-gradient(circle at 76% 32%, rgba(246,234,137,.98) 0%, rgba(246,234,137,.72) 18%, rgba(246,234,137,.28) 39%, rgba(246,234,137,0) 62%) !important;
+  animation:v140GradientA 18s ease-in-out infinite alternate !important;
+}
+body.bg-start::after{
+  z-index:-1 !important;
+  opacity:.74 !important;
+  background:
+    radial-gradient(circle at 73% 72%, rgba(160,224,235,.96) 0%, rgba(160,224,235,.68) 18%, rgba(160,224,235,.25) 40%, rgba(160,224,235,0) 62%),
+    radial-gradient(circle at 28% 73%, rgba(212,239,213,.96) 0%, rgba(212,239,213,.67) 20%, rgba(212,239,213,.24) 41%, rgba(212,239,213,0) 64%) !important;
+  animation:v140GradientB 22s ease-in-out infinite alternate !important;
+}
+@keyframes v140GradientA{
+  0%{transform:translate3d(-5vw,-3vh,0) scale(1.04) rotate(-1.2deg);opacity:.84}
+  33%{transform:translate3d(4vw,4vh,0) scale(1.08) rotate(.8deg);opacity:.92}
+  66%{transform:translate3d(1vw,9vh,0) scale(1.03) rotate(1.5deg);opacity:.87}
+  100%{transform:translate3d(-3vw,2vh,0) scale(1.09) rotate(-.6deg);opacity:.91}
+}
+@keyframes v140GradientB{
+  0%{transform:translate3d(4vw,6vh,0) scale(1.06) rotate(.8deg);opacity:.70}
+  35%{transform:translate3d(-4vw,-1vh,0) scale(1.10) rotate(-1deg);opacity:.78}
+  70%{transform:translate3d(-1vw,-7vh,0) scale(1.04) rotate(.7deg);opacity:.72}
+  100%{transform:translate3d(5vw,-2vh,0) scale(1.08) rotate(-.5deg);opacity:.77}
+}
+/* Android WebView: keep all animation on compositor and avoid fixed-background repaint bugs. */
+@media (max-width:900px){
+  body.bg-start::before,
+  body.bg-start::after{
+    inset:-30vh -52vw !important;
+    filter:blur(54px) saturate(106%) !important;
+    -webkit-filter:blur(54px) saturate(106%) !important;
+  }
+}
+@media (prefers-reduced-motion:reduce){
+  body.bg-start::before{animation-duration:34s !important;}
+  body.bg-start::after{animation-duration:38s !important;}
+}
+</style>
+
+
+<style id="v142-tab-loader-feed-background">
+/* v142 — 1.0s loader; no loader for Documents/Menu; smaller crest. */
+.diya-tab-loader{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  bottom:calc(68px + env(safe-area-inset-bottom, 0px));
+  z-index:2147483500;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(180deg,#47545d 0%,#4f5c60 48%,#56605a 100%);
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transition:opacity 150ms ease,visibility 0s linear 150ms;
+  transform:translateZ(0);
+  -webkit-transform:translateZ(0);
+}
+.diya-tab-loader.show{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+  transition:opacity 120ms ease,visibility 0s linear 0s;
+}
+.diya-tab-loader-crest{
+  width:48px;
+  height:60px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  animation:diyaCrestPulse 1000ms ease-in-out infinite;
+  will-change:transform,opacity,filter;
+}
+.diya-tab-loader-crest img{
+  width:32px;
+  height:auto;
+  display:block;
+  filter:brightness(0) invert(1) drop-shadow(0 0 10px rgba(255,255,255,.10));
+  -webkit-filter:brightness(0) invert(1) drop-shadow(0 0 10px rgba(255,255,255,.10));
+}
+@keyframes diyaCrestPulse{
+  0%,100%{transform:scale(.91);opacity:.58;filter:blur(.15px)}
+  50%{transform:scale(1.08);opacity:1;filter:blur(0)}
+}
+/* Feed background from the stable/light-blue look: no purple/yellow animated blobs. */
+body.bg-start[data-diya-tab="1"],
+html.ios-device body.bg-start[data-diya-tab="1"]{
+  background:linear-gradient(180deg,#b3d3ea 0%,#b8d8eb 52%,#c2e1df 82%,#d5ead8 100%) !important;
+  background-color:#b7d7ea !important;
+}
+body.bg-start[data-diya-tab="1"]::before,
+body.bg-start[data-diya-tab="1"]::after,
+html.ios-device body.bg-start[data-diya-tab="1"]::before,
+html.ios-device body.bg-start[data-diya-tab="1"]::after{
+  display:none !important;
+  animation:none !important;
+  opacity:0 !important;
+}
+/* The app geometry stays untouched; loader lives below the footer layer. */
+.footer{z-index:2147483647 !important;}
+@media(max-width:900px){
+  .diya-tab-loader-crest img{width:30px;}
+}
+@media(prefers-reduced-motion:reduce){
+  .diya-tab-loader-crest{animation:diyaCrestPulseReduced 1s ease-in-out infinite;}
+  @keyframes diyaCrestPulseReduced{0%,100%{opacity:.65}50%{opacity:1}}
+}
+</style>
+
+</body>
+</html>
+<script>
+(function(){
+  function closeError(){var p=document.getElementById('error-popup');if(p){p.classList.remove('active');p.style.display='none';p.setAttribute('aria-hidden','true');}}
+  document.addEventListener('click',function(e){if(e.target.closest && (e.target.closest('.error-close')||e.target.closest('.error-retry'))) closeError();},true);
+})();
+</script>
+
+<style id="nav-v64-fix">
+.footer{position:fixed!important;left:0!important;right:0!important;bottom:0!important;width:100%!important;min-height:68px!important;padding:6px 8px calc(6px + env(safe-area-inset-bottom,0px))!important;display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:4px!important;align-items:stretch!important;box-sizing:border-box!important;z-index:2147483647!important;pointer-events:auto!important;background:rgba(0,0,0,.96)!important;backdrop-filter:blur(18px)!important;-webkit-backdrop-filter:blur(18px)!important;border-top:1px solid rgba(255,255,255,.12)!important}
+.footer>[data-index]{min-width:0!important;width:auto!important;max-width:none!important;flex:none!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:2px!important;padding:4px 2px!important;border-radius:12px!important;color:#d6d6da!important;font-size:12px!important;font-weight:700!important;line-height:1.05!important;cursor:pointer!important;pointer-events:auto!important;touch-action:manipulation!important;-webkit-tap-highlight-color:transparent!important;position:relative!important;z-index:2!important}
+.footer>[data-index]{color:#8f8f94!important;background:transparent!important}.footer>[data-index].active{color:#fff!important;background:transparent!important}.footer>[data-index].active:after{content:none!important;display:none!important}.footer .footer-icon{width:28px!important;height:28px!important;display:grid!important;place-items:center!important}.footer .footer-icon img{width:25px!important;height:25px!important;object-fit:contain!important;filter:grayscale(1) brightness(.78)!important;opacity:.9!important;transition:filter .18s ease,opacity .18s ease,color .18s ease!important}.footer>[data-index].active .footer-icon img{filter:grayscale(1) brightness(2.15)!important;opacity:1!important}.footer .footer-icon svg{transition:opacity .18s ease,filter .18s ease!important;opacity:.58!important}.footer>[data-index].active .footer-icon svg{opacity:1!important}
+@media(min-width:901px){.footer{padding-left:calc((100% - 760px)/2)!important;padding-right:calc((100% - 760px)/2)!important}.footer>[data-index]{font-size:12px!important}}
+</style>
+<style id="transparent-footer-strip-v1">
+/* Remove the visible/animated strip between the page gradient and bottom navigation.
+   Keep the page gradient itself unchanged and let the footer sit directly over it. */
+.main.active { padding-bottom: 0 !important; }
+.main > .block.block1 > .pre {
+  height: 100% !important;
+  max-height: 100% !important;
+  padding-bottom: 78px !important;
+  box-sizing: border-box !important;
+}
+.footer {
+  margin: 0 !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  background: #000 !important;
+}
+</style>
+
+<style id="active-card-banner-only-fix">
+/* Show and animate banner text only on the currently centered document card. */
+.documentSlider .swiper-slide:not(.swiper-slide-active) .line1.marquee,
+.documentSlider .swiper-slide:not(.swiper-slide-active) .line2.marquee,
+.documentSlider .swiper-slide:not(.swiper-slide-active) .date-card-banner,
+.documentSlider .swiper-slide:not(.swiper-slide-active) .edoc-date-fixed {
+  visibility:hidden!important;
+  opacity:0!important;
+}
+.documentSlider .swiper-slide:not(.swiper-slide-active) .banner-smooth-track,
+.documentSlider .swiper-slide:not(.swiper-slide-active) .date-card-track,
+.documentSlider .swiper-slide:not(.swiper-slide-active) .edoc-date-track,
+.documentSlider .swiper-slide:not(.swiper-slide-active) .kalyna-marquee {
+  animation-play-state:paused!important;
+}
+.documentSlider .swiper-slide.swiper-slide-active .line1.marquee,
+.documentSlider .swiper-slide.swiper-slide-active .line2.marquee,
+.documentSlider .swiper-slide.swiper-slide-active .date-card-banner,
+.documentSlider .swiper-slide.swiper-slide-active .edoc-date-fixed {
+  visibility:visible!important;
+  opacity:1!important;
+}
+.documentSlider .swiper-slide.swiper-slide-active .banner-smooth-track,
+.documentSlider .swiper-slide.swiper-slide-active .date-card-track,
+.documentSlider .swiper-slide.swiper-slide-active .edoc-date-track,
+.documentSlider .swiper-slide.swiper-slide-active .kalyna-marquee {
+  animation-play-state:running!important;
+}
+</style>
+
+
+<style id="edoc-40s-text-only-final">
+/* Final єДокумент override: keep green strip visible, hide only its moving text on inactive cards. */
+.eDoc .line1.marquee.edoc-date-fixed{
+  visibility:visible!important;
+  opacity:1!important;
+  overflow:hidden!important;
+}
+.eDoc .line1.marquee.edoc-date-fixed .edoc-date-track{
+  animation-duration:40s!important;
+  animation-play-state:running!important;
+  visibility:visible!important;
+  opacity:1!important;
+}
+.documentSlider .swiper-slide:not(.swiper-slide-active) .eDoc .line1.marquee.edoc-date-fixed .edoc-date-track{
+  visibility:hidden!important;
+  opacity:0!important;
+  animation-play-state:paused!important;
+}
+.documentSlider .swiper-slide:not(.swiper-slide-active) .eDoc .line1.marquee.edoc-date-fixed{
+  visibility:visible!important;
+  opacity:1!important;
+}
+.documentSlider .swiper-slide.swiper-slide-active .eDoc .line1.marquee.edoc-date-fixed,
+.documentSlider .swiper-slide.swiper-slide-active .eDoc .line1.marquee.edoc-date-fixed .edoc-date-track{
+  visibility:visible!important;
+  opacity:1!important;
+  animation-play-state:running!important;
+}
+</style>
+
+
+
+<style id="edoc-final-43s-halfway-fix">
+/* Final єДокумент behavior: green strip is always present; only text is hidden.
+   Text is removed halfway through a slide transition. */
+.documentSlider .swiper-slide .eDoc .line1.marquee.edoc-date-fixed{
+  visibility:visible!important;
+  opacity:1!important;
+  overflow:hidden!important;
+}
+.documentSlider .swiper-slide .eDoc .line1.marquee.edoc-date-fixed .edoc-date-track{
+  visibility:visible!important;
+  opacity:1!important;
+  animation-duration:43s!important;
+}
+.documentSlider .swiper-slide .eDoc .line1.marquee.edoc-date-fixed .edoc-date-track.edoc-halfway-hidden{
+  visibility:hidden!important;
+  opacity:0!important;
+  animation-play-state:paused!important;
+}
+</style>
+
+
+
+<style id="edoc-final-speed-only">
+/* FINAL OVERRIDE: єДокумент text is intentionally very slow; green strip never hides. */
+.eDoc .line1.marquee.edoc-date-fixed {
+  overflow: hidden !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+.eDoc .line1.marquee.edoc-date-fixed .edoc-date-track {
+  animation-duration: 180s !important;
+  animation-timing-function: linear !important;
+}
+.documentSlider .swiper-slide:not(.swiper-slide-active) .eDoc .line1.marquee.edoc-date-fixed .edoc-date-track {
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+.documentSlider .swiper-slide.swiper-slide-active .eDoc .line1.marquee.edoc-date-fixed {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+.documentSlider .swiper-slide.swiper-slide-active .eDoc .line1.marquee.edoc-date-fixed .edoc-date-track {
+  visibility: visible !important;
+  opacity: 1 !important;
+  animation-duration: 180s !important;
+}
+</style>
+
+
+
+<style id="edoc-real-banner-speed-final">
+/* FINAL FIX: the visible єДокумент banner is .line2, not .line1.
+   Keep the green strip visible and slow only its moving text. */
+.documentSlider .swiper-slide .eDoc .content.front .line2.marquee {
+  position: relative !important;
+  overflow: hidden !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  clip-path: inset(0) !important;
+  -webkit-clip-path: inset(0) !important;
+  contain: paint !important;
+  isolation: isolate !important;
+}
+.documentSlider .swiper-slide .eDoc .content.front .line2.marquee .kalyna-marquee {
+  display: flex !important;
+  width: max-content !important;
+  white-space: nowrap !important;
+  animation: edoc-real-banner-scroll 43s linear infinite !important;
+  animation-duration: 43s !important;
+  animation-timing-function: linear !important;
+  will-change: transform !important;
+}
+.documentSlider .swiper-slide:not(.swiper-slide-active) .eDoc .content.front .line2.marquee .kalyna-marquee {
+  visibility: hidden !important;
+  opacity: 0 !important;
+  animation-play-state: paused !important;
+}
+.documentSlider .swiper-slide.swiper-slide-active .eDoc .content.front .line2.marquee .kalyna-marquee {
+  visibility: visible !important;
+  opacity: 1 !important;
+  animation-play-state: running !important;
+  animation-duration: 43s !important;
+}
+@keyframes edoc-real-banner-scroll {
+  from { transform: translate3d(0,0,0); }
+  to   { transform: translate3d(-50%,0,0); }
+}
+</style>
+
+<style id="mobile-performance-v2">
+/* Performance-only overrides for phones. Visual geometry/colors stay the same. */
+@media (max-width: 900px) {
+  /* The footer is fully opaque (#000), so backdrop blur cannot be seen but still costs GPU time. */
+  .footer {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    transform: translateZ(0);
+  }
+
+  /* Keep compositor layers only where motion can actually happen. */
+  .documentSlider .swiper-slide { will-change: auto !important; }
+  .documentSlider .swiper-slide-active,
+  .documentSlider .swiper-slide-prev,
+  .documentSlider .swiper-slide-next { will-change: transform !important; }
+
+  .documentSlider .swiper-slide:not(.swiper-slide-active) .banner-smooth-track,
+  .documentSlider .swiper-slide:not(.swiper-slide-active) .date-card-track,
+  .documentSlider .swiper-slide:not(.swiper-slide-active) .edoc-date-track,
+  .documentSlider .swiper-slide:not(.swiper-slide-active) .kalyna-marquee {
+    will-change: auto !important;
+  }
+  .documentSlider .swiper-slide-active .banner-smooth-track,
+  .documentSlider .swiper-slide-active .date-card-track,
+  .documentSlider .swiper-slide-active .edoc-date-track,
+  .documentSlider .swiper-slide-active .kalyna-marquee {
+    will-change: transform !important;
+  }
+
+  /* Same blob path/colors as before, but movement uses compositor transforms instead of top/left layout. */
+  .bg-start::before {
+    top: -20vw !important; left: -15vw !important;
+    background: #c9b3e8 !important;
+    animation: blob1anim-mobile 10s ease-in-out infinite !important;
+  }
+  .bg-start::after {
+    bottom: -20vw !important; right: -15vw !important;
+    background: #f0e8a0 !important;
+    animation: blob2anim-mobile 10s ease-in-out infinite !important;
+  }
+}
+@keyframes blob1anim-mobile {
+  0%   { background-color:#c9b3e8; transform:translate3d(0,0,0); }
+  25%  { background-color:#b3c8f0; transform:translate3d(10vw,10vw,0); }
+  50%  { background-color:#f0b3d8; transform:translate3d(5vw,-5vw,0); }
+  75%  { background-color:#b3d8f0; transform:translate3d(-5vw,5vw,0); }
+  100% { background-color:#c9b3e8; transform:translate3d(0,0,0); }
+}
+@keyframes blob2anim-mobile {
+  0%   { background-color:#f0e8a0; transform:translate3d(0,0,0); }
+  25%  { background-color:#b8f0c8; transform:translate3d(-10vw,-10vw,0); }
+  50%  { background-color:#f0c8b8; transform:translate3d(5vw,5vw,0); }
+  75%  { background-color:#e8f0a0; transform:translate3d(-5vw,-5vw,0); }
+  100% { background-color:#f0e8a0; transform:translate3d(0,0,0); }
+}
+</style>
+
+
+<style id="mobile-final-v86">
+/* Final source-order override: selected bottom icon is reversed exactly like the
+   phone reference, and horizontal document gestures remain owned by Swiper. */
+.footer > [data-index] .footer-icon{
+  width:28px!important;height:28px!important;border-radius:7px!important;
+  background:transparent!important;box-shadow:none!important;border:0!important;
+  transition:background-color .14s ease,transform .14s ease!important;
+}
+.footer > [data-index] .footer-icon img{
+  filter:none!important;opacity:.68!important;
+  transition:opacity .14s ease!important;
+}
+.footer > [data-index="3"].active .footer-icon{
+  background:#fff!important;transform:translateZ(0)!important;
+}
+.footer > [data-index].active .footer-icon img{
+  filter:none!important;opacity:1!important;
+}
+.footer > [data-index]:not(.active) .footer-icon svg{opacity:.68!important}
+.footer > [data-index].active .footer-icon svg{opacity:1!important}
+.footer > [data-index].active > span:last-child{color:#fff!important;font-weight:600!important}
+.footer > [data-index]:not(.active) > span:last-child{color:#8f8f94!important;font-weight:500!important}
+.footer-ai-tab.active .footer-icon svg rect{fill:#fff!important;stroke:#fff!important}
+.footer-ai-tab.active .footer-icon svg path{fill:#000!important;stroke:#000!important}
+.footer-ai-tab:not(.active) .footer-icon svg rect{fill:transparent!important;stroke:#fff!important}
+.footer-ai-tab:not(.active) .footer-icon svg path{fill:#fff!important;stroke:none!important}
+
+.main > .block.block2,.block2.active,.documentSlider,.documentSlider .swiper-wrapper,
+.documentSlider .swiper-slide,.documentSlider .slider,.documentSlider .content.front,
+.documentSlider .content.back{touch-action:pan-y!important}
+.documentSlider{overscroll-behavior-x:contain!important;-webkit-user-select:none!important;user-select:none!important}
+.documentSlider .swiper-wrapper{will-change:transform!important}
+.documentSlider .swiper-slide{
+  transition:transform 360ms cubic-bezier(.22,.61,.36,1),opacity 360ms ease!important;
+  -webkit-transition:-webkit-transform 360ms cubic-bezier(.22,.61,.36,1),opacity 360ms ease!important;
+}
+.documentSlider.is-touching .swiper-slide{transition-duration:0ms!important;-webkit-transition-duration:0ms!important}
+.documentSlider .swiper-slide:last-child,.documentSlider .swiper-slide:last-child .slider,
+.documentSlider .swiper-slide:last-child .slider>div{touch-action:pan-y!important}
+
+.documentSlider .osvita .line1.marquee{
+  width:calc(100% + 30px)!important;max-width:calc(100% + 30px)!important;
+  margin:auto -15px 5px -15px!important;left:0!important;right:auto!important;
+  box-sizing:border-box!important;transform:none!important;-webkit-transform:none!important;flex:0 0 auto!important;
+}
+.documentSlider .osvita .date-card-banner{
+  width:calc(100% + 30px)!important;max-width:calc(100% + 30px)!important;
+  margin:auto -15px 5px -15px!important;left:0!important;right:auto!important;
+  box-sizing:border-box!important;transform:none!important;-webkit-transform:none!important;flex:0 0 auto!important;
+  overflow:hidden!important;
+}
+.documentSlider .osvita .date-card-banner .date-card-track{
+  width:max-content!important;min-width:max-content!important;max-width:none!important;
+}
+.documentSlider .content.front .banner-smooth-viewport{
+  width:100%!important;min-width:100%!important;max-width:100%!important;overflow:hidden!important;
+}
+.documentSlider .content.front .banner-smooth-track,
+.documentSlider .content.front .banner-smooth-part{
+  width:max-content!important;min-width:max-content!important;max-width:none!important;
+}
+.documentSlider .swiper-slide:not(.swiper-slide-active) .banner-smooth-track,
+.documentSlider .swiper-slide:not(.swiper-slide-active) .date-card-track,
+.documentSlider .swiper-slide:not(.swiper-slide-active) .edoc-date-track,
+.documentSlider .swiper-slide:not(.swiper-slide-active) .kalyna-marquee{
+  animation-play-state:paused!important;will-change:auto!important;
+}
+.documentSlider .swiper-slide.swiper-slide-active .banner-smooth-track,
+.documentSlider .swiper-slide.swiper-slide-active .date-card-track,
+.documentSlider .swiper-slide.swiper-slide-active .edoc-date-track,
+.documentSlider .swiper-slide.swiper-slide-active .kalyna-marquee{
+  animation-play-state:running!important;will-change:transform!important;
+}
+
+@media(max-width:380px){
+  .footer>[data-index]{font-size:10.5px!important;gap:1px!important}
+  .footer>[data-index] .footer-icon{width:27px!important;height:27px!important}
+}
+</style>
+
+<style id="iphone-fullscreen-footer-v96">
+/* iOS only: do not size the application shell with visualViewport.height.
+   In an installed iPhone PWA the visual viewport may stop above the bottom
+   home-indicator area, so a fixed footer tied to it leaves a blank strip.
+   Size the shell to the actual standalone screen and anchor the footer INSIDE
+   that shell. The safe-area is padding inside the footer, not an offset below. */
+html.ios-device {
+  --ios-app-height: 100dvh;
+  height: var(--ios-app-height) !important;
+  min-height: var(--ios-app-height) !important;
+  background-color: #f5f5f8 !important;
+  overflow: hidden !important;
+}
+html.ios-device body.bg-start {
+  height: var(--ios-app-height) !important;
+  min-height: var(--ios-app-height) !important;
+  margin: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  background-color: #f5f5f8 !important;
+  overflow: hidden !important;
+}
+html.ios-device .main.active {
+  position: fixed !important;
+  top: env(safe-area-inset-top, 0px) !important;
+  right: 0 !important;
+  bottom: auto !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: calc(var(--ios-app-height) - env(safe-area-inset-top, 0px)) !important;
+  max-height: none !important;
+  min-height: 0 !important;
+  padding-bottom: 0 !important;
+  box-sizing: border-box !important;
+}
+html.ios-device .main.active > .footer {
+  position: absolute !important;
+  top: auto !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  margin: 0 !important;
+  padding-bottom: calc(6px + env(safe-area-inset-bottom, 0px)) !important;
+  box-sizing: border-box !important;
+}
+html.ios-device .block1 > .textVizit {
+  align-items: center;
+  flex-wrap: nowrap;
+  min-width: 0;
+  max-width: 100%;
+  white-space: nowrap;
+  line-height: 1.18;
+  padding-top: 3px;
+}
+html.ios-device .block1 > .textVizit > span:first-child { flex-shrink: 0; }
+html.ios-device .block1 > .textVizit > #textName {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+html.ios-device .block1 > .textVizit > .greeting-hand { flex-shrink: 0; }
+</style>
+
+<style id="v139-safe-video-gradient">
+/* v139 — reference-like animated gradient that NEVER changes application geometry. */
+html{
+  background:#d5e5ef !important;
+  background-color:#d5e5ef !important;
+}
+body.bg-start{
+  background-color:#d5e5ef !important;
+  background-image:
+    radial-gradient(circle at 12% 12%, rgba(193,174,229,.96) 0%, rgba(193,174,229,.76) 20%, rgba(193,174,229,.26) 43%, rgba(193,174,229,0) 64%),
+    radial-gradient(circle at 78% 18%, rgba(244,233,141,.96) 0%, rgba(244,233,141,.72) 22%, rgba(244,233,141,.22) 45%, rgba(244,233,141,0) 66%),
+    radial-gradient(circle at 82% 82%, rgba(166,226,232,.94) 0%, rgba(166,226,232,.70) 22%, rgba(166,226,232,.22) 46%, rgba(166,226,232,0) 68%),
+    radial-gradient(circle at 16% 78%, rgba(217,235,215,.92) 0%, rgba(217,235,215,.66) 24%, rgba(217,235,215,.20) 47%, rgba(217,235,215,0) 68%),
+    linear-gradient(135deg,#d8e4f0 0%,#dfeaf1 46%,#e8eedc 100%) !important;
+  background-size:145% 145%,145% 145%,145% 145%,145% 145%,100% 100% !important;
+  background-repeat:no-repeat !important;
+  background-attachment:fixed !important;
+  animation:v139GradientFlow 10s cubic-bezier(.45,0,.55,1) infinite !important;
+}
+body.bg-start::before,
+body.bg-start::after{
+  content:none !important;
+  display:none !important;
+  animation:none !important;
+  filter:none !important;
+  -webkit-filter:none !important;
+}
+@keyframes v139GradientFlow{
+  0%,100%{
+    background-position:-12% -16%, 112% -12%, 112% 112%, -12% 112%, 0 0;
+    background-size:142% 142%,146% 146%,143% 143%,148% 148%,100% 100%;
+  }
+  25%{
+    background-position:34% 12%, 58% 54%, 64% 108%, -18% 55%, 0 0;
+    background-size:150% 150%,140% 140%,149% 149%,141% 141%,100% 100%;
+  }
+  50%{
+    background-position:86% 88%, 94% 18%, 2% 62%, 48% -14%, 0 0;
+    background-size:144% 144%,150% 150%,141% 141%,151% 151%,100% 100%;
+  }
+  75%{
+    background-position:18% 76%, 4% 46%, 74% 14%, 104% 54%, 0 0;
+    background-size:151% 151%,143% 143%,150% 150%,142% 142%,100% 100%;
+  }
+}
+/* iOS rules below intentionally set ONLY the background, never layout. */
+html.ios-device,
+html.ios-device body.bg-start{
+  background-color:#d5e5ef !important;
+}
+html.ios-device body.bg-start{
+  background-image:
+    radial-gradient(circle at 12% 12%, rgba(193,174,229,.96) 0%, rgba(193,174,229,.76) 20%, rgba(193,174,229,.26) 43%, rgba(193,174,229,0) 64%),
+    radial-gradient(circle at 78% 18%, rgba(244,233,141,.96) 0%, rgba(244,233,141,.72) 22%, rgba(244,233,141,.22) 45%, rgba(244,233,141,0) 66%),
+    radial-gradient(circle at 82% 82%, rgba(166,226,232,.94) 0%, rgba(166,226,232,.70) 22%, rgba(166,226,232,.22) 46%, rgba(166,226,232,0) 68%),
+    radial-gradient(circle at 16% 78%, rgba(217,235,215,.92) 0%, rgba(217,235,215,.66) 24%, rgba(217,235,215,.20) 47%, rgba(217,235,215,0) 68%),
+    linear-gradient(135deg,#d8e4f0 0%,#dfeaf1 46%,#e8eedc 100%) !important;
+}
+@media (prefers-reduced-motion:reduce){
+  body.bg-start{animation-duration:22s !important;}
+}
+</style>

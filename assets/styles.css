@@ -1,0 +1,3548 @@
+.forgotPassword {
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.bg {
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+html,
+body {
+    overflow-x: hidden;
+    overflow-y: hidden;
+    overscroll-behavior: none;
+    overflow: hidden
+}
+
+* :not(input) {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none
+}
+
+
+.update-btn {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 24px;
+    font-size: 16px;
+    font-weight: 300;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.update-btn:hover {
+    background-color: #333;
+    transform: scale(1.05);
+}
+
+.error-popup {
+    position: fixed !important;
+    inset: 0 !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: none !important;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2147483647 !important;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    overflow: hidden !important;
+}
+
+/* .bg-start > * задаёт position:relative всем прямым детям.
+   Для popup это недопустимо: он должен быть отдельным fullscreen-слоем. */
+.bg-start > #error-popup,
+body > #error-popup {
+    position: fixed !important;
+    inset: 0 !important;
+    width: auto !important;
+    height: auto !important;
+}
+
+.error-popup.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.error-content {
+    background: white;
+    border-radius: 20px;
+    padding: 30px 25px;
+    text-align: center;
+    max-width: 320px;
+    width: 90%;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.error-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #aaa;
+    cursor: pointer;
+}
+
+.sad-face {
+    font-size: 56px;
+    margin-bottom: 16px;
+}
+
+.error-content h3 {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0 0 20px 0;
+    color: #000;
+}
+
+.error-retry {
+    padding: 12px 32px;
+    background: white;
+    color: black;
+    border: 2px solid black;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.error-retry:hover {
+    background: black;
+    color: white;
+}
+
+.update-btn:active {
+    transform: scale(0.95);
+}
+
+.error-icon {
+    background-color: black;
+    border-radius: 50%;
+    padding: 8px;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 10px;
+}
+
+.error-icon img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+}
+
+.error-icon svg {
+    width: 18px;
+    height: 18px;
+}
+
+.no-internet-modal {
+    position: fixed !important;
+    inset: 0 !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: none !important;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2147483647 !important;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    overflow: hidden !important;
+}
+
+.bg-start > #no-internet-popup,
+body > #no-internet-popup {
+    position: fixed !important;
+    inset: 0 !important;
+    width: auto !important;
+    height: auto !important;
+}
+
+.no-internet-modal.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.no-internet-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    max-width: 300px;
+    width: 90%;
+}
+
+.sad-emoji {
+    font-size: 40px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.no-internet-content p {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.4;
+    margin: 0;
+}
+
+@font-face {
+    font-family: 'e-UkraineHead';
+    font-weight: 500;
+    font-style: normal;
+    src: url('../assets/e-Ukraine-Regular.woff') format('woff');
+
+}
+
+.nonono {
+    text-align: center;
+}
+
+
+
+
+.diyalogo {
+    background-image: url(../assets/diya.svg);
+    width: 75px;
+    height: 75px;
+    z-index: 234234;
+    position: absolute;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'e-UkraineHead';
+    box-sizing: border-box;
+
+}
+
+html,
+body {
+    overflow: hidden;
+}
+
+@property --blob1 {
+    syntax: '<color>';
+    inherits: false;
+    initial-value: #c9b3e8;
+}
+@property --blob2 {
+    syntax: '<color>';
+    inherits: false;
+    initial-value: #f0e8a0;
+}
+
+.bg-start {
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    background: #f5f5f8;
+    display: flex;
+    align-items: center;
+    position: relative;
+    justify-content: center;
+}
+
+.bg-start::before,
+.bg-start::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Верхнее пятно — фиолетовый/розовый/голубой */
+.bg-start::before {
+    width: 75vw;
+    height: 75vw;
+    top: -20vw;
+    left: -15vw;
+    background: var(--blob1);
+    animation: blob1anim 10s ease-in-out infinite;
+}
+
+/* Нижнее пятно — жёлтый/зелёный/розовый */
+.bg-start::after {
+    width: 75vw;
+    height: 75vw;
+    bottom: -20vw;
+    right: -15vw;
+    background: var(--blob2);
+    animation: blob2anim 10s ease-in-out infinite;
+}
+
+.bg-start > * {
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes blob1anim {
+    0%   { --blob1: #c9b3e8; top: -20vw; left: -15vw; }
+    25%  { --blob1: #b3c8f0; top: -10vw; left: -5vw;  }
+    50%  { --blob1: #f0b3d8; top: -25vw; left: -10vw; }
+    75%  { --blob1: #b3d8f0; top: -15vw; left: -20vw; }
+    100% { --blob1: #c9b3e8; top: -20vw; left: -15vw; }
+}
+
+@keyframes blob2anim {
+    0%   { --blob2: #f0e8a0; bottom: -20vw; right: -15vw; }
+    25%  { --blob2: #b8f0c8; bottom: -10vw; right: -5vw;  }
+    50%  { --blob2: #f0c8b8; bottom: -25vw; right: -20vw; }
+    75%  { --blob2: #e8f0a0; bottom: -15vw; right: -10vw; }
+    100% { --blob2: #f0e8a0; bottom: -20vw; right: -15vw; }
+}
+
+
+
+
+
+
+.swiper-pagination {
+    position: unset;
+}
+
+.swiper-pagination>.swiper-pagination-bullet {
+    background: #fff;
+    opacity: 0.4;
+}
+
+.swiper-pagination>.swiper-pagination-bullet-active {
+    background: #fff;
+    opacity: 1;
+}
+
+.swiper-pagination2 {
+    position: unset;
+    text-align: center;
+}
+
+.swiper-pagination2>.swiper-pagination-bullet {
+    background: #a1a1a1;
+}
+
+.swiper-pagination2>.swiper-pagination-bullet-active {
+    background: black;
+}
+
+.start-div {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    background: linear-gradient(145deg, #b2d2e9 40%, #dbefd6 70%);
+}
+
+.start-div.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.start-div>h1 {
+    font-weight: 300;
+    font-size: 26px;
+}
+
+.start-block {
+    display: grid;
+    grid-template-columns: repeat(3, 88px);
+    grid-template-rows: repeat(4, 88px);
+    gap: 20px;
+    justify-content: center;
+    margin: 40px auto 0;
+    width: fit-content;
+    margin-bottom: 20px;
+}
+
+/* Все круглые элементы */
+.start-block>button,
+.start-block>.biometry-btn {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    border: none;
+    background: #eef7f2;
+    font-size: 34px;
+    font-weight: 300;
+    color: #000 !important;
+    /* ← чёрные цифры навсегда */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Биометрия — полностью видно, без обрезки */
+.biometry-btn {
+    background: transparent !important;
+    padding: 16px;
+    /* отступ внутри круга */
+    box-sizing: border-box;
+}
+
+.biometry-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+
+    pointer-events: none;
+    border-radius: 0 !important;
+}
+
+/* Ноль — обычная кнопка */
+.zero-btn {
+    background: #eef7f2 !important;
+}
+
+/* Удалить — прозрачный фон, чёрная стрелка */
+.delete-btn {
+    background: transparent !important;
+    color: #000 !important;
+}
+
+.start-vhod {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.start-vhod>div {
+    background: #f4f6f1;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.start-vhod>div.active {
+    background: black;
+}
+
+.main {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ===== Нижня навігація: 5 вкладок як у відео ===== */
+.footer {
+    z-index: 20;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    box-sizing: border-box;
+    color: #fff;
+    background: #000;
+    padding: 10px 12px calc(10px + env(safe-area-inset-bottom, 0px));
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 4px;
+}
+
+.footer > button {
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4px;
+    padding: 2px 0;
+    margin: 0;
+    border-radius: 0;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform .18s ease, opacity .18s ease;
+}
+
+.footer > button:active { transform: scale(.94); }
+
+.footer > button > span:last-child {
+    font-size: 12px;
+    line-height: 1.15;
+    color: #fff;
+    white-space: nowrap;
+    font-weight: 500;
+}
+
+.footer-icon {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 7px;
+    background: transparent;
+    transition: background .18s ease, transform .18s ease;
+}
+
+.footer-icon img {
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+    display: block;
+    transition: filter .18s ease, transform .18s ease;
+}
+
+ .footer-icon svg {
+    width: 28px;
+    height: 28px;
+    display: block;
+    overflow: visible;
+}
+
+/* Нижня навігація: неактивна іконка — контур, активна — біла заливка з чорними деталями. */
+.footer > button {
+    appearance: none;
+    -webkit-appearance: none;
+    border: 0;
+    outline: 0;
+    font: inherit;
+    text-align: center;
+}
+.footer > button .nav-svg { color: #fff; }
+.footer > button .nav-stroke {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+.footer > button .nav-fill { display: none; fill: #fff; }
+.footer > button.active .nav-stroke { display: none; }
+.footer > button.active .nav-fill { display: block; }
+.footer > button.active .ai-star,
+.footer > button.active .service-star { fill: #000; }
+.footer > button:not(.active) .ai-star,
+.footer > button:not(.active) .service-star {
+    display: block;
+    fill: none;
+    stroke: #fff;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+.footer > button:not(.active) .ai-fill,
+.footer > button:not(.active) .service-star { display: block; }
+.footer > button:not(.active) .ai-fill { display: none; }
+.footer > button:not(.active) .service-star { display: block; }
+
+/* Активна вкладка: білий квадрат із чорним значком, як у відео. */
+.footer > button.active .footer-icon {
+    background: transparent !important;
+    transform: none;
+    box-shadow: none !important;
+    border: 0 !important;
+}
+.footer > button.active > span:last-child { color: #fff; font-weight: 600; }
+.footer > button.active .footer-icon { background: transparent !important; }
+.footer > button:not(.active) .footer-icon { background: transparent !important; box-shadow: none !important; border: 0 !important; }
+.footer > button:not(.active) > span:last-child { color: #fff; font-weight: 500; }
+
+.footer-ai-tab { color: #fff; position: relative; }
+.footer-ai-tab span:last-child { color: #fff; }
+
+.main.active {
+    opacity: 1;
+    pointer-events: all;
+    overflow: visible;
+}
+
+.block {
+    display: none;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow: hidden;
+}
+
+@keyframes footerPageIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.block.active {
+    display: block;
+    overflow: visible;
+    animation: footerPageIn .22s ease both;
+}
+
+
+.textVizit {
+    display: flex;
+    font-size: 28px;
+    font-weight: 300;
+    gap: 7px;
+    width: 100%;
+    margin-top: 15px;
+
+    margin-bottom: 15px;
+}
+.greeting-hand {
+    background: transparent !important;
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    vertical-align: middle;
+    margin-left: 5px;
+}
+
+.block1 {
+    padding: 0 25px;
+}
+
+.block2.active {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: visible !important;
+}
+
+.block2 {
+    overflow: visible !important;
+}
+
+.pre {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.nezlamnist {
+    background: #d9eaf4;
+    padding: 15px;
+    border-radius: 12px;
+    width: 100%;
+}
+
+.nezlamnist>h2 {
+    font-weight: 300;
+    font-size: 20px;
+}
+
+.nezlamnist>p {
+    font-size: 12px;
+    margin-top: 13px;
+}
+
+.nezlamnist-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.lightSrc {
+    width: 55px;
+}
+
+.arrowSvg {
+    padding: 6px;
+    background-color: black;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.arrowSvg>img {
+    width: 14px;
+    height: 14px;
+    object-fit: contain;
+    transform: rotate(180deg);
+    filter: brightness(0) invert(1);
+}
+
+.threeButtons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 30px 0;
+    width: 100%;
+}
+
+.threeButtons>div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100px;
+}
+
+.threeButtons>div>span {
+    font-size: 13px;
+    margin-top: 7px;
+    word-break: keep-all;
+}
+
+.threeButtons>div>div {
+    background: black;
+    padding: 18px;
+    border-radius: 35%;
+    display: flex;
+    align-items: center;
+}
+
+.threeButtons>div>div>img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+}
+
+#buttonLoad {
+    cursor: pointer;
+}
+
+.aod {
+    width: 100%;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.aod>img {
+    width: 100%;
+    border-radius: 17px;
+}
+
+.aod1 {
+    width: 100%;
+    cursor: pointer;
+
+}
+
+.aod1>img {
+    width: 100%;
+    border-radius: 15px;
+}
+
+.popular_poslugu_block {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 13px;
+    background: #fff;
+}
+
+.popular_poslugu_block>div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    border-bottom: 2px solid #e9edee;
+}
+
+.popular_poslugu {
+    align-self: flex-start;
+    margin: 30px 0 15px 0;
+}
+
+.popular_none {
+    border: none !important;
+}
+
+.popular_poslugu_block>div>span {
+    font-weight: 300;
+    font-size: 15px;
+}
+
+.slider {
+    width: 95%;
+    transform-style: preserve-3d;
+    transition: transform 0.4s;
+    position: relative;
+    min-width: 0;
+    height: 100%;
+}
+
+.front {
+    position: fixed;
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.back {
+    position: relative;
+    background: #fff;
+}
+
+.front,
+.back {
+    width: 100%;
+    backface-visibility: hidden;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+
+    padding: 20px 15px;
+    border-radius: 20px;
+    -webkit-backface-visibility: hidden;
+    height: 100%;
+}
+
+.back.flipped {
+    transform: rotateY(0);
+}
+
+.back {
+    transform: rotateY(180deg);
+}
+
+.moreInfo {
+    position: absolute;
+    bottom: 20px;
+    right: 15px;
+}
+
+.front>h1 {
+    font-size: 22px;
+    font-weight: 300;
+    margin-bottom: 15px;
+}
+
+.fioBlock {
+    margin-right: 30px;
+    position: relative;
+}
+
+.fioBlock>h2 {
+    font-size: 21px;
+    font-weight: 300;
+    margin-top: 10px;
+    width: 0;
+}
+
+.dataBlock {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+.dataBlock>img {
+    width: 135px;
+    height: 180px;
+    border-radius: 12px;
+}
+
+.dataInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.dataInfo>img {
+    width: 100px;
+    object-fit: contain;
+}
+
+.dataInfo>div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    width: 0;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.notification {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 10px 10px 10px 10px;
+    padding-top: env(safe-area-inset-top,
+            10px);
+    /* 10px fallback for older browsers */
+    background-color: #66c67f;
+    color: black;
+    text-align: center;
+    transition: transform 0.3s;
+    transform: translateY(-100%);
+    z-index: 1000;
+    font-size: 13px;
+}
+
+.notification.show {
+    transform: translateY(0);
+}
+
+@supports (padding-top: env(safe-area-inset-top)) {
+    .notification {
+        padding-top: env(safe-area-inset-top);
+    }
+
+    .block2.active {
+        padding-top: calc(15px + env(safe-area-inset-top));
+    }
+
+    .block1 {
+        padding-top: 0 !important;
+    }
+}
+
+@supports (padding-bottom: env(safe-area-inset-top)) {
+
+
+    .footer {
+        padding-bottom: calc(15px + env(safe-area-inset-bottom));
+    }
+}
+
+.qrcodeBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 20px 10px 20px;
+    height: 100%;
+}
+
+.qrcodeBlock>span {
+    font-size: 13px;
+    color: #a1a1a1;
+}
+
+.qrshBlock {
+    height: 252px;
+}
+
+.qrcode {
+    background-image: url(../assets/qr-dd.png);
+    background-size: contain;
+    background-position: center;
+    width: 252px;
+    margin-top: 10px;
+    height: 252px;
+}
+
+.shcode {
+    width: 252px;
+    height: 76px;
+    margin-top: 20px;
+    background-color: #fff;
+    background-image:
+        repeating-linear-gradient(90deg,
+            #111 0 2px, transparent 2px 5px,
+            #111 5px 6px, transparent 6px 9px,
+            #111 9px 12px, transparent 12px 15px,
+            #111 15px 16px, transparent 16px 20px);
+    background-size: 100% 100%;
+    background-position: center;
+    border: 0;
+    box-sizing: border-box;
+}
+
+.start-div {
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    background: linear-gradient(145deg, #b2d2e9 40%, #dbefd6 70%);
+    z-index: 9999;
+    transition: opacity 0.3s ease;
+    /* Плавное исчезновение */
+}
+
+.start-div.active {
+    pointer-events: all;
+    opacity: 1;
+}
+
+/* Состояние перед удалением */
+.start-div.hiding {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    z-index: -1;
+    display: none;
+}
+
+
+.video-background.active {
+    display: block;
+}
+
+#background-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: 100vh;
+    z-index: -1;
+    transform: translate(-50%, -50%);
+}
+
+.news {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.news>img {
+    width: 100%;
+    height: auto;
+}
+
+.news>div {
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+    padding-top: 10px;
+}
+
+.news>div>span {
+    font-size: 12px;
+    color: #a1a1a1;
+    margin-bottom: 7px;
+}
+
+.news>div>p {
+    font-weight: 300;
+    font-size: 15px;
+}
+
+
+.news-main {
+    height: auto;
+}
+
+.container-news {
+    width: 100%;
+}
+
+
+.document_block_div {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    padding: 20px 10px;
+    z-index: 10;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    transition: 0.2s all;
+
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    padding-bottom: 40px
+}
+
+.document_block_div.active {
+    opacity: 1;
+    pointer-events: all;
+    visibility: visible;
+}
+
+.document_block_div>div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    transform: translateY(100%);
+    transition: 0.4s all;
+}
+
+.document_block_div>div.active {
+    transform: translateY(0);
+}
+
+.main_block {
+    width: 100%;
+    background-color: #fff;
+    border-radius: 17px;
+    flex-direction: column;
+    padding: 10px 15px;
+}
+
+.main_block>div {
+    display: flex;
+    align-items: center;
+    padding: 15px 15px;
+    gap: 15px;
+}
+
+.main_block>div>img {
+    width: 18px;
+    height: 18px;
+}
+
+.main_block>div>span {
+    font-size: 14px;
+}
+
+.border {
+    border-bottom: 1px solid #e9edee;
+}
+
+.close_block {
+    background-color: #fff;
+    font-size: 16px;
+    text-align: center;
+    padding: 15px 0;
+    border-radius: 24px;
+}
+
+
+.modal {
+    position: fixed;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background-color: #f2f6f7;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 20px 20px 0 0;
+    transition: top 0.5s;
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-content {
+    padding: 10px 20px 100px 20px;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+.modal-content>h1 {
+    font-size: 22px;
+    font-weight: 300;
+    margin-top: 10px;
+}
+
+.numberNN {
+    margin: 15px 0 13px 0;
+    display: flex;
+    align-items: center;
+}
+
+.numberNN>h3 {
+    font-size: 27px;
+    font-weight: 300;
+}
+
+.copyPng {
+    width: 18px;
+}
+
+.handle {
+    width: 40px;
+    height: 5px;
+    background-color: #ccc;
+    border-radius: 5px;
+    margin: 10px auto;
+}
+
+.open {
+    top: 5%;
+}
+
+/* Учитываем вырезы на экранах */
+
+
+.fullPasportBlock {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 12px;
+    margin-top: 20px;
+}
+
+.fullPasportBlock>h2 {
+    font-size: 22px;
+    font-weight: 300;
+}
+
+.fullPasportBlock>h3 {
+    font-size: 16px;
+    font-weight: 300;
+    margin: 7px 0 13px 0;
+}
+
+.dataBlock2 {
+    margin: 15px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 12px;
+    gap: 15px;
+}
+
+.dataBlock2>div {
+    display: flex;
+}
+
+.dataBlock2>div>div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    gap: 3px;
+}
+
+.dataBlock2>div>div>h3 {
+    font-size: 13px;
+    font-weight: 300;
+}
+
+.dataBlock2>div>div>span {
+    font-size: 13px;
+    color: #a1a1a1;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    transition: opacity 0.3s;
+}
+
+.hidden {
+    display: none;
+}
+
+.qrChange {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-top: auto;
+}
+
+.qrChange>div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.qrChange>div>div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #ddd;
+    padding: 13px;
+}
+
+.qrChange>div>div>img {
+    width: 22px;
+    height: 22px;
+}
+
+.qrChangeInfo {
+    display: flex;
+    align-items: center;
+    gap: 70px !important;
+    margin-top: 10px;
+    justify-content: center;
+    margin: 0 !important;
+    padding: 15px 0 !important;
+}
+
+.qrChangeInfo>div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.qrChangeInfo>div>div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #ddd;
+    padding: 13px;
+}
+
+.qrChangeInfo>div>div>img {
+    width: 22px;
+    height: 22px;
+}
+
+.shText {
+    margin: 20px 0;
+    text-align: center;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+
+.swiper-container {
+    max-width: 100%;
+    height: 60%;
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    height: auto;
+}
+
+.documentSlider {
+    width: 100%;
+    padding-bottom: 12px !important;
+    overflow: visible !important;
+}
+
+.documentSlider .swiper-wrapper {
+    align-items: flex-start;
+}
+
+.documentSlider .swiper-slide {
+    opacity: 1;
+    transform: scale(1);
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    will-change: transform;
+}
+
+.documentSlider .document-slide-animated {
+    transition-property: transform, opacity, filter;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.35, 1);
+}
+
+.documentSlider .swiper-slide-active {
+    z-index: 3;
+}
+
+.documentSlider .swiper-slide:not(.swiper-slide-active) {
+    filter: saturate(0.98);
+}
+
+.documentSlider .swiper-pagination {
+    bottom: 0 !important;
+}
+
+
+
+.search {
+    width: 100%;
+    background: #fff;
+    position: relative;
+    padding: 10px 10px;
+    font-size: 13px;
+    color: #a1a1a1;
+    border-radius: 15px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search>img {
+    width: 18px;
+    height: 18px;
+}
+
+.services {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-bottom: 200px;
+}
+
+.services>div {
+    background: rgba(255, 255, 255, 0.4);
+    display: flex;
+    flex-direction: column;
+    height: 110px;
+    justify-content: space-between;
+    padding: 15px;
+    border-radius: 12px;
+    width: 100%;
+    flex: 1 1 calc(50% - 10px);
+    /* Учитывая зазор между элементами */
+    margin: 5px;
+    /* Зазор между элементами */
+}
+
+.services>div>span {
+    font-size: 13px;
+}
+
+.services>div>div {
+    /* border-radius: 50%;
+                        padding: 5px;
+                        background: black;
+                        width: max-content; */
+    padding: 8px;
+    background-color: black;
+    width: max-content;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.services>div>div>img {
+    filter: brightness(0) invert(1);
+    width: 18px;
+    height: 18px;
+    transform: rotate(0);
+    object-fit: contain;
+}
+
+
+.columnMenu {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    margin-top: 25px;
+}
+
+.columnMenu>button {
+    font-size: 15px;
+    padding: 12px 0;
+    width: 160px;
+    text-align: center;
+    background: black;
+    border-radius: 24px;
+    border: transparent;
+    color: #fff;
+    align-self: center;
+    font-weight: 300;
+    margin-top: 15px;
+}
+
+.columnMenu>span {
+    margin-top: 5px;
+    text-align: center;
+    font-size: 11px;
+    text-decoration: underline;
+}
+
+.columnMenu>div {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    width: 100%;
+    border-radius: 12px;
+}
+
+.columnMenu>div>div {
+    display: flex;
+    gap: 10px;
+    padding: 15px 15px;
+    align-items: center;
+}
+
+.columnMenu>div>div>img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+.columnMenu>div>div>span {
+    font-size: 15px;
+}
+
+html,
+body {
+    touch-action: manipulation;
+
+}
+
+/* ===== Footer AI tab ===== */
+.footer-ai-tab {
+    color: white;
+    position: relative;
+}
+.footer-ai-tab svg {
+    display: block;
+}
+.footer-ai-tab span {
+    font-size: 12px;
+    color: white;
+}
+
+/* ===== Дія.AI screen ===== */
+.diya-ai-block {
+    overflow: hidden;
+    background: transparent;
+    padding: 0 !important;
+}
+.diya-ai-block.active {
+    display: flex !important;
+    flex-direction: column;
+}
+
+/* Top bar */
+.dai-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px 0;
+    flex-shrink: 0;
+    gap: 8px;
+}
+.dai-topbar-btn {
+    background: none;
+    border: none;
+    padding: 6px;
+    color: #222;
+    cursor: pointer;
+    flex-shrink: 0;
+    line-height: 0;
+}
+
+/* Marquee */
+.dai-marquee-wrap {
+    flex: 1;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.dai-marquee-track {
+    display: inline-block;
+    animation: dai-marquee 18s linear infinite;
+    font-size: 12px;
+    color: #666;
+}
+@keyframes dai-marquee {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Messages */
+.dai-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px 20px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Date chip */
+.dai-date-chip {
+    text-align: center;
+    font-size: 13px;
+    color: #555;
+    background: rgba(255,255,255,0.75);
+    border-radius: 20px;
+    padding: 4px 14px;
+    align-self: center;
+    margin-bottom: 4px;
+}
+
+/* AI message block */
+.dai-msg-block {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.dai-msg-row {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+.dai-sparkle-icon {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 2px;
+    color: #222;
+}
+.dai-msg-text {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+.dai-msg-text p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #111;
+}
+
+/* Action buttons (like/dislike/copy) */
+.dai-actions {
+    display: flex;
+    gap: 18px;
+    padding-left: 40px;
+}
+.dai-action-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    color: #555;
+    cursor: pointer;
+    line-height: 0;
+}
+.dai-action-btn:active { color: #111; }
+
+/* User message bubble */
+.dai-user-bubble {
+    align-self: flex-end;
+    background: rgba(255,255,255,0.85);
+    border-radius: 20px 20px 4px 20px;
+    padding: 10px 16px;
+    font-size: 15px;
+    color: #111;
+    max-width: 80%;
+    line-height: 1.45;
+    backdrop-filter: blur(4px);
+}
+
+/* Typing indicator */
+.dai-typing-dots span {
+    display: inline-block;
+    width: 6px; height: 6px;
+    background: #aaa;
+    border-radius: 50%;
+    margin: 0 2px;
+    animation: dai-dot 1.2s infinite;
+}
+.dai-typing-dots span:nth-child(2) { animation-delay: .2s; }
+.dai-typing-dots span:nth-child(3) { animation-delay: .4s; }
+@keyframes dai-dot {
+    0%,80%,100% { transform: scale(0.7); opacity:0.5; }
+    40% { transform: scale(1); opacity:1; }
+}
+
+/* Input bar */
+.dai-input-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px 14px;
+    background: rgba(255,255,255,0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    flex-shrink: 0;
+    margin-bottom: 12px;
+    border-radius: 18px 18px 0 0;
+}
+.dai-sparkle-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.9);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    cursor: pointer;
+    color: #222;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+.dai-sparkle-btn:active { background: #eee; }
+.dai-input {
+    flex: 1;
+    border: none;
+    border-radius: 14px;
+    padding: 13px 18px;
+    font-size: 15px;
+    outline: none;
+    background: rgba(255,255,255,0.9);
+    color: #111;
+    -webkit-user-select: text !important;
+    user-select: text !important;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+.dai-input::placeholder { color: #aaa; }
+
+@keyframes diya-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+/* ===== Settings Modal ===== */
+/* ===== Settings Modal ===== */
+.settings-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: rgba(0,0,0,0.45);
+    display: flex;
+    align-items: flex-end;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+.settings-modal.hidden {
+    display: none;
+}
+.settings-sheet {
+    background: #f2f2f7;
+    width: 100%;
+    height: 95vh;
+    border-radius: 20px 20px 0 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    animation: slideUp 0.32s cubic-bezier(.32,.72,0,1);
+    /* Критично: не дозволяємо sheet стискатись */
+    min-height: 0;
+}
+@keyframes slideUp {
+    from { transform: translateY(100%); }
+    to   { transform: translateY(0); }
+}
+.settings-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 16px 14px;
+    background: rgba(242,242,247,0.98);
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    flex-shrink: 0;
+    z-index: 2;
+}
+.settings-header h2 {
+    font-size: 17px;
+    font-weight: 600;
+    margin: 0;
+    color: #111;
+    flex: 1;
+    text-align: center;
+}
+.settings-back {
+    background: none;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+    padding: 4px 8px 4px 2px;
+    color: #007aff;
+    display: flex;
+    align-items: center;
+    min-width: 60px;
+    flex-shrink: 0;
+}
+.settings-save {
+    background: #007aff;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 8px 16px;
+    color: #fff;
+    border-radius: 20px;
+    min-width: 60px;
+    flex-shrink: 0;
+    line-height: 1;
+    white-space: nowrap;
+}
+.settings-save:active { background: #005ecb; }
+
+.settings-body {
+    flex: 1;
+    min-height: 0;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    padding: 8px 16px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+.settings-section-title {
+    font-size: 12px;
+    color: #6b6b6b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 20px 4px 6px;
+    font-weight: 500;
+    flex-shrink: 0;
+}
+.settings-section-title:first-child {
+    margin-top: 8px;
+}
+.settings-group {
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    flex-shrink: 0;
+}
+.settings-field {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 12px 16px;
+    gap: 0;
+    min-height: 48px;
+    box-sizing: border-box;
+}
+.settings-field.border-top {
+    border-top: 1px solid #f0f0f0;
+}
+.settings-field label {
+    font-size: 14px;
+    color: #111;
+    font-weight: 400;
+    flex-shrink: 0;
+    width: 140px;
+    line-height: 1.3;
+}
+.settings-field input {
+    border: none;
+    outline: none;
+    font-size: 15px;
+    color: #555;
+    background: transparent;
+    padding: 0;
+    -webkit-user-select: text !important;
+    user-select: text !important;
+    width: 100%;
+    text-align: right;
+    min-width: 0;
+}
+.settings-field input::placeholder {
+    color: #c7c7cc;
+    text-align: right;
+}
+
+/* Photo upload */
+.settings-field-photo {
+    padding: 14px 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    min-height: auto;
+}
+.photo-upload-wrap {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+}
+.photo-preview-wrap {
+    width: 64px;
+    height: 80px;
+    border-radius: 10px;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 1.5px solid #e0e0e0;
+    background: #f5f5f5;
+}
+.photo-preview-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+.photo-upload-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+}
+.photo-upload-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: #007aff;
+    color: #fff;
+    border-radius: 20px;
+    padding: 9px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    line-height: 1;
+}
+.photo-upload-btn:active { background: #005ecb; }
+.photo-clear-btn {
+    background: none;
+    border: none;
+    color: #ff3b30;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 0 4px;
+    text-align: left;
+}
+
+/* Signature canvas */
+.settings-field-sign {
+    padding: 14px 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    min-height: auto;
+}
+.settings-field-sign label {
+    width: auto;
+    font-size: 13px;
+    color: #999;
+}
+.sign-canvas-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+#signatureCanvas {
+    border: 1.5px dashed #ccc;
+    border-radius: 12px;
+    background: #fafafa;
+    touch-action: none;
+    cursor: crosshair;
+    width: 100%;
+    height: 90px;
+    display: block;
+}
+.clear-sign-btn {
+    background: none;
+    border: 1px solid #ff3b30;
+    color: #ff3b30;
+    font-size: 13px;
+    cursor: pointer;
+    padding: 6px 14px;
+    border-radius: 20px;
+    align-self: flex-start;
+}
+
+/* Hide all scrollbars without disabling scrolling */
+html,
+body,
+* {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+*::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0 !important;
+    display: none !important;
+}
+
+/* v8: native service error is a centered modal with dimmed backdrop. */
+#error-popup{align-items:center !important;justify-content:center !important;background:rgba(0,0,0,.52) !important}
+#error-popup .error-content{width:min(340px,88vw);padding:32px 24px 26px;border-radius:22px}
+#error-popup .sad-face{font-family:"Apple Color Emoji","Segoe UI Emoji",sans-serif}
+.df-activate-sign{display:block;width:100%;margin:16px 0 8px;padding:14px 18px;border:0;border-radius:14px;background:#111;color:#fff;font-size:16px;font-weight:600}.df-activate-sign:disabled{opacity:.65}.df-sign-status{min-height:22px;margin-top:8px;text-align:center;font-size:14px;color:#555}.eDoc .line2{overflow:hidden!important;white-space:nowrap}.eDoc .line2 .kalyna-marquee{display:flex;width:max-content;white-space:nowrap;animation:kalyna-scroll 78s linear infinite;will-change:transform;transform:translate3d(0,0,0)}.eDoc .line2 .kalyna-part{display:block;flex:0 0 auto;padding:0;margin:0;white-space:nowrap}@keyframes kalyna-scroll{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+
+/* v23: QR reveal takes exactly 1 second after card flip. */
+.qrcodeBlock.qr-loading .qrshBlock{visibility:hidden;opacity:0}
+.qrcodeBlock.qr-ready .qrshBlock{visibility:visible;opacity:1;transition:opacity .15s ease}
+/* v23: signature controls */
+.signature-activate-btn{display:block;width:100%;margin:12px 0 0;padding:13px 16px;border:0;border-radius:14px;background:#0a84ff;color:#fff;font-size:15px;font-weight:600;cursor:pointer}
+.signature-activate-btn:disabled{opacity:.55}
+.signature-status{min-height:20px;margin-top:8px;text-align:center;font-size:13px;color:#666}
+
+
+/* v34: selected footer tab keeps the original icon/color unchanged. */
+.footer > button.active .footer-icon img,
+.footer > button.active .footer-icon svg,
+.footer > button:not(.active) .footer-icon img,
+.footer > button:not(.active) .footer-icon svg { filter: none !important; }
+
+
+/* FIX V63: compact, reliably clickable bottom navigation */
+.footer {
+    position: fixed !important;
+    left: 0 !important; right: 0 !important; bottom: 0 !important;
+    width: 100% !important;
+    min-height: 64px;
+    padding: 8px 10px calc(8px + env(safe-area-inset-bottom, 0px)) !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: stretch !important;
+    gap: 6px !important;
+    box-sizing: border-box !important;
+    z-index: 2147483647 !important;
+    pointer-events: auto !important;
+}
+.footer > button {
+    flex: 0 1 150px !important;
+    width: 150px !important;
+    min-width: 0 !important;
+    max-width: 150px !important;
+    pointer-events: auto !important;
+    position: relative;
+    z-index: 2;
+    touch-action: manipulation;
+}
+@media (max-width: 900px) {
+  .footer > button { flex: 1 1 0 !important; width: auto !important; max-width: none !important; }
+}
+
+/* Document carousel: enlarge the active card instead of rotating it. */
+.documentSlider .swiper-slide {
+  transition: transform 420ms cubic-bezier(0.25, 0.8, 0.35, 1), opacity 420ms ease, filter 420ms ease !important;
+}
+.documentSlider .swiper-slide-active {
+  transform: scale(1) !important;
+}
+
+/* Documents: horizontal carousel only, never vertically scroll the document area. */
+.main > .block.block2,
+.block2.active {
+  overflow: hidden !important;
+  overscroll-behavior: none !important;
+  touch-action: pan-x !important;
+}
+
+.documentSlider {
+  overflow-x: hidden !important;
+  overflow-y: hidden !important;
+  overscroll-behavior: none !important;
+  touch-action: pan-x !important;
+}
+
+.documentSlider .swiper-wrapper {
+  overflow: visible !important;
+}
+
+
+/* Transparent-strip fix: no separate animated/gradient band above the footer. */
+.main.active { padding-bottom: 0 !important; }
+.footer { margin: 0 !important; border: 0 !important; box-shadow: none !important; }
+
+/* QR size only: keep the QR card/container at 252px, reduce the QR itself. */
+.qrshBlock {
+    width: 252px;
+    height: 252px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.qrshBlock .qrcode {
+    width: 210px;
+    height: 210px;
+    margin-top: 0;
+    flex: 0 0 210px;
+}
+
+/* Dія.AI mobile composer: fixed inside the AI panel, clearly above bottom navigation. */
+.diya-ai-block.active {
+  position: relative !important;
+  height: calc(100% - 80px) !important;
+  max-height: calc(100% - 80px) !important;
+  min-height: 0 !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+}
+.diya-ai-block.active .dai-messages {
+  min-height: 0 !important;
+  padding-bottom: 92px !important;
+}
+.diya-ai-block.active .dai-input-bar {
+  position: absolute !important;
+  left: 10px !important;
+  right: 10px !important;
+  bottom: 4px !important;
+  z-index: 30 !important;
+  margin: 0 !important;
+  padding: 8px 10px !important;
+  border-radius: 18px !important;
+}
+@media (max-width: 480px) {
+  .diya-ai-block.active {
+    height: calc(100% - 76px) !important;
+    max-height: calc(100% - 76px) !important;
+  }
+  .diya-ai-block.active .dai-input-bar {
+    bottom: 4px !important;
+  }
+}
+
+/* Final UI adjustment: match all document cards to the current єДокумент card size. */
+.documentSlider .swiper-slide,
+.documentSlider .slider {
+    height: clamp(460px, 60vh, 700px) !important;
+    min-height: 460px !important;
+    max-height: 700px !important;
+    box-sizing: border-box !important;
+}
+
+/* Дія.AI: move the composer slightly lower without placing it under the footer. */
+.diya-ai-block.active .dai-input-bar {
+    bottom: 0 !important;
+}
+@media (max-width: 480px) {
+    .diya-ai-block.active .dai-input-bar {
+        bottom: 0 !important;
+    }
+}
+
+/* Final mobile fixes */
+@media (max-width: 600px) {
+  .diya-ai-block.active .dai-input-bar {
+    bottom: 8px !important;
+  }
+}
+
+/* Do not clip document cards when their front/back face is flipped. */
+.main > .block.block2,
+.block2.active,
+.documentSlider,
+.documentSlider .swiper,
+.documentSlider .swiper-wrapper,
+.documentSlider .swiper-slide,
+.documentSlider .slider,
+.documentSlider .content {
+  overflow: visible !important;
+}
+.documentSlider {
+  overflow-x: visible !important;
+  overflow-y: visible !important;
+}
+
+/* Final fix: keep the AI composer fully visible above the phone safe area. */
+.diya-ai-block.active .dai-input-bar {
+  bottom: max(8px, env(safe-area-inset-bottom)) !important;
+  padding-bottom: max(8px, env(safe-area-inset-bottom)) !important;
+  box-sizing: border-box !important;
+}
+.diya-ai-block.active .dai-input {
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+
+/* Mobile rendering optimizations */
+@media (max-width:900px){
+  img{content-visibility:auto;}
+  .documentSlider .swiper-slide,.slider{backface-visibility:hidden;-webkit-backface-visibility:hidden;}
+}
+
+/* NAV ICON INVERT: active icon is a full black version of the white inactive icon. */
+.footer > button:not(.active) .nav-svg,
+.footer > button:not(.active) .nav-stroke,
+.footer > button:not(.active) .nav-fill,
+.footer > button:not(.active) .ai-star,
+.footer > button:not(.active) .service-star {
+    color: #fff !important;
+    stroke: #fff !important;
+    fill: #fff !important;
+}
+
+.footer > button.active .nav-svg,
+.footer > button.active .nav-stroke,
+.footer > button.active .nav-fill,
+.footer > button.active .ai-star,
+.footer > button.active .service-star {
+    color: #000 !important;
+    stroke: #000 !important;
+    fill: #000 !important;
+}
+
+/* Active state: no background highlight, no underline. */
+.footer > button.active,
+.footer > button.active .footer-icon {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: 0 !important;
+    text-decoration: none !important;
+}
+.footer > button.active::before,
+.footer > button.active::after,
+.footer > button.active > span:last-child::before,
+.footer > button.active > span:last-child::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* Final document-card flip + overflow fix */
+.documentSlider,
+.documentSlider .swiper,
+.documentSlider .swiper-wrapper,
+.documentSlider .swiper-slide,
+.documentSlider .slider {
+  overflow: visible !important;
+}
+.documentSlider .swiper-slide {
+  contain: none !important;
+  clip-path: none !important;
+  -webkit-clip-path: none !important;
+  backface-visibility: visible !important;
+  -webkit-backface-visibility: visible !important;
+}
+.documentSlider .swiper-wrapper {
+  padding-top: 20px !important;
+  padding-bottom: 24px !important;
+}
+.documentSlider {
+  min-height: 504px !important;
+  height: 504px !important;
+  overflow: visible !important;
+}
+.documentSlider .slider {
+  height: clamp(460px, 60vh, 700px) !important;
+  min-height: 460px !important;
+  max-height: 700px !important;
+  overflow: visible !important;
+  transform-style: preserve-3d !important;
+  -webkit-transform-style: preserve-3d !important;
+  will-change: transform;
+}
+.documentSlider .content.front,
+.documentSlider .content.back {
+  overflow: visible !important;
+}
+
+
+/* v76: document cards — one-direction rightward 3D flip, matching the supplied video */
+.documentSlider {
+  perspective: 1400px !important;
+}
+.documentSlider .slider {
+  position: relative !important;
+  transform-style: preserve-3d !important;
+  -webkit-transform-style: preserve-3d !important;
+  transition: none !important;
+  will-change: transform;
+}
+.documentSlider .content.front,
+.documentSlider .content.back {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+  transform-style: preserve-3d !important;
+}
+.documentSlider .content.front {
+  transform: rotateY(0deg) !important;
+}
+.documentSlider .content.back {
+  transform: rotateY(180deg) !important;
+}
+.documentSlider .swiper-slide {
+  perspective: 1400px !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .documentSlider .slider { transition: none !important; }
+}
+
+/* v77: reliable repeated document rotation on phones.
+   The angle is cumulative: 0 -> 180 -> 360 -> 540 -> 720 -> ... */
+@media (max-width: 900px) {
+  .documentSlider .slider {
+    transform-style: preserve-3d !important;
+    -webkit-transform-style: preserve-3d !important;
+    backface-visibility: visible !important;
+    -webkit-backface-visibility: visible !important;
+    transition: transform 700ms cubic-bezier(0.25, 0.8, 0.35, 1) !important;
+    will-change: transform;
+    touch-action: manipulation;
+  }
+}
+
+
+/* iOS Safari 3D document-card rendering fix.
+   Keep the two faces isolated so the animated text/QR on the back face
+   cannot bleed through the front face while the card is rotating. */
+.documentSlider {
+  -webkit-perspective: 1400px !important;
+  perspective: 1400px !important;
+  -webkit-transform-style: preserve-3d !important;
+  transform-style: preserve-3d !important;
+  -webkit-backface-visibility: visible !important;
+  isolation: isolate;
+}
+.documentSlider .swiper-slide {
+  -webkit-perspective: 1400px !important;
+  perspective: 1400px !important;
+  -webkit-transform-style: preserve-3d !important;
+  transform-style: preserve-3d !important;
+}
+.documentSlider .slider {
+  -webkit-transform-style: preserve-3d !important;
+  transform-style: preserve-3d !important;
+  -webkit-backface-visibility: visible !important;
+  backface-visibility: visible !important;
+  -webkit-transform: translateZ(0) rotateY(0deg);
+  transform: translateZ(0) rotateY(0deg);
+  -webkit-transition: -webkit-transform 700ms cubic-bezier(0.25, 0.8, 0.35, 1) !important;
+  transition: transform 700ms cubic-bezier(0.25, 0.8, 0.35, 1) !important;
+  -webkit-backface-visibility: visible !important;
+  will-change: transform;
+}
+.documentSlider .content.front,
+.documentSlider .content.back {
+  -webkit-backface-visibility: hidden !important;
+  backface-visibility: hidden !important;
+  -webkit-transform-style: preserve-3d !important;
+  transform-style: preserve-3d !important;
+  -webkit-transform-origin: 50% 50% !important;
+  transform-origin: 50% 50% !important;
+  -webkit-transform: translateZ(0) rotateY(0deg);
+  transform: translateZ(0) rotateY(0deg);
+}
+.documentSlider .content.back {
+  -webkit-transform: translateZ(0) rotateY(180deg) !important;
+  transform: translateZ(0) rotateY(180deg) !important;
+}
+.documentSlider .content.front {
+  -webkit-transform: translateZ(0) rotateY(0deg) !important;
+  transform: translateZ(0) rotateY(0deg) !important;
+}
+.documentSlider .qrcodeBlock,
+.documentSlider .qrshBlock,
+.documentSlider .shText {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* The QR is revealed only after the first half of the flip, preventing the
+   one-frame QR flash that Safari can produce during touch transforms. */
+.documentSlider .qrcodeBlock.qr-loading .qrshBlock {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+.documentSlider .qrcodeBlock.qr-ready .qrshBlock {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transition: opacity 120ms ease;
+}
+
+@media (max-width: 900px) {
+  .documentSlider .slider {
+    -webkit-transition: -webkit-transform 700ms cubic-bezier(0.25, 0.8, 0.35, 1) !important;
+    transition: transform 700ms cubic-bezier(0.25, 0.8, 0.35, 1) !important;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+}
+
+/* iOS 3D document-card face isolation fix.
+   Keep front/back faces inside the slider's 3D plane so Safari cannot
+   composite the QR face above the front face or leak the front marquee
+   through the QR side. */
+@media (max-width: 900px) {
+  .documentSlider .slider {
+    position: relative !important;
+    isolation: isolate;
+    transform-style: preserve-3d !important;
+    -webkit-transform-style: preserve-3d !important;
+    overflow: visible;
+  }
+
+  .documentSlider .slider > .content.front,
+  .documentSlider .slider > .content.back {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    -webkit-backface-visibility: hidden !important;
+    backface-visibility: hidden !important;
+    transform-style: preserve-3d !important;
+    -webkit-transform-style: preserve-3d !important;
+  }
+
+  .documentSlider .slider > .content.front {
+    transform: rotateY(0deg) translateZ(0.1px) !important;
+    -webkit-transform: rotateY(0deg) translateZ(0.1px) !important;
+    z-index: 2 !important;
+  }
+
+  .documentSlider .slider > .content.back {
+    transform: rotateY(180deg) translateZ(0.1px) !important;
+    -webkit-transform: rotateY(180deg) translateZ(0.1px) !important;
+    z-index: 1 !important;
+  }
+
+  .documentSlider .slider .qrcodeBlock,
+  .documentSlider .slider .qrcode,
+  .documentSlider .slider .qrshBlock {
+    -webkit-backface-visibility: hidden !important;
+    backface-visibility: hidden !important;
+  }
+}
+
+/* Seamless prepared banner text: the next copy is rendered invisibly to the
+   right before it enters the viewport. No blank frame or sudden appearance. */
+.banner-prep-field{
+  position:absolute!important;
+  left:100%!important;
+  top:0!important;
+  visibility:hidden!important;
+  opacity:0!important;
+  pointer-events:none!important;
+  white-space:nowrap!important;
+  width:max-content!important;
+  max-width:none!important;
+}
+.banner-smooth-viewport{
+  display:block!important;
+  position:relative!important;
+  width:max-content!important;
+  min-width:100%!important;
+  overflow:visible!important;
+  white-space:nowrap!important;
+}
+.banner-smooth-track{
+  display:flex!important;
+  width:max-content!important;
+  min-width:max-content!important;
+  white-space:nowrap!important;
+  will-change:transform!important;
+  animation-name:banner-smooth-scroll!important;
+  animation-timing-function:linear!important;
+  animation-iteration-count:infinite!important;
+  animation-fill-mode:both!important;
+}
+.banner-smooth-part{
+  display:block!important;
+  flex:0 0 auto!important;
+  width:max-content!important;
+  min-width:max-content!important;
+  white-space:nowrap!important;
+  margin:0!important;
+  padding:0!important;
+}
+@keyframes banner-smooth-scroll{
+  from{transform:translate3d(0,0,0)}
+  to{transform:translate3d(var(--banner-shift),0,0)}
+}
+
+/* iPhone Safari: isolate the real QR back face from the document front face. */
+@media (max-width: 900px) {
+  .documentSlider .slider > .content.front,
+  .documentSlider .slider > .content.back {
+    background: #fff !important;
+    -webkit-backface-visibility: hidden !important;
+    backface-visibility: hidden !important;
+    -webkit-transform-style: flat !important;
+    transform-style: flat !important;
+    overflow: hidden !important;
+  }
+  .documentSlider .slider > .content.front {
+    -webkit-transform: rotateY(0deg) translateZ(1px) !important;
+    transform: rotateY(0deg) translateZ(1px) !important;
+  }
+  .documentSlider .slider > .content.back {
+    -webkit-transform: rotateY(180deg) translateZ(1px) !important;
+    transform: rotateY(180deg) translateZ(1px) !important;
+  }
+  .documentSlider .slider > .content.back .qrcodeBlock {
+    -webkit-transform: rotateY(0deg) !important;
+    transform: rotateY(0deg) !important;
+    background: #fff !important;
+  }
+}
+
+/* FINAL: stable document card two-face rendering on all phones and desktop.
+   The slider is the only rotating element; front/back are true 3D faces. */
+.documentSlider .slider {
+  position: relative !important;
+  width: 95% !important;
+  height: clamp(460px, 60vh, 700px) !important;
+  min-height: 460px !important;
+  transform-style: preserve-3d !important;
+  -webkit-transform-style: preserve-3d !important;
+  backface-visibility: visible !important;
+  -webkit-backface-visibility: visible !important;
+  perspective: 1400px !important;
+  -webkit-perspective: 1400px !important;
+}
+.documentSlider .slider > .content.front,
+.documentSlider .slider > .content.back {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  transform-style: preserve-3d !important;
+  -webkit-transform-style: preserve-3d !important;
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+}
+.documentSlider .slider > .content.front {
+  transform: rotateY(0deg) translateZ(0.5px) !important;
+  -webkit-transform: rotateY(0deg) translateZ(0.5px) !important;
+  background: rgba(255,255,255,.4) !important;
+  z-index: 2 !important;
+}
+.documentSlider .slider > .content.back {
+  transform: rotateY(180deg) translateZ(0.5px) !important;
+  -webkit-transform: rotateY(180deg) translateZ(0.5px) !important;
+  background: #fff !important;
+  z-index: 1 !important;
+}
+.documentSlider .slider > .content.back .qrcodeBlock,
+.documentSlider .slider > .content.back .qrshBlock,
+.documentSlider .slider > .content.back .qrcode {
+  transform: translateZ(0) !important;
+  -webkit-transform: translateZ(0) !important;
+}
+.documentSlider .slider > .content.front .qrcodeBlock,
+.documentSlider .slider > .content.front .qrshBlock,
+.documentSlider .slider > .content.front .qrcode {
+  display: none !important;
+}
+
+/* HARD FIX: real two-face document card. Do not flatten the 3D scene. */
+.documentSlider .slider{
+  position:relative!important;
+  perspective:none!important;
+  -webkit-perspective:none!important;
+  transform-style:preserve-3d!important;
+  -webkit-transform-style:preserve-3d!important;
+  isolation:auto!important;
+  overflow:visible!important;
+}
+.documentSlider .slider > .content.front,
+.documentSlider .slider > .content.back{
+  position:absolute!important;
+  left:0!important; top:0!important; right:0!important; bottom:0!important;
+  width:100%!important; height:100%!important;
+  margin:0!important;
+  box-sizing:border-box!important;
+  transform-origin:50% 50%!important;
+  -webkit-transform-origin:50% 50%!important;
+  transform-style:preserve-3d!important;
+  -webkit-transform-style:preserve-3d!important;
+  backface-visibility:hidden!important;
+  -webkit-backface-visibility:hidden!important;
+  overflow:hidden!important;
+}
+.documentSlider .slider > .content.front{
+  transform:rotateY(0deg)!important;
+  -webkit-transform:rotateY(0deg)!important;
+  z-index:2!important;
+}
+.documentSlider .slider > .content.back{
+  transform:rotateY(180deg)!important;
+  -webkit-transform:rotateY(180deg)!important;
+  z-index:1!important;
+  background:#fff!important;
+}
+.documentSlider .slider > .content.back .qrcodeBlock{
+  display:flex!important;
+  visibility:visible!important;
+  opacity:1!important;
+  position:relative!important;
+  z-index:10!important;
+  transform:none!important;
+  -webkit-transform:none!important;
+  background:#fff!important;
+}
+.documentSlider .slider > .content.back .qrshBlock,
+.documentSlider .slider > .content.back .qrcode{
+  visibility:visible!important;
+  opacity:1!important;
+  transform:none!important;
+  -webkit-transform:none!important;
+}
+.documentSlider .slider > .content.front .qrcodeBlock{display:none!important;}
+
+/* v146 — QR collision fix: keep the code in its own area above the controls.
+   The old +28px vertical shift pushed the QR into the QR/Barcode button row on
+   short Telegram/mobile viewports. */
+.documentSlider .slider:not(.eDoc) .content.back .qrcodeBlock .qrcode,
+.documentSlider .slider:not(.eDoc) .content.back .qrshBlock .qrcode {
+  transform: none !important;
+  -webkit-transform: none !important;
+}
+
+/* єДокумент: center the QR card and keep the entire QR visible. */
+.documentSlider .slider.eDoc .content.back > div:last-child {
+  height: 100% !important;
+  width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+}
+.documentSlider .slider.eDoc .content.back > div:last-child > div {
+  width: min(300px, calc(100% - 32px)) !important;
+  height: min(300px, calc(100% - 32px)) !important;
+  max-width: calc(100% - 32px) !important;
+  max-height: calc(100% - 32px) !important;
+  flex: 0 0 auto !important;
+  background-position: center !important;
+  background-size: contain !important;
+  padding: 16px !important;
+  box-sizing: border-box !important;
+}
+.documentSlider .slider.eDoc .content.back .qrcodeBlock {
+  display: none !important;
+}
+
+/* FINAL FIX: action slide is never a document card and must never flip. */
+.documentSlider .swiper-slide:last-child .slider,
+.documentSlider .swiper-slide:last-child .slider > div {
+  transform: none !important;
+  -webkit-transform: none !important;
+  backface-visibility: visible !important;
+  -webkit-backface-visibility: visible !important;
+}
+
+/* FINAL FIX: keep the barcode itself facing the user on the QR/back face. */
+.documentSlider .content.back .shcode {
+  transform: none !important;
+  -webkit-transform: none !important;
+  width: 252px !important;
+  height: 76px !important;
+  margin-top: 20px !important;
+  background-color: #fff !important;
+  background-image: repeating-linear-gradient(90deg,
+    #111 0 2px, transparent 2px 5px,
+    #111 5px 6px, transparent 6px 9px,
+    #111 9px 12px, transparent 12px 15px,
+    #111 15px 16px, transparent 16px 20px) !important;
+  background-size: 100% 100% !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  border: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* BARCODE LAYOUT FIX: barcode and its numbers must be stacked vertically.
+   The previous flex row placed the numbers to the right of the bars. */
+.documentSlider .content.back .qrshBlock:has(.shcode) {
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0 !important;
+}
+.documentSlider .content.back .qrshBlock:has(.shcode) .shcode {
+  flex: 0 0 76px !important;
+  width: 252px !important;
+  height: 76px !important;
+  margin: 0 !important;
+}
+.documentSlider .content.back .qrshBlock:has(.shcode) .shText {
+  width: 252px !important;
+  height: auto !important;
+  margin: 8px 0 0 !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 20px !important;
+  flex: 0 0 auto !important;
+}
+.documentSlider .content.back .qrshBlock:has(.shcode) .shText span {
+  white-space: nowrap !important;
+}
+
+/* QR overflow guard: keep both QR assets strictly inside each document card. */
+.documentSlider .slider > .content.front,
+.documentSlider .slider > .content.back {
+  overflow: hidden !important;
+  border-radius: 20px !important;
+  clip-path: inset(0 round 20px) !important;
+  -webkit-clip-path: inset(0 round 20px) !important;
+}
+.documentSlider .slider > .content.back .qrcodeBlock,
+.documentSlider .slider > .content.back .qrshBlock,
+.documentSlider .slider > .content.back .qrChange {
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+.documentSlider .slider > .content.back .qrcode {
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+}
+.documentSlider .slider > .content.back img[src*="qr-code.png"] {
+  display: block !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  object-fit: contain !important;
+}
+
+/* eDocument QR itself must have square edges. */
+.documentSlider .slider.eDoc .content.back .qrcode,
+.documentSlider .slider.eDoc .content.back img[src*="qr-dd.png"],
+.documentSlider .slider.eDoc .content.back img[src*="qr-code.png"] {
+  border-radius: 0 !important;
+}
+
+/* FINAL v79 — tall document cards matching the supplied phone screenshot. */
+.documentSlider {
+  height: 64vh !important;
+  min-height: 64vh !important;
+  max-height: 64vh !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  box-sizing: border-box !important;
+}
+.documentSlider .swiper-wrapper {
+  height: 100% !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  align-items: flex-start !important;
+}
+.documentSlider .swiper-slide {
+  height: 56vh !important;
+  min-height: 56vh !important;
+  max-height: 56vh !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: flex-start !important;
+  box-sizing: border-box !important;
+}
+.documentSlider .slider {
+  width: 85vw !important;
+  max-width: 520px !important;
+  height: 56vh !important;
+  min-height: 56vh !important;
+  max-height: 56vh !important;
+  margin: 0 auto !important;
+  box-sizing: border-box !important;
+}
+.documentSlider .slider > .content.front,
+.documentSlider .slider > .content.back {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  box-sizing: border-box !important;
+  border-radius: 28px !important;
+}
+
+@media (max-width: 600px) {
+  .documentSlider {
+    height: 64vh !important;
+    min-height: 64vh !important;
+    max-height: 64vh !important;
+  }
+  .documentSlider .swiper-slide,
+  .documentSlider .slider {
+    height: 56vh !important;
+    min-height: 56vh !important;
+    max-height: 56vh !important;
+  }
+  .documentSlider .slider {
+    width: 85vw !important;
+    max-width: none !important;
+  }
+}
+
+
+/* v78: taller and slightly narrower document cards + raised pagination dots */
+.documentSlider .swiper-slide {
+    width: 92% !important;
+}
+.documentSlider .slider {
+    width: 92% !important;
+    height: clamp(500px, 66vh, 740px) !important;
+    min-height: 500px !important;
+    max-height: 740px !important;
+}
+.documentSlider .content.front,
+.documentSlider .content.back {
+    width: 100% !important;
+    height: 100% !important;
+}
+.documentSlider .swiper-pagination {
+    bottom: 18px !important;
+    transform: translateY(-2px);
+}
+.documentSlider .swiper-pagination-bullet {
+    margin: 0 4px !important;
+}
+@media (max-width: 600px) {
+    .documentSlider .swiper-slide {
+        width: 90% !important;
+    }
+    .documentSlider .slider {
+        width: 90% !important;
+        height: clamp(500px, 68vh, 700px) !important;
+        min-height: 500px !important;
+        max-height: 700px !important;
+    }
+    .documentSlider .swiper-pagination {
+        bottom: 22px !important;
+    }
+}
+
+/* v80 — FINAL: taller and slightly narrower document cards; pagination raised */
+.documentSlider {
+  height: 82vh !important;
+  min-height: 82vh !important;
+  max-height: 82vh !important;
+  box-sizing: border-box !important;
+}
+.documentSlider .swiper-slide {
+  width: 86% !important;
+  height: 74vh !important;
+  min-height: 74vh !important;
+  max-height: 74vh !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: flex-start !important;
+  box-sizing: border-box !important;
+}
+.documentSlider .slider {
+  width: 86% !important;
+  max-width: 500px !important;
+  height: 74vh !important;
+  min-height: 74vh !important;
+  max-height: 74vh !important;
+  margin: 0 auto !important;
+  box-sizing: border-box !important;
+}
+.documentSlider .slider > .content.front,
+.documentSlider .slider > .content.back {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  box-sizing: border-box !important;
+}
+.documentSlider .swiper-pagination {
+  bottom: 34px !important;
+  top: auto !important;
+  transform: none !important;
+  z-index: 50 !important;
+}
+
+@media (max-width: 600px) {
+  .documentSlider {
+    height: 82vh !important;
+    min-height: 82vh !important;
+    max-height: 82vh !important;
+  }
+  .documentSlider .swiper-slide {
+    width: 84% !important;
+    height: 75vh !important;
+    min-height: 75vh !important;
+    max-height: 75vh !important;
+  }
+  .documentSlider .slider {
+    width: 84vw !important;
+    max-width: none !important;
+    height: 75vh !important;
+    min-height: 75vh !important;
+    max-height: 75vh !important;
+  }
+  .documentSlider .swiper-pagination {
+    bottom: 38px !important;
+  }
+}
+
+/* v82 — stable centered document cards with 20px neighbor peek.
+   IMPORTANT: do not use auto margins on .swiper-slide. Swiper positions
+   slides itself; auto margins combined with centeredSlides caused cumulative
+   horizontal drift after repeated swipes. */
+.documentSlider {
+  overflow: hidden !important;
+}
+.documentSlider .swiper-wrapper {
+  align-items: center !important;
+}
+.documentSlider .swiper-slide {
+  width: calc(100vw - 40px) !important;
+  max-width: 500px !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+}
+.documentSlider .slider {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+}
+@media (min-width: 601px) {
+  .documentSlider .swiper-slide {
+    width: min(500px, calc(100vw - 40px)) !important;
+  }
+}
+
+/* v83 — taller document cards + white pagination dots below the cards */
+.documentSlider {
+  position: relative !important;
+  height: 86vh !important;
+  min-height: 86vh !important;
+  max-height: 86vh !important;
+  overflow: hidden !important;
+}
+.documentSlider .swiper-wrapper {
+  height: 82vh !important;
+  min-height: 82vh !important;
+  max-height: 82vh !important;
+  align-items: flex-start !important;
+}
+.documentSlider .swiper-slide {
+  height: 82vh !important;
+  min-height: 82vh !important;
+  max-height: 82vh !important;
+  display: flex !important;
+  align-items: flex-start !important;
+}
+.documentSlider .slider {
+  height: 82vh !important;
+  min-height: 82vh !important;
+  max-height: 82vh !important;
+}
+.documentSlider .swiper-pagination {
+  position: absolute !important;
+  left: 0 !important;
+  right: 0 !important;
+  top: auto !important;
+  bottom: 6px !important;
+  width: 100% !important;
+  height: 14px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 100 !important;
+}
+.documentSlider .swiper-pagination .swiper-pagination-bullet {
+  background: #fff !important;
+  opacity: 0.55 !important;
+  width: 7px !important;
+  height: 7px !important;
+  margin: 0 4px !important;
+}
+.documentSlider .swiper-pagination .swiper-pagination-bullet-active {
+  background: #fff !important;
+  opacity: 1 !important;
+}
+
+@media (max-width: 600px) {
+  .documentSlider {
+    height: 86vh !important;
+    min-height: 86vh !important;
+    max-height: 86vh !important;
+  }
+  .documentSlider .swiper-wrapper,
+  .documentSlider .swiper-slide,
+  .documentSlider .slider {
+    height: 82vh !important;
+    min-height: 82vh !important;
+    max-height: 82vh !important;
+  }
+  .documentSlider .swiper-pagination {
+    bottom: 6px !important;
+  }
+}
+
+/* v84 — final positioning: cards higher, neighboring card 20px closer, dots slightly lower */
+.documentSlider .swiper-slide {
+  width: calc(100vw - 40px) !important;
+  max-width: 500px !important;
+  position: relative !important;
+  top: -24px !important;
+}
+.documentSlider .swiper-pagination {
+  bottom: 0 !important;
+}
+@media (min-width: 601px) {
+  .documentSlider .swiper-slide {
+    width: min(500px, calc(100vw - 40px)) !important;
+  }
+}
+@media (max-width: 600px) {
+  .documentSlider .swiper-slide {
+    top: -24px !important;
+  }
+  .documentSlider .swiper-pagination {
+    bottom: 0 !important;
+  }
+}
+
+/* v85 — prevent top clipping and make document cards taller vertically */
+.documentSlider {
+  height: 94vh !important;
+  min-height: 94vh !important;
+  max-height: 94vh !important;
+  overflow: visible !important;
+}
+.documentSlider .swiper-wrapper {
+  height: 88vh !important;
+  min-height: 88vh !important;
+  max-height: 88vh !important;
+  align-items: flex-start !important;
+}
+.documentSlider .swiper-slide {
+  height: 88vh !important;
+  min-height: 88vh !important;
+  max-height: 88vh !important;
+  top: 0 !important;
+  overflow: visible !important;
+}
+.documentSlider .slider {
+  height: 88vh !important;
+  min-height: 88vh !important;
+  max-height: 88vh !important;
+  overflow: visible !important;
+}
+.documentSlider .swiper-pagination {
+  bottom: 0 !important;
+}
+@media (max-width: 600px) {
+  .documentSlider {
+    height: 94vh !important;
+    min-height: 94vh !important;
+    max-height: 94vh !important;
+  }
+  .documentSlider .swiper-wrapper,
+  .documentSlider .swiper-slide,
+  .documentSlider .slider {
+    height: 88vh !important;
+    min-height: 88vh !important;
+    max-height: 88vh !important;
+  }
+}
+
+/* FINAL v81: document cards closer together + isolated banners. */
+.documentSlider .swiper-slide {
+  width: calc(100% - 40px) !important;
+  max-width: calc(100% - 40px) !important;
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+}
+.documentSlider .swiper-slide:first-child {
+  margin-right: -2px !important;
+}
+
+/* Banner must stay inside the active card and never bleed onto the next card. */
+.documentSlider .swiper-slide .content.front .line1.marquee,
+.documentSlider .swiper-slide .content.front .line2.marquee {
+  position: relative !important;
+  z-index: 5 !important;
+  overflow: hidden !important;
+  clip-path: inset(0) !important;
+  -webkit-clip-path: inset(0) !important;
+  contain: paint !important;
+  isolation: isolate !important;
+}
+.documentSlider .swiper-slide .content.front .banner-smooth-viewport,
+.documentSlider .swiper-slide .content.front .banner-smooth-track,
+.documentSlider .swiper-slide .content.front .banner-smooth-part {
+  max-width: 100% !important;
+}
+
+/* єДокумент banner: faster continuous text. */
+.documentSlider .swiper-slide .content.front .line2.marquee .banner-smooth-track {
+  animation-duration: 7000ms !important;
+}
+.documentSlider .swiper-slide .content.front .line2.marquee .kalyna-marquee {
+  animation-duration: 7000ms !important;
+}
+
+
+/* v105 — larger QR on the back of document cards */
+.documentSlider .slider > .content.back .qrcodeBlock {
+  padding: 10px 14px 8px !important;
+  justify-content: flex-start !important;
+}
+.documentSlider .slider > .content.back .qrcodeBlock > span {
+  margin-bottom: 6px !important;
+}
+.documentSlider .slider > .content.back .qrshBlock {
+  width: 290px !important;
+  height: 290px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.documentSlider .slider > .content.back .qrshBlock .qrcode,
+.documentSlider .slider > .content.back .qrcodeBlock .qrcode {
+  width: 286px !important;
+  height: 286px !important;
+  flex: 0 0 286px !important;
+  margin-top: 0 !important;
+  transform: none !important;
+  -webkit-transform: none !important;
+}
+@media (max-width: 900px) {
+  .documentSlider .slider > .content.back .qrcodeBlock {
+    padding-top: 8px !important;
+  }
+  .documentSlider .slider > .content.back .qrshBlock {
+    width: min(290px, 79vw) !important;
+    height: min(290px, 79vw) !important;
+  }
+  .documentSlider .slider > .content.back .qrshBlock .qrcode,
+  .documentSlider .slider > .content.back .qrcodeBlock .qrcode {
+    width: min(286px, 76vw) !important;
+    height: min(286px, 76vw) !important;
+    flex-basis: min(286px, 76vw) !important;
+  }
+}
+
+
+/* v106 — move QR higher, make it slightly bigger, keep clear gap above controls */
+.documentSlider .slider > .content.back .qrcodeBlock {
+  padding: 6px 14px 14px !important;
+  justify-content: flex-start !important;
+}
+.documentSlider .slider > .content.back .qrcodeBlock > span {
+  display: block !important;
+  margin-bottom: 4px !important;
+  line-height: 1.2 !important;
+}
+.documentSlider .slider > .content.back .qrshBlock {
+  width: 300px !important;
+  height: 300px !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+  flex: 0 0 auto !important;
+}
+.documentSlider .slider > .content.back .qrshBlock .qrcode,
+.documentSlider .slider > .content.back .qrcodeBlock .qrcode {
+  width: 296px !important;
+  height: 296px !important;
+  flex: 0 0 296px !important;
+  margin-top: 0 !important;
+  transform: none !important;
+  -webkit-transform: none !important;
+}
+.documentSlider .slider > .content.back .qrChange {
+  margin-top: auto !important;
+  padding-top: 10px !important;
+  gap: 40px !important;
+  flex: 0 0 auto !important;
+}
+@media (max-width: 900px) {
+  .documentSlider .slider > .content.back .qrcodeBlock {
+    padding: 6px 12px 12px !important;
+  }
+  .documentSlider .slider > .content.back .qrshBlock {
+    width: min(300px, 81vw) !important;
+    height: min(300px, 81vw) !important;
+  }
+  .documentSlider .slider > .content.back .qrshBlock .qrcode,
+  .documentSlider .slider > .content.back .qrcodeBlock .qrcode {
+    width: min(296px, 78vw) !important;
+    height: min(296px, 78vw) !important;
+    flex-basis: min(296px, 78vw) !important;
+  }
+  .documentSlider .slider > .content.back .qrChange {
+    padding-top: 8px !important;
+  }
+}
+
+
+/* v107 — QR almost directly under the top text, with protected bottom controls zone */
+.documentSlider .slider > .content.back .qrcodeBlock {
+  display: grid !important;
+  grid-template-rows: auto auto 1fr auto !important;
+  align-items: start !important;
+  justify-items: center !important;
+  padding: 2px 12px 14px !important;
+  row-gap: 0 !important;
+}
+.documentSlider .slider > .content.back .qrcodeBlock > span {
+  display: block !important;
+  margin: 0 0 2px !important;
+  line-height: 1.15 !important;
+}
+.documentSlider .slider > .content.back .qrshBlock {
+  width: 304px !important;
+  height: 304px !important;
+  margin: 0 !important;
+  align-self: start !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+}
+.documentSlider .slider > .content.back .qrshBlock .qrcode,
+.documentSlider .slider > .content.back .qrcodeBlock .qrcode {
+  width: 300px !important;
+  height: 300px !important;
+  flex: 0 0 300px !important;
+  margin: 0 !important;
+  transform: none !important;
+  -webkit-transform: none !important;
+}
+.documentSlider .slider > .content.back .qrChange {
+  align-self: stretch !important;
+  justify-content: center !important;
+  margin-top: auto !important;
+  padding-top: 12px !important;
+  gap: 40px !important;
+  min-height: 86px !important;
+}
+@media (max-width: 900px) {
+  .documentSlider .slider > .content.back .qrcodeBlock {
+    padding: 0 10px 12px !important;
+  }
+  .documentSlider .slider > .content.back .qrcodeBlock > span {
+    margin-bottom: 1px !important;
+  }
+  .documentSlider .slider > .content.back .qrshBlock {
+    width: min(304px, 82vw) !important;
+    height: min(304px, 82vw) !important;
+  }
+  .documentSlider .slider > .content.back .qrshBlock .qrcode,
+  .documentSlider .slider > .content.back .qrcodeBlock .qrcode {
+    width: min(300px, 79vw) !important;
+    height: min(300px, 79vw) !important;
+    flex-basis: min(300px, 79vw) !important;
+  }
+  .documentSlider .slider > .content.back .qrChange {
+    padding-top: 10px !important;
+    min-height: 82px !important;
+  }
+}
+
+
+/* v108 — QR centered and slightly smaller on document back side */
+.documentSlider .slider > .content.back .qrcodeBlock {
+  display: grid !important;
+  grid-template-rows: auto 1fr auto !important;
+  align-items: stretch !important;
+  justify-items: center !important;
+  padding: 10px 12px 14px !important;
+  row-gap: 0 !important;
+  height: 100% !important;
+}
+.documentSlider .slider > .content.back .qrcodeBlock > span {
+  margin: 0 0 4px !important;
+  line-height: 1.2 !important;
+}
+.documentSlider .slider > .content.back .qrshBlock {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.documentSlider .slider > .content.back .qrshBlock .qrcode,
+.documentSlider .slider > .content.back .qrcodeBlock .qrcode {
+  width: 246px !important;
+  height: 246px !important;
+  flex: 0 0 246px !important;
+  margin: 0 !important;
+  transform: none !important;
+  -webkit-transform: none !important;
+}
+.documentSlider .slider > .content.back .qrChange {
+  align-self: stretch !important;
+  justify-content: center !important;
+  margin-top: 0 !important;
+  padding-top: 8px !important;
+  min-height: 82px !important;
+  flex: 0 0 auto !important;
+}
+@media (max-width: 900px) {
+  .documentSlider .slider > .content.back .qrcodeBlock {
+    padding: 8px 10px 12px !important;
+  }
+  .documentSlider .slider > .content.back .qrshBlock .qrcode,
+  .documentSlider .slider > .content.back .qrcodeBlock .qrcode {
+    width: min(246px, 66vw) !important;
+    height: min(246px, 66vw) !important;
+    flex-basis: min(246px, 66vw) !important;
+  }
+  .documentSlider .slider > .content.back .qrChange {
+    min-height: 80px !important;
+    padding-top: 6px !important;
+  }
+}
+
+
+/* v109 — straighten QR layout on the back card */
+.documentSlider .slider > .content.back .qrcodeBlock {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  height: 100% !important;
+  padding: 12px 14px 14px !important;
+  box-sizing: border-box !important;
+}
+.documentSlider .slider > .content.back .qrcodeBlock > span {
+  width: 100% !important;
+  text-align: center !important;
+  margin: 0 0 10px !important;
+  line-height: 1.2 !important;
+}
+.documentSlider .slider > .content.back .qrshBlock {
+  width: 240px !important;
+  height: 240px !important;
+  min-width: 240px !important;
+  min-height: 240px !important;
+  margin: 0 auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex: 0 0 240px !important;
+}
+.documentSlider .slider > .content.back .qrshBlock .qrcode,
+.documentSlider .slider > .content.back .qrcodeBlock .qrcode {
+  width: 240px !important;
+  height: 240px !important;
+  flex: 0 0 240px !important;
+  margin: 0 auto !important;
+  background-position: center center !important;
+  background-size: contain !important;
+  transform: none !important;
+  -webkit-transform: none !important;
+}
+.documentSlider .slider > .content.back .qrChange {
+  width: 100% !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 40px !important;
+  margin-top: auto !important;
+  padding-top: 12px !important;
+  min-height: 88px !important;
+  flex: 0 0 auto !important;
+}
+@media (max-width: 900px) {
+  .documentSlider .slider > .content.back .qrcodeBlock {
+    padding: 10px 12px 12px !important;
+  }
+  .documentSlider .slider > .content.back .qrcodeBlock > span {
+    margin-bottom: 8px !important;
+  }
+  .documentSlider .slider > .content.back .qrshBlock {
+    width: min(240px, 64vw) !important;
+    height: min(240px, 64vw) !important;
+    min-width: min(240px, 64vw) !important;
+    min-height: min(240px, 64vw) !important;
+    flex-basis: min(240px, 64vw) !important;
+  }
+  .documentSlider .slider > .content.back .qrshBlock .qrcode,
+  .documentSlider .slider > .content.back .qrcodeBlock .qrcode {
+    width: min(240px, 64vw) !important;
+    height: min(240px, 64vw) !important;
+    flex-basis: min(240px, 64vw) !important;
+  }
+  .documentSlider .slider > .content.back .qrChange {
+    padding-top: 10px !important;
+    min-height: 84px !important;
+  }
+}
+
+
+/* v117 — iOS barcode/QR controls stay tappable; barcode visual never blocks card flip */
+.documentSlider .slider > .content.back .qrChange{
+  position:relative !important;
+  z-index:40 !important;
+  pointer-events:auto !important;
+  touch-action:manipulation !important;
+}
+.documentSlider .slider > .content.back .qrChange > div,
+.documentSlider .slider > .content.back .qrChange > div > div,
+.documentSlider .slider > .content.back .qrChange img,
+.documentSlider .slider > .content.back .qrChange span{
+  pointer-events:auto !important;
+  touch-action:manipulation !important;
+}
+.documentSlider .slider > .content.back .qrshBlock,
+.documentSlider .slider > .content.back .qrshBlock .qrcode,
+.documentSlider .slider > .content.back .qrshBlock .shcode,
+.documentSlider .slider > .content.back .qrshBlock .shText,
+.documentSlider .slider > .content.back .qrshBlock .shText span{
+  pointer-events:none !important;
+}
+
+
+/* v146 — final QR/button separation guard. */
+.documentSlider .slider:not(.eDoc) > .content.back .qrcodeBlock {
+  overflow: hidden !important;
+}
+.documentSlider .slider:not(.eDoc) > .content.back .qrshBlock {
+  margin-bottom: 8px !important;
+}
+.documentSlider .slider:not(.eDoc) > .content.back .qrChange {
+  position: relative !important;
+  z-index: 40 !important;
+  flex: 0 0 auto !important;
+  margin-top: auto !important;
+  padding-top: 8px !important;
+  background: #fff !important;
+}
+@media (max-height: 560px) {
+  .documentSlider .slider:not(.eDoc) > .content.back .qrshBlock,
+  .documentSlider .slider:not(.eDoc) > .content.back .qrshBlock .qrcode,
+  .documentSlider .slider:not(.eDoc) > .content.back .qrcodeBlock .qrcode {
+    width: min(220px, 60vw) !important;
+    height: min(220px, 60vw) !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    flex-basis: min(220px, 60vw) !important;
+  }
+  .documentSlider .slider:not(.eDoc) > .content.back .qrChange {
+    min-height: 78px !important;
+    padding-top: 6px !important;
+  }
+}
+
+
+
+/* Third document card (Паспорт громадянина України): clean fixed QR asset. */
+.documentSlider .slider.pasport .content.back .qrcode.changeCode{
+    background-image:url(../assets/qr-third-card.png)!important;
+    background-repeat:no-repeat!important;
+    background-position:center!important;
+    background-size:contain!important;
+    image-rendering:auto;
+}
+
+
+/* v150 — requested interaction polish */
+/* Documents opens instantly; horizontal card swiping keeps its own transition. */
+.block2.active { animation: none !important; }
+
+/* The full-info sheet is a real vertical scroller. Prevent scroll chaining into
+   the page/cards, which caused stale lower content to appear again. */
+.modal-content {
+  overscroll-behavior-y: contain !important;
+  -webkit-overflow-scrolling: touch !important;
+  touch-action: pan-y !important;
+}
+.modal { overscroll-behavior: contain !important; }
+
+
+/* Clean, consistent support-section icons in Menu. */
+.columnMenu .menu-support-icon {
+  width: 24px !important;
+  height: 24px !important;
+  object-fit: contain !important;
+  flex: 0 0 24px !important;
+}
+
+
+/* v151 — stable two-way scrolling in document full-info sheets */
+.modal {
+  height: 95vh !important;
+  max-height: 95vh !important;
+  min-height: 0 !important;
+}
+@supports (height: 100dvh) {
+  .modal {
+    height: 95dvh !important;
+    max-height: 95dvh !important;
+  }
+}
+.modal-content {
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  height: auto !important;
+  overflow-x: hidden !important;
+  overflow-y: scroll !important;
+  -webkit-overflow-scrolling: touch !important;
+  overscroll-behavior-y: contain !important;
+  touch-action: pan-y !important;
+  position: relative !important;
+}
+.modal-content .handle {
+  touch-action: none !important;
+}
+
+
+/* v152 — Android/iOS document sheet nested-scroll fix */
+.modal {
+  overflow: hidden !important;
+}
+.modal-content {
+  box-sizing: border-box !important;
+  flex: 1 1 0 !important;
+  min-height: 0 !important;
+  max-height: 100% !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  overscroll-behavior-y: none !important;
+  touch-action: pan-y !important;
+  scrollbar-width: none;
+}
+.modal-content::-webkit-scrollbar { display: none; }
+.modal-content > .handle {
+  touch-action: none !important;
+}
+
+/* v161 — original Face ID icon restored on all devices. */
+
+/* Critical UI libraries stay bundled locally; no jsDelivr/cdnjs dependency. */
