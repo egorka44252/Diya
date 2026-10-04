@@ -1,0 +1,356 @@
+
+/* iPhone / iOS Safari adaptation v1
+   Cloudflare Pages + Turso compatible: frontend-only safe-area/viewport fixes. */
+:root{
+  --ios-vh: 100vh;
+  --ios-safe-top: env(safe-area-inset-top, 0px);
+  --ios-safe-bottom: env(safe-area-inset-bottom, 0px);
+  --ios-safe-left: env(safe-area-inset-left, 0px);
+  --ios-safe-right: env(safe-area-inset-right, 0px);
+}
+html{
+  height:100%;
+  min-height:100%;
+  -webkit-text-size-adjust:100%;
+  text-size-adjust:100%;
+}
+body{
+  min-height:var(--ios-vh);
+  height:var(--ios-vh);
+  padding-top:var(--ios-safe-top);
+  padding-left:var(--ios-safe-left);
+  padding-right:var(--ios-safe-right);
+  padding-bottom:var(--ios-safe-bottom);
+  box-sizing:border-box;
+  -webkit-overflow-scrolling:touch;
+}
+.bg-start{
+  height:var(--ios-vh) !important;
+  min-height:var(--ios-vh) !important;
+  padding-top:var(--ios-safe-top);
+  padding-bottom:var(--ios-safe-bottom);
+  box-sizing:border-box;
+}
+.main{
+  min-height:0 !important;
+  height:calc(var(--ios-vh) - var(--ios-safe-top) - var(--ios-safe-bottom)) !important;
+  max-height:calc(var(--ios-vh) - var(--ios-safe-top) - var(--ios-safe-bottom)) !important;
+}
+.footer{
+  bottom:var(--ios-safe-bottom) !important;
+  padding-bottom:max(6px, var(--ios-safe-bottom)) !important;
+  box-sizing:border-box !important;
+}
+#intro-video,
+.video-background,
+#background-video{
+  height:var(--ios-vh) !important;
+  max-height:var(--ios-vh) !important;
+}
+input,button,select,textarea{
+  font-size:16px;
+  -webkit-appearance:none;
+  appearance:none;
+}
+button,a{
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
+}
+img,video,canvas,svg{
+  max-width:100%;
+}
+.main > .block,
+.block.active{
+  min-height:0 !important;
+}
+.documentSlider{
+  height:min(504px, calc(var(--ios-vh) - 160px)) !important;
+  min-height:min(504px, calc(var(--ios-vh) - 160px)) !important;
+  max-height:min(504px, calc(var(--ios-vh) - 160px)) !important;
+  box-sizing:border-box !important;
+  padding-top:8px !important;
+  padding-bottom:8px !important;
+}
+.documentSlider .swiper-wrapper{
+  padding-top:8px !important;
+  padding-bottom:8px !important;
+}
+.documentSlider .swiper-slide,
+.documentSlider .slider{
+  height:min(460px, calc(var(--ios-vh) - 190px)) !important;
+  min-height:min(460px, calc(var(--ios-vh) - 190px)) !important;
+  max-height:min(460px, calc(var(--ios-vh) - 190px)) !important;
+}
+.documentSlider .slider{
+  width:min(100%, 390px) !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
+.documentSlider .content.front,
+.documentSlider .content.back{
+  overflow:hidden !important;
+}
+.documentSlider .dataBlock>img{
+  max-width:38vw !important;
+  height:auto !important;
+  object-fit:cover;
+}
+.documentSlider .qrcodeBlock{
+  max-width:100% !important;
+}
+.documentSlider .qrshBlock{
+  width:min(252px, 68vw) !important;
+  height:min(252px, 68vw) !important;
+}
+.documentSlider .qrshBlock .qrcode{
+  width:min(210px, 57vw) !important;
+  height:min(210px, 57vw) !important;
+  flex:0 0 auto !important;
+}
+.documentSlider .slider{
+  -webkit-transform:translateZ(0) rotateY(0deg);
+  transform:translateZ(0) rotateY(0deg);
+  -webkit-backface-visibility:visible !important;
+  backface-visibility:visible !important;
+}
+.documentSlider .content.front,
+.documentSlider .content.back{
+  -webkit-backface-visibility:hidden !important;
+  backface-visibility:hidden !important;
+}
+.documentSlider .content.back{
+  -webkit-transform:translateZ(0) rotateY(180deg) !important;
+  transform:translateZ(0) rotateY(180deg) !important;
+}
+.documentSlider .content.front{
+  -webkit-transform:translateZ(0) rotateY(0deg) !important;
+  transform:translateZ(0) rotateY(0deg) !important;
+}
+/* Never let the document flip be triggered by a horizontal carousel swipe. */
+.documentSlider .slider,
+.documentSlider .content.front,
+.documentSlider .content.back{
+  touch-action:manipulation !important;
+}
+@media (max-width:600px){
+  .documentSlider{
+    height:min(490px, calc(var(--ios-vh) - 145px)) !important;
+    min-height:min(490px, calc(var(--ios-vh) - 145px)) !important;
+  }
+  .documentSlider .swiper-slide,
+  .documentSlider .slider{
+    height:min(445px, calc(var(--ios-vh) - 175px)) !important;
+    min-height:min(445px, calc(var(--ios-vh) - 175px)) !important;
+  }
+}
+@media (max-width:380px){
+  .documentSlider .swiper-slide,
+  .documentSlider .slider{
+    height:min(415px, calc(var(--ios-vh) - 175px)) !important;
+    min-height:min(415px, calc(var(--ios-vh) - 175px)) !important;
+  }
+  .documentSlider .dataBlock>img{max-width:34vw !important;}
+  .documentSlider .qrshBlock{width:62vw !important;height:62vw !important;}
+  .documentSlider .qrshBlock .qrcode{width:52vw !important;height:52vw !important;}
+}
+/* Avoid Safari's automatic zoom when focusing compact form controls. */
+@media (max-width:600px){
+  .field,.select,.dai-input,.df-search,.df-input{
+    font-size:16px !important;
+  }
+}
+/* iOS standalone: keep content below the Dynamic Island/notch and above home bar. */
+@supports (padding: max(0px)){
+  .footer{
+    padding-bottom:max(6px, env(safe-area-inset-bottom)) !important;
+  }
+}
+
+/* v2: reliable gesture ownership on iPhone + Android browsers. */
+.documentSlider,
+.documentSlider .swiper-wrapper,
+.documentSlider .swiper-slide,
+.documentSlider .slider,
+.documentSlider .content.front,
+.documentSlider .content.back {
+  touch-action: pan-y !important;
+}
+@supports (height: 100dvh) {
+  :root { --mobile-dvh: 100dvh; }
+}
+
+
+/* v105 — larger QR on iPhone document back side */
+.documentSlider .slider > .content.back .qrcodeBlock{
+  padding-top:8px !important;
+}
+.documentSlider .slider > .content.back .qrshBlock{
+  width:min(290px, 79vw) !important;
+  height:min(290px, 79vw) !important;
+}
+.documentSlider .slider > .content.back .qrshBlock .qrcode{
+  width:min(286px, 76vw) !important;
+  height:min(286px, 76vw) !important;
+  flex:0 0 min(286px, 76vw) !important;
+  margin-top:0 !important;
+}
+
+
+/* v106 — iPhone QR higher and slightly larger without touching bottom controls */
+.documentSlider .slider > .content.back .qrcodeBlock{
+  padding:6px 12px 12px !important;
+}
+.documentSlider .slider > .content.back .qrcodeBlock > span{
+  margin-bottom:4px !important;
+}
+.documentSlider .slider > .content.back .qrshBlock{
+  width:min(300px, 81vw) !important;
+  height:min(300px, 81vw) !important;
+}
+.documentSlider .slider > .content.back .qrshBlock .qrcode{
+  width:min(296px, 78vw) !important;
+  height:min(296px, 78vw) !important;
+  flex:0 0 min(296px, 78vw) !important;
+  margin-top:0 !important;
+}
+.documentSlider .slider > .content.back .qrChange{
+  padding-top:8px !important;
+}
+
+
+/* v107 — iPhone QR immediately under top text with bottom controls preserved */
+.documentSlider .slider > .content.back .qrcodeBlock{
+  padding:0 10px 12px !important;
+}
+.documentSlider .slider > .content.back .qrcodeBlock > span{
+  margin:0 0 1px !important;
+  line-height:1.15 !important;
+}
+.documentSlider .slider > .content.back .qrshBlock{
+  width:min(304px, 82vw) !important;
+  height:min(304px, 82vw) !important;
+  margin:0 !important;
+}
+.documentSlider .slider > .content.back .qrshBlock .qrcode{
+  width:min(300px, 79vw) !important;
+  height:min(300px, 79vw) !important;
+  flex:0 0 min(300px, 79vw) !important;
+  margin:0 !important;
+}
+.documentSlider .slider > .content.back .qrChange{
+  padding-top:10px !important;
+  min-height:82px !important;
+}
+
+
+/* v108 — iPhone QR centered and slightly smaller */
+.documentSlider .slider > .content.back .qrcodeBlock{
+  padding:8px 10px 12px !important;
+}
+.documentSlider .slider > .content.back .qrcodeBlock > span{
+  margin:0 0 4px !important;
+}
+.documentSlider .slider > .content.back .qrshBlock{
+  width:100% !important;
+  height:100% !important;
+  min-height:0 !important;
+  margin:0 !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+}
+.documentSlider .slider > .content.back .qrshBlock .qrcode{
+  width:min(246px, 66vw) !important;
+  height:min(246px, 66vw) !important;
+  flex:0 0 min(246px, 66vw) !important;
+  margin:0 !important;
+}
+.documentSlider .slider > .content.back .qrChange{
+  min-height:80px !important;
+  padding-top:6px !important;
+}
+
+
+/* v109 — iPhone QR layout straight and centered */
+.documentSlider .slider > .content.back .qrcodeBlock{
+  padding:10px 12px 12px !important;
+}
+.documentSlider .slider > .content.back .qrcodeBlock > span{
+  width:100% !important;
+  text-align:center !important;
+  margin:0 0 8px !important;
+}
+.documentSlider .slider > .content.back .qrshBlock{
+  width:min(240px, 64vw) !important;
+  height:min(240px, 64vw) !important;
+  min-width:min(240px, 64vw) !important;
+  min-height:min(240px, 64vw) !important;
+  margin:0 auto !important;
+  flex:0 0 min(240px, 64vw) !important;
+}
+.documentSlider .slider > .content.back .qrshBlock .qrcode{
+  width:min(240px, 64vw) !important;
+  height:min(240px, 64vw) !important;
+  flex:0 0 min(240px, 64vw) !important;
+  margin:0 auto !important;
+}
+.documentSlider .slider > .content.back .qrChange{
+  width:100% !important;
+  justify-content:center !important;
+  padding-top:10px !important;
+  min-height:84px !important;
+}
+
+
+/* v116 — iPhone documents card slightly higher, closer to vertical center like the reference */
+@supports (-webkit-touch-callout: none) {
+  .main > .block.block2,
+  .block2.active {
+    padding-top: 0 !important;
+  }
+
+  .documentSlider {
+    position: relative !important;
+    top: -28px !important;
+    margin-top: 0 !important;
+  }
+
+  .documentSlider .swiper-wrapper {
+    padding-top: 6px !important;
+  }
+
+  @media (min-height: 820px) {
+    .documentSlider {
+      top: -36px !important;
+    }
+  }
+
+  @media (max-height: 740px) {
+    .documentSlider {
+      top: -18px !important;
+    }
+  }
+}
+
+
+/* v117 — Safari touch fix for the back side controls */
+.documentSlider .slider > .content.back .qrChange{
+  position:relative !important;
+  z-index:50 !important;
+  pointer-events:auto !important;
+  touch-action:manipulation !important;
+}
+.documentSlider .slider > .content.back .qrChange > div,
+.documentSlider .slider > .content.back .qrChange > div > div{
+  pointer-events:auto !important;
+  touch-action:manipulation !important;
+}
+.documentSlider .slider > .content.back .qrshBlock,
+.documentSlider .slider > .content.back .qrshBlock *{
+  pointer-events:none !important;
+}
+
+/* GitHub static build: Android must not reserve a CSS safe-area below footer. */
+html:not(.ios-device){ --ios-safe-bottom:0px !important; }
+html:not(.ios-device) body{ padding-bottom:0 !important; }
+html:not(.ios-device) .footer{ bottom:0 !important; padding-bottom:6px !important; }

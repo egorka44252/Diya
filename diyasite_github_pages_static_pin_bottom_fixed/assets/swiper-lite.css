@@ -1,0 +1,8 @@
+/* Local lightweight Swiper-compatible core used by DiyaSite. */
+.swiper,.swiper-container{position:relative;margin-left:auto;margin-right:auto;overflow:hidden;list-style:none;padding:0;z-index:1}
+.swiper-wrapper{position:relative;width:100%;height:100%;z-index:1;display:flex;box-sizing:content-box;transition-property:transform;transition-timing-function:ease;transform:translate3d(0,0,0)}
+.swiper-slide{flex-shrink:0;width:100%;height:100%;position:relative;transition-property:transform}
+.swiper-pagination,.swiper-pagination2{position:relative;text-align:center;transition:.3s opacity;transform:translate3d(0,0,0);z-index:10}
+.swiper-pagination-bullet{width:8px;height:8px;display:inline-block;border-radius:50%;background:#000;opacity:.2;margin:0 4px;cursor:pointer}
+button.swiper-pagination-bullet{border:0;padding:0;box-shadow:none;appearance:none;-webkit-appearance:none}
+.swiper-pagination-bullet-active{opacity:1}
