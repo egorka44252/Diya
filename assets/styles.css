@@ -3546,3 +3546,7 @@ body::-webkit-scrollbar,
 /* v161 — original Face ID icon restored on all devices. */
 
 /* Critical UI libraries stay bundled locally; no jsDelivr/cdnjs dependency. */
+
+/* GitHub static PIN gate */
+.start-div { overscroll-behavior: none; touch-action: manipulation; }
+.start-div.active { z-index: 10000; }

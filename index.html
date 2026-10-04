@@ -426,8 +426,37 @@
 
 <div id="notification" class="notification">Номер скопійовано</div>
 
-    <div class="main active">
-        <div class="block block1 blockStart active">
+    <div class="start-div">
+        <h1>Код для входу</h1>
+        <div class="start-vhod">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="start-block">
+            <button type="button">1</button>
+            <button type="button">2</button>
+            <button type="button">3</button>
+            <button type="button">4</button>
+            <button type="button">5</button>
+            <button type="button">6</button>
+            <button type="button">7</button>
+            <button type="button">8</button>
+            <button type="button">9</button>
+            <div class="biometry-btn" role="button" tabindex="0" aria-label="Face ID">
+                <img id="biometryIcon" src="assets/biometrics.png" alt="Face ID" loading="eager" decoding="async">
+            </div>
+            <button type="button" class="zero-btn">0</button>
+            <button type="button" data-type="delete" class="delete-btn" style="display:flex;align-items:center;justify-content:center;background:transparent;">
+                <img style="width:50px;height:50px" src="assets/delete.png" alt="Видалити" loading="eager" decoding="async">
+            </button>
+        </div>
+        <div class="forgotPassword">Не пам'ятаю код для входу</div>
+    </div>
+
+    <div class="main">
+        <div class="block block1 blockStart">
             <h1 class="textVizit">
                 <span>Привіт, </span>
                 <span id="textName"></span><img class="greeting-hand" src="assets/hand-wave.png" alt="👋" / loading="lazy" decoding="async">
@@ -2196,7 +2225,7 @@
 
     <script src="assets/jquery-3.7.1.min.js?v=162"></script>
     <script src="assets/jquery.marquee.min.js" type="text/javascript"></script>
-    <script src="assets/app.js?v=162"></script>
+    <script src="assets/app.js?v=163"></script>
 
     <script>
         document.addEventListener('touchstart', function (e) {

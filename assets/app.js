@@ -1,4 +1,4 @@
-/* GitHub Pages static build */
+/* GitHub Pages static build — local PIN gate restored */
 const nocache = Date.now();
 
 document.addEventListener("DOMContentLoaded", () => {
